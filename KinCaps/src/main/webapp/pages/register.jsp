@@ -24,12 +24,20 @@
                 </div>
                 <!--  APELLIDO O LAST-NAME  -->
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="#" placeholder="Apellidos Completos" name="#">
+                    <input type="text" class="form-control" id="#" placeholder="Apellido Completo" name="#">
                 </div>
                 <!--  EMAIL O CORREO  -->
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="#" placeholder="Correo electrónico" name="#">
+                    <input type="email" class="form-control" id="#" placeholder="Correo Electrónico" name="#">
                 </div>
+                <!--  TELEFONO O CELULAR  -->
+                <div class="mb-3">
+                    <input type="tel" class="form-control" id="#" placeholder="Número de Teléfono" name="#">
+                </div>
+                <!--  DIRRECIÓN O UBICACION  -->
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="#" placeholder="Dirección" name="#">
+                </div> 
                 <!--  PASSWORD O CONTRASEÑA  -->
                 <div class="mb-3">
                     <input type="password" class="form-control" id="#" placeholder="Contraseña" name="#">
@@ -44,7 +52,7 @@
                 </div>
             </form>
             <div class="mt-4 d-flex justify-content-center gap-3">
-                <a href="../index.jsp">¿Ya tienes una cuenta, Registrate?</a>
+                <a href="../index.jsp">¿Ya tienes una cuenta?, Inicia Sesión</a>
             </div>
         </div>
     </body>
