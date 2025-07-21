@@ -39,7 +39,7 @@
                 </div>
             </form>
             <div class="mt-4 d-flex justify-content-center gap-3">
-                <a href="pages/register.jsp" class="btn btn-outline-light">Regístrate</a>
+                <a href="pages/register.jsp">¿No tienes una cuenta?, Regístrate</a>
             </div>
         </div>
     </body>
