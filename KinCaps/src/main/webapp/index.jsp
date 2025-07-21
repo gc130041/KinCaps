@@ -18,15 +18,15 @@
                 Tu tienda virtual favorita con el catálogo más amplio de gorras urbanas y deportivas.
             </p>
             <form method="get" action="ServletLogIn" class="registro-form mx-auto">
-                <!-- EMAIL O CORREO  -->
+                <!--  EMAIL O CORREO  -->
                 <div class="mb-3">
                     <input type="email" class="form-control" id="#" placeholder="Correo electrónico" name="#">
                 </div>
-                <!-- PASSWORD O CONTRASEÑA  -->
+                <!--  PASSWORD O CONTRASEÑA  -->
                 <div class="mb-3">
                     <input type="password" class="form-control" id="#" placeholder="Contraseña" name="#">
                 </div>
-                <!-- BOTON INICIAR SESION NO DEBE LLEVAR ID YA ES UN BOTON  -->
+                <!--  BOTON INICIAR SESION NO DEBE LLEVAR ID YA ES UN BOTON  -->
                 <div class="d-grid">
                     <button type="submit" class="btn btn-light btn-custom-text fw-bold">Iniciar Sesión</button>
                 </div>

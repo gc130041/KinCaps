@@ -18,27 +18,27 @@
                 Tu tienda virtual favorita con el catálogo más amplio de gorras urbanas y deportivas.
             </p>
             <form method="get" action="ServletLogIn" class="registro-form mx-auto">
-                <!-- NOMBRE O NAME  -->
+                <!--  NOMBRE O NAME  -->
                 <div class="mb-3">
                     <input type="text" class="form-control" id="#" placeholder="Nombre Completo" name="#">
                 </div>
-                <!-- APELLIDO O LAST-NAME  -->
+                <!--  APELLIDO O LAST-NAME  -->
                 <div class="mb-3">
                     <input type="text" class="form-control" id="#" placeholder="Apellidos Completos" name="#">
                 </div>
-                <!-- EMAIL O CORREO  -->
+                <!--  EMAIL O CORREO  -->
                 <div class="mb-3">
                     <input type="email" class="form-control" id="#" placeholder="Correo electrónico" name="#">
                 </div>
-                <!-- PASSWORD O CONTRASEÑA  -->
+                <!--  PASSWORD O CONTRASEÑA  -->
                 <div class="mb-3">
                     <input type="password" class="form-control" id="#" placeholder="Contraseña" name="#">
                 </div>
-                <!-- CONFIRMAR PASSWORD O CONTRASEÑA  -->
+                <!--  CONFIRMAR PASSWORD O CONTRASEÑA  -->
                 <div class="mb-3">
                     <input type="password" class="form-control" id="#" placeholder="Confirma Tu Contraseña" name="#">
                 </div>
-                <!-- BOTON REGISTRARTE NO DEBE LLEVAR ID YA ES UN BOTON  -->
+                <!--  BOTON REGISTRARTE NO DEBE LLEVAR ID YA ES UN BOTON  -->
                 <div class="d-grid">
                     <button type="submit" class="btn btn-light btn-custom-text fw-bold">Registrate</button>
                 </div>
