@@ -1,4 +1,4 @@
-package controller;
+package web;
 
 import dao.UsuarioDAO;
 import javax.servlet.ServletException;

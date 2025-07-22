@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
     
-    private static final String PERSISTENCE_UNIT_NAME = "KinCaps_Persistence";
+    private static final String PERSISTENCE_UNIT_NAME = "KinCaps";
     private static EntityManagerFactory factory;
 
     public static EntityManagerFactory getEntityManagerFactory() {
