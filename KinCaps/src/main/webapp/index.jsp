@@ -19,10 +19,10 @@
             </p>
             <form method="post" action="login" class="registro-form mx-auto">
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="#" placeholder="Correo electrónico" name="#" required>
+                    <input type="email" class="form-control" id="email" placeholder="Correo electrónico" name="email" required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="#" placeholder="Contraseña" name="#" required>
+                    <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password" required>
                 </div>
                 <%
                     String error = (String) request.getAttribute("error");

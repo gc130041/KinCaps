@@ -20,31 +20,31 @@
             <form method="get" action="ServletLogIn" class="registro-form mx-auto">
                 <!--  NOMBRE O NAME  -->
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="#" placeholder="Nombre Completo" name="#">
+                    <input type="text" class="form-control" id="name" placeholder="Nombre Completo" name="name">
                 </div>
                 <!--  APELLIDO O LAST-NAME  -->
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="#" placeholder="Apellido Completo" name="#">
+                    <input type="text" class="form-control" id="lastname" placeholder="Apellido Completo" name="lastname">
                 </div>
                 <!--  EMAIL O CORREO  -->
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="#" placeholder="Correo Electrónico" name="#">
+                    <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" name="email">
                 </div>
                 <!--  TELEFONO O CELULAR  -->
                 <div class="mb-3">
-                    <input type="tel" class="form-control" id="#" placeholder="Número de Teléfono" name="#">
+                    <input type="tel" class="form-control" id="telefono" placeholder="Número de Teléfono" name="telefono">
                 </div>
                 <!--  DIRRECIÓN O UBICACION  -->
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="#" placeholder="Dirección" name="#">
+                    <input type="text" class="form-control" id="ubicacion" placeholder="Dirección" name="ubicacion">
                 </div> 
                 <!--  PASSWORD O CONTRASEÑA  -->
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="#" placeholder="Contraseña" name="#">
+                    <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
                 </div>
                 <!--  CONFIRMAR PASSWORD O CONTRASEÑA  -->
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="#" placeholder="Confirma Tu Contraseña" name="#">
+                    <input type="password" class="form-control" id="confirmarpassword" placeholder="Confirma Tu Contraseña" name="confirmarpassword">
                 </div>
                 <!--  BOTON REGISTRARTE NO DEBE LLEVAR ID YA ES UN BOTON  -->
                 <div class="d-grid">
