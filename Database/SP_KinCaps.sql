@@ -17,6 +17,35 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+CREATE PROCEDURE sp_AgregarEmpleado(
+    IN p_nombre VARCHAR(50),
+    IN p_apellido VARCHAR(50),
+    IN p_email VARCHAR(100),
+    IN p_telefono VARCHAR(15),
+    IN p_direccion VARCHAR(255),
+    IN p_contrasena VARCHAR(255),
+    IN p_puesto VARCHAR(50),
+    IN p_fechaContratacion DATE
+)
+BEGIN
+    DECLARE v_contrasenaHash CHAR(64);
+    SET v_contrasenaHash = SHA2(p_contrasena, 256);
+
+    INSERT INTO empleados (
+        nombre, 
+        apellido, 
+        email, 
+        telefono, 
+        direccion, 
+        contrasenaHash, 
+        puesto, 
+        fechaContratacion
+    )
+    VALUES (p_nombre, p_apellido, p_email, p_telefono, p_direccion, v_contrasenaHash,p_puesto, p_fechaContratacion);
+END$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE PROCEDURE sp_Login(
     IN p_email VARCHAR(100),
     IN p_contrasena VARCHAR(255)

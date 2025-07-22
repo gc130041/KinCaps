@@ -18,3 +18,5 @@ CALL sp_AgregarCliente('Andres', 'Ortiz', 'andres.o@email.com', '7788990011', 'C
 CALL sp_AgregarCliente('Fernanda', 'Gutierrez', 'fernanda.g@email.com', '8899001122', 'Calle Cedro 22', 'fer_guti');
 CALL sp_AgregarCliente('Sebastian', 'Cruz', 'sebastian.c@email.com', '9900112233', 'Avenida Patriotismo 88', 'sebas_cruz');
 CALL sp_AgregarCliente('Daniela', 'Reyes', 'daniela.r@email.com', '1010101010', 'Plaza de la Constitucion 2', 'dani_reyes_2024');
+
+CALL sp_AgregarEmpleado('Ana','López','ana.lopez@example.com','555-9876','Plaza Mayor 45, Ciudad Principal','password','Diseñadora UX/UI','2024-06-15');
