@@ -1,0 +1,7 @@
+Glassfish JDBC Pool Manual Creation:
+
+.\asadmin create-jdbc-connection-pool --restype java.sql.Driver --driverclassname com.mysql.jdbc.Driver --property "user=quintom:password=admin:URL=jdbc\:mysql\://localhost\:3306/DB_KinCaps:useSSL=false:allowPublicKeyRetrieval=true" "kincaps-jdbc"
+
+.\asadmin create-jdbc-resource --connectionpoolid "kincaps-jdbc" jdbc/kincaps
+
+.\asadmin ping-connection-pool "kincaps-jdbc"
