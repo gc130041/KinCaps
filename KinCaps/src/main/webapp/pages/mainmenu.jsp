@@ -120,7 +120,7 @@
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100 shadow-sm">
                         <span class="insignia-tipo tipo-f1"> 
-                            <img src="../img/f1_logo_white.png" alt="MB" style="width: 30px;">
+                            <img src="../img/f1_logo_white.png" alt="MB" style="width: 60px;">
                         </span>
                         <img src="../img/gorra4.png" class="card-img-top" alt="Gorra 3">
                         <div class="card-body text-center">
