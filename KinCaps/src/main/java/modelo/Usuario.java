@@ -15,10 +15,10 @@ public abstract class Usuario {
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "telefono", length = 15)
+    @Column(name = "telefono", nullable = false, length = 15)
     private String telefono;
 
-    @Column(name = "direccion", length = 255)
+    @Column(name = "direccion", nullable = false, length = 255)
     private String direccion;
 
     @Column(name = "contrasenaHash", nullable = false, length = 64)

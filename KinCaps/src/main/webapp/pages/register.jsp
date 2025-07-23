@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Register - KINCAPS</title>
-        <link rel="stylesheet" href="../style/register.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/register.css" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     </head>
     <body class="registro-body d-flex align-items-center justify-content-center">
@@ -17,28 +17,28 @@
             <p>
                 Tu tienda virtual favorita con el catálogo más amplio de gorras urbanas y deportivas.
             </p>
-            <form method="get" action="ServletLogIn" class="registro-form mx-auto">
+            <form method="post" action="${pageContext.request.contextPath}/pages/register" class="registro-form mx-auto">
                 <!--  NOMBRE O NAME  -->
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="name" placeholder="Nombre Completo" name="name">
+                    <input type="text" class="form-control" id="name" placeholder="Nombre Completo" name="name" value="${nameValue}">
                 </div>
                 <!--  APELLIDO O LAST-NAME  -->
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="lastname" placeholder="Apellido Completo" name="lastname">
+                    <input type="text" class="form-control" id="lastname" placeholder="Apellido Completo" name="lastname" value="${lastnameValue}">
                 </div>
                 <!--  EMAIL O CORREO  -->
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" name="email">
+                    <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" name="email" value="${emailValue}">
                 </div>
                 <!--  TELEFONO O CELULAR  -->
                 <div class="mb-3">
-                    <input type="tel" class="form-control" id="telefono" placeholder="Número de Teléfono" name="telefono">
+                    <input type="tel" class="form-control" id="telefono" placeholder="Número de Teléfono" name="telefono" value="${telefonoValue}">
                 </div>
                 <!--  DIRRECIÓN O UBICACION  -->
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="ubicacion" placeholder="Dirección" name="ubicacion">
-                </div> 
-                <!--  PASSWORD O CONTRASEÑA  -->
+                    <input type="text" class="form-control" id="ubicacion" placeholder="Dirección" name="ubicacion" value="${ubicacionValue}">
+                </div>
+                <!--  PASSWORD O CONTRASEÑA (Por seguridad, estos no los rellenamos) -->
                 <div class="mb-3">
                     <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
                 </div>
@@ -47,12 +47,22 @@
                     <input type="password" class="form-control" id="confirmarpassword" placeholder="Confirma Tu Contraseña" name="confirmarpassword">
                 </div>
                 <!--  BOTON REGISTRARTE NO DEBE LLEVAR ID YA ES UN BOTON  -->
+                <%
+                    String error = (String) request.getAttribute("error");
+                    if (error != null && !error.isEmpty()) {
+                %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error%>
+                </div>
+                <%
+                    }
+                %>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-light btn-custom-text fw-bold">Registrate</button>
                 </div>
             </form>
             <div class="mt-4 d-flex justify-content-center gap-3">
-                <a href="../index.jsp">¿Ya tienes una cuenta?, Inicia Sesión</a>
+                <a href="${pageContext.request.contextPath}/index.jsp">¿Ya tienes una cuenta?, Inicia Sesión</a>
             </div>
         </div>
     </body>
