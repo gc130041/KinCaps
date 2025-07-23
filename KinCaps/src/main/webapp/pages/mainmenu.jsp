@@ -12,6 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Menu Principal - KINCAPS</title>
         <link rel="stylesheet" href="../style/mainmenu.css" />
+        <link rel="icon" href="../img/Logo/logonobg.png" type="image/x-icon">   
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -109,8 +110,8 @@
                         </span>
                         <img src="../img/gorra3.png" class="card-img-top"  style="margin-top: 10vh; padding-left: 2vh; padding-right: 2vh; padding-bottom: 3.7vh;" alt="Gorra 3">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Deportiva</h5>
-                            <p class="card-text text-muted">Gorra de Urbana NY, New Era New York, año 2025, +1000 de aumento de aura.</p>
+                            <h5 class="card-title">Gorra Urbana</h5>
+                            <p class="card-text text-muted">Gorra de Urbana NY, New Era New York, año 2025, Estilo Nuevo y Lucido.</p>
                             <a href="#" class="btn btn-outline-primary">Ver más</a>
                         </div>
                     </div>
@@ -118,8 +119,8 @@
                 <!-- Producto 4 -->
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-MB"> 
-                            <img src="../img/MB_logo_white.png" alt="MB" style="width: 30px;">
+                        <span class="insignia-tipo tipo-f1"> 
+                            <img src="../img/f1_logo_white.png" alt="MB" style="width: 30px;">
                         </span>
                         <img src="../img/gorra4.png" class="card-img-top" alt="Gorra 3">
                         <div class="card-body text-center">
