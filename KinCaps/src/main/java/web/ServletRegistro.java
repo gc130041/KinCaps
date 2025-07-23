@@ -1,26 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package web;
 
+import dao.ClienteDAO;
 import modelo.Cliente;
-import util.JPAUtil;
 import util.PasswordHash;
-
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/ServletRegistro")
+@WebServlet(name = "ServletRegistro", value = "/pages/register")
 public class ServletRegistro extends HttpServlet {
+
+    private ClienteDAO clienteDAO;
+
+    @Override
+    public void init() {
+        clienteDAO = new ClienteDAO();
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Obtener parámetros del formulario
         String nombre = request.getParameter("name");
         String apellido = request.getParameter("lastname");
         String email = request.getParameter("email");
@@ -29,48 +30,54 @@ public class ServletRegistro extends HttpServlet {
         String password = request.getParameter("password");
         String confirmarPassword = request.getParameter("confirmarpassword");
 
-        // Validar que las contraseñas coincidan
-        if (password == null || !password.equals(confirmarPassword)) {
-            request.setAttribute("error", "Las contraseñas no coinciden.");
-            request.getRequestDispatcher("/register.jsp").forward(request, response);
+        if (isCampoVacio(nombre) || isCampoVacio(apellido) || isCampoVacio(email) || 
+            isCampoVacio(telefono) || isCampoVacio(direccion) || isCampoVacio(password) || 
+            isCampoVacio(confirmarPassword)) {
+            
+            request.setAttribute("error", "Todos los campos son obligatorios.");
+            repopularFormulario(request, nombre, apellido, email, telefono, direccion);
+            request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
             return;
         }
 
-        EntityManager em = JPAUtil.getEntityManager();
+        if (!password.equals(confirmarPassword)) {
+            request.setAttribute("error", "Las contraseñas no coinciden.");
+            repopularFormulario(request, nombre, apellido, email, telefono, direccion);
+            request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
+            return;
+        }
 
         try {
-            // Verificar si ya existe un cliente con el mismo email
-            TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.email = :email", Cliente.class);
-            query.setParameter("email", email);
-            if (!query.getResultList().isEmpty()) {
+            if (clienteDAO.emailExiste(email)) {
                 request.setAttribute("error", "El correo electrónico ya está registrado.");
-                request.getRequestDispatcher("/register.jsp").forward(request, response);
+                repopularFormulario(request, nombre, apellido, "", telefono, direccion);
+                request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
                 return;
             }
 
-            // Hashear la contraseña
             String hashPassword = PasswordHash.contrasenaHash(password);
+            Cliente nuevoCliente = new Cliente(nombre, apellido, email, telefono, direccion, hashPassword);
+            clienteDAO.crearCliente(nuevoCliente);
 
-            // Crear un nuevo cliente
-            Cliente cliente = new Cliente(nombre, apellido, email, telefono, direccion, hashPassword);
-
-            // Guardar el cliente en la base de datos
-            em.getTransaction().begin();
-            em.persist(cliente);
-            em.getTransaction().commit();
-
-            // Redirigir al login con mensaje de éxito
             response.sendRedirect(request.getContextPath() + "/index.jsp?registro=exito");
 
         } catch (Exception e) {
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
             e.printStackTrace();
-            request.setAttribute("error", "Error interno, por favor intente más tarde.");
-            request.getRequestDispatcher("/register.jsp").forward(request, response);
-        } finally {
-            em.close();
+            request.setAttribute("error", "Error interno del servidor. Intente más tarde.");
+            repopularFormulario(request, nombre, apellido, email, telefono, direccion);
+            request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
         }
+    }
+
+    private boolean isCampoVacio(String campo) {
+        return campo == null || campo.trim().isEmpty();
+    }
+
+    private void repopularFormulario(HttpServletRequest request, String nombre, String apellido, String email, String telefono, String direccion) {
+        request.setAttribute("nameValue", nombre);
+        request.setAttribute("lastnameValue", apellido);
+        request.setAttribute("emailValue", email);
+        request.setAttribute("telefonoValue", telefono);
+        request.setAttribute("ubicacionValue", direccion);
     }
 }
