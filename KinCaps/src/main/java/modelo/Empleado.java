@@ -17,10 +17,10 @@ public class Empleado extends Usuario {
     @Column(name = "idEmpleado")
     private int idEmpleado;
 
-    @Column(name = "puesto", length = 50)
+    @Column(name = "puesto", nullable = false, length = 50)
     private String puesto;
 
-    @Column(name = "fechaContratacion")
+    @Column(name = "fechaContratacion", nullable = false)
     private LocalDate fechaContratacion;
 
     public Empleado() {

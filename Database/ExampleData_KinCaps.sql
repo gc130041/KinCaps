@@ -20,3 +20,6 @@ CALL sp_AgregarCliente('Sebastian', 'Cruz', 'sebastian.c@email.com', '9900112233
 CALL sp_AgregarCliente('Daniela', 'Reyes', 'daniela.r@email.com', '1010101010', 'Plaza de la Constitucion 2', 'dani_reyes_2024');
 
 CALL sp_AgregarEmpleado('Ana','López','ana.lopez@example.com','555-9876','Plaza Mayor 45, Ciudad Principal','password','Diseñadora UX/UI','2024-06-15');
+
+use db_kincaps;
+select * from cliente;
