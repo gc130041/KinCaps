@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("usuario", usuario);
 
             if (usuario instanceof Cliente) {
-                response.sendRedirect("pages/cliente.jsp");
+                response.sendRedirect("pages/mainmenu.jsp");
             } else if (usuario instanceof Empleado) {
                 response.sendRedirect("pages/empleado.jsp");
             }
