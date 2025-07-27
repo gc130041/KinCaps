@@ -17,7 +17,7 @@
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-kincaps px-4" style="background-color: #002f71;">
             <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="#">
@@ -62,78 +62,80 @@
         </nav>
 
         <!-- HERO PRINCIPAL -->
-        <header class="hero-section d-flex align-items-center justify-content-center text-center text-white">
-            <div>
-                <h1 class="display-4 fw-bold">Bienvenido a KINCAPS</h1>
-                <p class="lead">Tu tienda virtual favorita de gorras urbanas y deportivas</p>
-                <a href="#" class="btn btn-light btn-lg text-kincaps fw-bold mt-3">Explorar Catálogo</a>
-            </div>
-        </header>
+        <main class="flex-grow-1">
+            <header class="hero-section d-flex align-items-center justify-content-center text-center text-white">
+                <div>
+                    <h1 class="display-4 fw-bold">Bienvenido a KINCAPS</h1>
+                    <p class="lead">Tu tienda virtual favorita de gorras urbanas y deportivas</p>
+                    <a href="#" class="btn btn-light btn-lg text-kincaps fw-bold mt-3">Explorar Catálogo</a>
+                </div>
+            </header>
 
-        <!-- SECCIÓN DE PRODUCTOS DESTACADOS -->
-        <section class="container py-5">
-            <h2 class="text-center mb-4 text-kincaps fw-bold">Gorras Destacadas</h2>
-            <div class="row g-4">
-                <!-- Producto 1 -->
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-f1"> 
-                            <img src="../img/f1_logo_white.png" alt="F1" style="width: 60px;">
-                        </span>
-                        <img src="../img/gorra1.png" class="card-img-top" alt="Gorra 1">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Deportiva</h5>
-                            <p class="card-text text-muted">Gorra de Fórmula 1, Piloto Max Verstappen, año 2025, equipo Red Bull Racing.</p>
-                            <a href="#" class="btn btn-outline-primary">Ver más</a>
+            <!-- SECCIÓN DE PRODUCTOS DESTACADOS -->
+            <section class="container py-5">
+                <h2 class="text-center mb-4 text-kincaps fw-bold">Gorras Destacadas</h2>
+                <div class="row g-4">
+                    <!-- Producto 1 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card h-100 shadow-sm">
+                            <span class="insignia-tipo tipo-f1"> 
+                                <img src="../img/f1_logo_white.png" alt="F1" style="width: 60px;">
+                            </span>
+                            <img src="../img/gorra1.png" class="card-img-top" alt="Gorra 1">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Gorra Deportiva</h5>
+                                <p class="card-text text-muted">Gorra de Fórmula 1, Piloto Max Verstappen, año 2025, equipo Red Bull Racing.</p>
+                                <a href="#" class="btn btn-outline-primary">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Producto 2 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card h-100 shadow-sm">
+                            <span class="insignia-tipo tipo-toyota"> 
+                                <img src="../img/toyota_logo_white.png" alt="TOYOTA" style="width: 60px;">
+                            </span>
+                            <img src="../img/gorra2.png" class="card-img-top" alt="Gorra 2">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Gorra Deportiva</h5>
+                                <p class="card-text text-muted">Gorra de Deportiva Toyota, Kiichiro Toyoda , año 2025, equipo Toyota Racing.</p>
+                                <a href="#" class="btn btn-outline-primary">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Producto 3 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card h-100 shadow-sm">
+                            <span class="insignia-tipo tipo-NY"> 
+                                <img src="../img/NY_logo_white.png" alt="NY" style="width: 30px;">
+                            </span>
+                            <img src="../img/gorra3.png" class="card-img-top"  style="margin-top: 10vh; padding-left: 2vh; padding-right: 2vh; padding-bottom: 3.7vh;" alt="Gorra 3">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Gorra Urbana</h5>
+                                <p class="card-text text-muted">Gorra de Urbana NY, New Era New York, año 2025, Estilo Nuevo y Lucido.</p>
+                                <a href="#" class="btn btn-outline-primary">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Producto 4 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card h-100 shadow-sm">
+                            <span class="insignia-tipo tipo-f1"> 
+                                <img src="../img/f1_logo_white.png" alt="MB" style="width: 60px;">
+                            </span>
+                            <img src="../img/gorra4.png" class="card-img-top" alt="Gorra 3">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Gorra Deportiva</h5>
+                                <p class="card-text text-muted">Gorra de Deportiva Mercedez Benz, Carl Benz , año 2025, equipo Mercedez Racing.</p>
+                                <a href="#" class="btn btn-outline-primary">Ver más</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Producto 2 -->
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-toyota"> 
-                            <img src="../img/toyota_logo_white.png" alt="TOYOTA" style="width: 60px;">
-                        </span>
-                        <img src="../img/gorra2.png" class="card-img-top" alt="Gorra 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Deportiva</h5>
-                            <p class="card-text text-muted">Gorra de Deportiva Toyota, Kiichiro Toyoda , año 2025, equipo Toyota Racing.</p>
-                            <a href="#" class="btn btn-outline-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Producto 3 -->
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-NY"> 
-                            <img src="../img/NY_logo_white.png" alt="NY" style="width: 30px;">
-                        </span>
-                        <img src="../img/gorra3.png" class="card-img-top"  style="margin-top: 10vh; padding-left: 2vh; padding-right: 2vh; padding-bottom: 3.7vh;" alt="Gorra 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Urbana</h5>
-                            <p class="card-text text-muted">Gorra de Urbana NY, New Era New York, año 2025, Estilo Nuevo y Lucido.</p>
-                            <a href="#" class="btn btn-outline-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Producto 4 -->
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-f1"> 
-                            <img src="../img/f1_logo_white.png" alt="MB" style="width: 60px;">
-                        </span>
-                        <img src="../img/gorra4.png" class="card-img-top" alt="Gorra 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Deportiva</h5>
-                            <p class="card-text text-muted">Gorra de Deportiva Mercedez Benz, Carl Benz , año 2025, equipo Mercedez Racing.</p>
-                            <a href="#" class="btn btn-outline-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- PIE DE PÁGINA -->
+            <!-- PIE DE PÁGINA -->
+        </main>
         <footer class="bg-kincaps text-white text-center py-4 mt-5">
             <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
             <small>
