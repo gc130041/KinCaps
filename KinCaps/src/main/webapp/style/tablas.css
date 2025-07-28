@@ -69,12 +69,12 @@ body {
 
 .btn-edit, .btn-delete {
     margin:0 5px;
+    transition:background-color 0.3s ease;
 }
 
 .btn-edit {
     background-color:#1e90ff;
     color:white;
-    transition:background-color 0.3s ease;
 }
 
 .btn-edit:hover {
@@ -85,11 +85,21 @@ body {
 .btn-delete {
     background-color:#e10600;
     color:white;
-    transition:background-color 0.3s ease;
 }
 
 .btn-delete:hover {
     background-color:#b00500;
+    color:white;
+}
+
+.btn-save{
+    background-color:#1e90ff;
+    color:white;
+    transition:background-color 0.3s ease;
+}
+
+.btn-save:hover {
+    background-color:#004b7c;
     color:white;
 }
 
