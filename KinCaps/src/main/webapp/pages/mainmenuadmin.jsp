@@ -47,7 +47,7 @@
                         <div class="card option-card h-100 text-center p-4">
                             <h5>Productos</h5>
                             <p class="text-muted">Gestion total sobre tus productos y stock.</p>
-                            <a href="productos.jsp" class="btn menu-button mt-2">Gestionar Productos</a>
+                            <a href="${pageContext.request.contextPath}/ServletCrudGorras?accion=listar" class="btn menu-button mt-2">Gestionar Productos</a>
                         </div>
                     </div>
                     <div class="col-md-4">
