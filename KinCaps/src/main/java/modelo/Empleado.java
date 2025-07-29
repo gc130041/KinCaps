@@ -23,7 +23,7 @@ public class Empleado extends Usuario {
     @Column(name = "fechaContratacion", nullable = false)
     private LocalDate fechaContratacion;
 
-    public Empleado() {
+    public Empleado(String nombre, String apellido, String email, String telefono, String direccion, String contrasenaHash, String puesto1, String fechaContratacion1) {
         super();
     }
 
