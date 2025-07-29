@@ -23,7 +23,6 @@
                             <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/mantenimiento" role="button" aria-expanded="false">
                                 Menú Principal
                             </a>
-<<<<<<< HEAD
                             <ul class="dropdown-menu" id="adminMenu">
                                 <li><a class="dropdown-item dropdown-item-blue" href="proveedor.jsp">Proveedores</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="clientes.jsp">Clientes</a></li>
@@ -34,18 +33,6 @@
                                 <li><a class="dropdown-item dropdown-item-blue" href="detalleCarrito.jsp">Detalle Carrito</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a></li>
-=======
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/proveedor.jsp">Proveedores</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/clientes.jsp">Clientes</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/empleados.jsp">Empleados</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/carrito.jsp">Carrito</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/factura.jsp">Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/detalleFactura.jsp">Detalle Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/detalleCarrito.jsp">Detalle Carrito</a></li>
-                                <li><hr class="dropdown-divider"</li>
-                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/index.jsp">Cerrar Sesión</a></li>
->>>>>>> ft/santiago
                             </ul>
                         </li>
                     </ul>
