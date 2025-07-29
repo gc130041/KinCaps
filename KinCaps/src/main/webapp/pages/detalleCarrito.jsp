@@ -29,7 +29,8 @@
                                 <li><a class="dropdown-item dropdown-item-blue" href="carrito.jsp">Carrito</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="factura.jsp">Factura</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="detalleFactura.jsp">Detalle Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-red" href="../index.jsp">Cerrar Sesión</a></li>
+                                <li><hr class="dropdown-divider"</li>
+                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/index.jsp">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>

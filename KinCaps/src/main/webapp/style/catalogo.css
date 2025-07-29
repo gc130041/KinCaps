@@ -110,6 +110,27 @@ body {
     white-space:nowrap;
 }
 
-.pressed-list:pressed:hover {
-    color: black;
+.pressed-list:pressed {
+    color: white;
+}
+
+.pressed-list:hover{
+    color: white;
+}
+
+.custom-modal {
+    background-color: #fefefe;
+    border-radius: 15px;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.6) !important; 
+    backdrop-filter: grayscale(50%); 
+}
+
+.modal-dialog {
+    max-width: 600px;
 }

@@ -21,7 +21,7 @@
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-kincaps px-4" style="background-color: #002f71;">
             <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="#">
-                <img src="../img/Logo/logotipo.png" alt="Logo" style="width:8vh;" class="me-2"> KINCAPS
+                <img src="${pageContext.request.contextPath}/img/Logo/logotipo.png" alt="Logo" style="width:8vh;" class="me-2"> KINCAPS
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
                 <span class="navbar-toggler-icon"></span>

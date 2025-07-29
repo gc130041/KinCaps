@@ -31,6 +31,7 @@
                                 <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/factura.jsp">Factura</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/detalleFactura.jsp">Detalle Factura</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/detalleCarrito.jsp">Detalle Carrito</a></li>
+                                <li><hr class="dropdown-divider"</li>
                                 <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/index.jsp">Cerrar Sesión</a></li>
                             </ul>
                         </li>
