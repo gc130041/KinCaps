@@ -118,19 +118,19 @@ body {
     color: white;
 }
 
-.custom-modal {
-    background-color: #fefefe;
-    border-radius: 15px;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+.modal.fade .modal-dialog {
+    position:absolute;
+    top:15.3%;
+    right:-50%;
+    transform:translateY(-50%); 
+    transition:right 0.5s ease-in-out; 
+    width:20%;
 }
 
-.modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.6) !important; 
-    backdrop-filter: grayscale(50%); 
+.modal.show .modal-dialog {
+    right:0;
 }
 
-.modal-dialog {
-    max-width: 600px;
+.modal-backdrop.show {
+    background-color:black;
 }
