@@ -8,27 +8,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 body {
-  background-color:#f0f4f8;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#f0f4f8;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .bg-header {
-  background:linear-gradient(90deg, #002e71, #0f86d4);
-  box-shadow:0 4px 10px rgba(0, 0, 0, 0.3);
+    background:linear-gradient(90deg, #002e71, #0f86d4);
+    box-shadow:0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .menu-button {
-  background-color:#1e90ff;
-  color:white;
-  font-weight:bold;
-  padding:10px 20px;
-  border-radius:8px;
-  transition:all 0.3s ease;
+    background-color:#1e90ff;
+    color:white;
+    font-weight:bold;
+    padding:10px 20px;
+    border-radius:8px;
+    transition:all 0.3s ease;
 }
 
 .menu-button:hover {
-  background-color:#004b7c;
-  color:#fff;
+    background-color:#004b7c;
+    color:#fff;
 }
 
 .nav-item.dropdown{
@@ -67,70 +67,98 @@ body {
     top:0;
 }
 
-.btn-edit, .btn-delete {
-    margin:0 5px;
-    transition:background-color 0.3s ease;
-}
-
-.btn-edit {
-    background-color:#1e90ff;
-    color:white;
-}
-
-.btn-edit:hover {
-    background-color:#004b7c;
-    color:white;
-}
-
-.btn-delete {
-    background-color:#e10600;
-    color:white;
-}
-
-.btn-delete:hover {
-    background-color:#b00500;
-    color:white;
-}
-
-.btn-save{
-    background-color:#1e90ff;
-    color:white;
-    transition:background-color 0.3s ease;
-}
-
-.btn-save:hover {
-    background-color:#004b7c;
-    color:white;
-}
-
 .grap-text{
-    max-width:1px; 
-    overflow:hidden; 
+    max-width:1px;
+    overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
 }
 
 .pressed-list:pressed {
-    color: white;
+    color:white;
 }
 
 .pressed-list:hover{
-    color: white;
+    color:white;
 }
 
-.modal.fade .modal-dialog {
+.modal {
+    position:fixed;
+    top:0px;
+    bottom:80px;
+    left:0;
+    right:0;
+}
+
+.modal-dialog {
     position:absolute;
-    top:15.3%;
-    right:-50%;
-    transform:translateY(-50%); 
-    transition:right 0.5s ease-in-out; 
-    width:20%;
+    top:auto;
+    bottom:auto;
+    right:0;
+    width:400px;
+    margin:0;
+    transform:translateX(100%);
+    transition:transform 0.3s ease-in-out;
+    height:100%;
+    background-color:white;
 }
 
 .modal.show .modal-dialog {
-    right:0;
+    transform:translateX(0%);
 }
 
 .modal-backdrop.show {
     background-color:black;
+}
+
+.filtro-seccion {
+    background-color:whitesmoke;
+    padding:1.5rem;
+    margin-bottom:1.5rem;
+    border-radius:5px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+.filtro-seccion h2 {
+    margin-top:0;
+    border-bottom:1px solid #ddd;
+    padding-bottom:0.5rem;
+    font-size:1rem;
+    color:#15151e;
+}
+.filtro-seccion label {
+    font-weight:bold;
+    margin-bottom:0.5rem;
+    display:block;
+}
+.filtro-seccion input,.filtro-seccion select {
+    width:100%;
+    padding:0.8rem;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+    font-size:1rem;
+}
+.filtro-seccion button {
+    width:100%;
+    padding:0.8rem;
+    background-color:#15151e;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:background-color 0.3s;
+}
+.filtro-seccion button:hover {
+    background-color:#e10600;
+}
+
+.btnE{
+    background:linear-gradient(90deg, #002e71, #0f86d4);
+    color:white;
+}
+
+.btnE:hover{
+    transform:translateY(5%);
+    transition:transform 0.3s ease-in-out;
 }
