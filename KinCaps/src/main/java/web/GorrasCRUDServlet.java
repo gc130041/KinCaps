@@ -42,7 +42,7 @@ public class GorrasCRUDServlet extends HttpServlet {
             out.println("    <link rel='icon' href='" + request.getContextPath() + "/img/Logo/logonobg.png' type='image/x-icon'>");
             out.println("    <link rel='stylesheet' href='" + request.getContextPath() + "/style/tablas.css'>");
             out.println("</head>");
-            out.println("<body class='bg-light'>");
+            out.println("<body class='d-flex flex-column min-vh-100 bg-light'>");
             out.println("<nav class='navbar navbar-expand-lg bg-header navbar-dark'>");
             out.println("    <div class='container-fluid'>");
             out.println("        <a class='navbar-brand fw-bold'>Panel de Administración</a>");
