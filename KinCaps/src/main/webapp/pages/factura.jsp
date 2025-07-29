@@ -11,7 +11,7 @@
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg bg-header navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold">Panel de Administración</a>
+                <a href="${pageContext.request.contextPath}/pages/mainmenuadmin.jsp" class="navbar-brand fw-bold">Panel de Administración</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,7 +29,8 @@
                                 <li><a class="dropdown-item dropdown-item-blue" href="carrito.jsp">Carrito</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="detalleFactura.jsp">Detalle Factura</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="detalleCarrito.jsp">Detalle Carrito</a></li>
-                                <li><a class="dropdown-item dropdown-item-red" href="../index.jsp">Cerrar Sesión</a></li>
+                                <li><hr class="dropdown-divider"</li>
+                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/index.jsp">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
