@@ -13,7 +13,7 @@
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg bg-header navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold">Panel de Administración</a>
+                <a href="${pageContext.request.contextPath}/pages/mainmenuadmin.jsp" class="navbar-brand fw-bold">Panel de Administración</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -65,18 +65,18 @@
                                     for (Proveedor p : listaProveedores) {
                             %>
                             <tr>
-                                <td><%= p.getIdProveedor() %></td>
-                                <td><%= p.getNombre() %></td>
-                                <td><%= p.getContacto() %></td>
-                                <td><%= p.getTelefono() %></td>
+                                <td><%= p.getIdProveedor()%></td>
+                                <td><%= p.getNombre()%></td>
+                                <td><%= p.getContacto()%></td>
+                                <td><%= p.getTelefono()%></td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/mantenimiento/proveedores/editar?id=<%= p.getIdProveedor() %>" class="btn btn-sm btn-edit">Editar</a>
-                                    <a href="${pageContext.request.contextPath}/mantenimiento/proveedores/eliminar?id=<%= p.getIdProveedor() %>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar este proveedor?')">Eliminar</a>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/proveedores/editar?id=<%= p.getIdProveedor()%>" class="btn btn-sm btn-edit">Editar</a>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/proveedores/eliminar?id=<%= p.getIdProveedor()%>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar este proveedor?')">Eliminar</a>
                                 </td>
                             </tr>
                             <%
-                                    }
-                                } else {
+                                }
+                            } else {
                             %>
                             <tr>
                                 <td colspan="5" class="text-center">No hay proveedores que mostrar.</td>
