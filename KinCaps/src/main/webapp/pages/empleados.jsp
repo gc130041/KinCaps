@@ -1,4 +1,7 @@
+<%@page import="modelo.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modelo.Gorras" %>
+<%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,7 +32,8 @@
                                 <li><a class="dropdown-item dropdown-item-blue" href="factura.jsp">Factura</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="detalleFactura.jsp">Detalle Factura</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="detalleCarrito.jsp">Detalle Carrito</a></li>
-                                <li><a class="dropdown-item dropdown-item-red" href="../index.jsp">Cerrar Sesión</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -39,9 +43,9 @@
 
         <main class="flex-grow-1">
             <div class="container mt-5">
-                <h2 class="text-center mb-4">Gestión de Empleados</h2>
+                <h2 class="text-center mb-4">Gestión de Productos</h2>
                 <div class="d-flex justify-content-end gap-2 mb-3">
-                    <button class="btn menu-button">Agregar</button>
+                    <a href="${pageContext.request.contextPath}/mantenimiento/empleado/agregar" class="btn menu-button">Agregar</a>
                     <button class="btn menu-button">Buscar</button>
                 </div>
                 <div class="table-responsive">
@@ -61,16 +65,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <%
+                                List<Empleado> listaEmpleado = (List<Empleado>) request.getAttribute("listaEmpleado");
+                                if (listaEmpleado != null && !listaEmpleado.isEmpty()) {
+                                    for (Empleado e : listaEmpleado) {
+
+                            %>
                             <tr>
-                                <td>EGOV001</td>
-                                <td>Marcos</td>
-                                <td>Rivera</td>
-                                <td>mr@gmail.com</td>
-                                <td>+502 3478-9087</td>
-                                <td>Zona 3, Mixco Guatemala</td>
-                                <td class="grap-text">1234567890123456789012345678901234567890123456789012345678901234</td>
-                                <td>Gerente</td>
-                                <td>26/07/2025</td>
+                                <td><%=e.getIdEmpleado()%></td>
+                                <td><%=e.getNombre()%></td>
+                                <td><%=e.getApellido()%></td>
+                                <td><%=e.getEmail()%></td>
+                                <td><%=e.getTelefono()%></td>
+                                <td><%=e.getDireccion()%></td>
+                                <td class="grap-text"><%=e.getContrasenaHash()%></td>
+                                <td><%=e.getPuesto()%></td>
+                                <td><%=e.getFechaContratacion()%></td>
                                 <td>
                                     <button class="btn btn-sm btn-edit">Editar</button>
                                     <button class="btn btn-sm btn-delete">Eliminar</button>

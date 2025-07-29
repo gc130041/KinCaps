@@ -40,7 +40,7 @@
                         <div class="card option-card h-100 text-center p-4">
                             <h5>Empleados</h5>
                             <p class="text-muted">Gestiona los datos del personal.</p>
-                            <a href="empleados.jsp" class="btn menu-button mt-2">Gestionar Empleados</a>
+                            <a href="${pageContext.request.contextPath}/mantenimiento/empleado/" class="btn menu-button mt-2">Gestionar Empleados</a>
                         </div>
                     </div>
                     <div class="col-md-4">
