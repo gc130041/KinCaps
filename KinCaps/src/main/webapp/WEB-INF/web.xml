@@ -12,4 +12,20 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Public Area</web-resource-name>
+            <url-pattern>/login</url-pattern>
+            <url-pattern>/register</url-pattern>
+            <url-pattern>/index.jsp</url-pattern>
+            <url-pattern>/style/*</url-pattern>
+            <url-pattern>/img/*</url-pattern>
+            <url-pattern>/js/*</url-pattern>
+        </web-resource-collection>
+        
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 </web-app>
