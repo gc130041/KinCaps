@@ -25,6 +25,12 @@
                 <div class="mb-3">
                     <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password" required>
                 </div>
+                <div class="form-check mb-3 text-start">
+                    <input class="form-check-input" type="checkbox" name="remember-me" id="remember-me">
+                    <label class="form-check-label" for="remember-me">
+                        Recuérdame
+                    </label>
+                </div>
                 <%
                     String error = (String) request.getAttribute("error");
                     if (error != null && !error.isEmpty()) {
@@ -40,7 +46,7 @@
                 </div>
             </form>
             <div class="mt-4 d-flex justify-content-center gap-3">
-                <a href="pages/register.jsp">¿No tienes una cuenta?, Regístrate</a>
+                <a href="${pageContext.request.contextPath}/register">¿No tienes una cuenta?, Regístrate</a>
             </div>
         </div>
     </body>
