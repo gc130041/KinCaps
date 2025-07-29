@@ -8,27 +8,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 body {
-  background-color:#f0f4f8;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#f0f4f8;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .bg-header {
-  background:linear-gradient(90deg, #001c47, #004b7c);
-  box-shadow:0 4px 10px rgba(0, 0, 0, 0.3);
+    background:linear-gradient(90deg, #001c47, #004b7c);
+    box-shadow:0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .menu-button {
-  background-color:#1e90ff;
-  color:white;
-  font-weight:bold;
-  padding:10px 20px;
-  border-radius:8px;
-  transition:all 0.3s ease;
+    background-color:#1e90ff;
+    color:white;
+    font-weight:bold;
+    padding:10px 20px;
+    border-radius:8px;
+    transition:all 0.3s ease;
 }
 
 .menu-button:hover {
-  background-color:#004b7c;
-  color:#fff;
+    background-color:#004b7c;
+    color:#fff;
 }
 
 .nav-item.dropdown{
@@ -104,8 +104,14 @@ body {
 }
 
 .grap-text{
-    max-width:1px; 
-    overflow:hidden; 
+    max-width:1px;
+    overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+}
+
+.hash-cell {
+    max-width: 150px;
+    word-wrap: break-word;
+    font-size: 0.8em;
 }
