@@ -6,8 +6,8 @@
         <title>Menu Principal | Administrador</title>
         <link rel="icon" href="../img/Logo/logonobg.png" type="image/x-icon"> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../style/mainmenuadmin.css">
-        <link rel="stylesheet" href="../style/mainmenu.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/mainmenuadmin.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/mainmenu.css">
     </head>
     <body class="d-flex flex-column min-vh-100">
         <header class="bg-header text-white text-center py-4 shadow-sm">
@@ -47,7 +47,7 @@
                         <div class="card option-card h-100 text-center p-4">
                             <h5>Productos</h5>
                             <p class="text-muted">Gestion total sobre tus productos y stock.</p>
-                            <a href="${pageContext.request.contextPath}/ServletCrudGorras?accion=listar" class="btn menu-button mt-2">Gestionar Productos</a>
+                            <a href="${pageContext.request.contextPath}/mantenimiento/gorras/" class="btn menu-button mt-2">Gestionar Productos</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -82,7 +82,7 @@
                         <div class="card option-card h-100 text-center p-4">
                             <h5>Cerrar Sesión</h5>
                             <p class="text-muted">Finaliza tu sesión actual de forma segura.</p>
-                            <a href="../index.jsp" class="btn btn-danger mt-2">Cerrar Sesión</a>
+                            <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger mt-2">Cerrar Sesión</a>
                         </div>
                     </div>
                 </div>

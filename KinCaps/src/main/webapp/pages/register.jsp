@@ -5,20 +5,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Register - KINCAPS</title>
-        <link rel="icon" href="../img/Logo/logonobg.png" type="image/x-icon">
+        <link rel="icon" href="${pageContext.request.contextPath}/img/Logo/logonobg.png" type="image/x-icon">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/register.css" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     </head>
     <body class="registro-body d-flex align-items-center justify-content-center">
         <div class="registro-wrapper text-white text-center px-4">
             <div class="icon-placeholder mb-4 mx-auto">
-                <img class="icon-placeholder" src="../img/usuario.png" alt="Logo Usuario"/>
+                <img class="icon-placeholder" src="${pageContext.request.contextPath}/img/usuario.png" alt="Logo Usuario"/>
             </div>
             <h1 class="mb-3">Registrate</h1>
             <p>
                 Tu tienda virtual favorita con el catálogo más amplio de gorras urbanas y deportivas.
             </p>
-            <form method="post" action="${pageContext.request.contextPath}/pages/register" class="registro-form mx-auto">
+            <form method="post" action="${pageContext.request.contextPath}/register" class="registro-form mx-auto">
                 <!--  NOMBRE O NAME  -->
                 <div class="mb-3">
                     <input type="text" class="form-control" id="name" placeholder="Nombre Completo" name="name" value="${nameValue}">
@@ -63,7 +63,7 @@
                 </div>
             </form>
             <div class="mt-4 d-flex justify-content-center gap-3">
-                <a href="${pageContext.request.contextPath}/index.jsp">¿Ya tienes una cuenta?, Inicia Sesión</a>
+                <a href="${pageContext.request.contextPath}/">¿Ya tienes una cuenta?, Inicia Sesión</a>
             </div>
         </div>
     </body>
