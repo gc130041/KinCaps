@@ -1,174 +1,39 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 26/07/2025, 7:30:10 p. m.
-    Author     : enriq
-*/
-
 body {
-    background-color:#f0f4f8;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-main {
-    margin-left:300px; 
+    background-color: #f0f4f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .bg-header {
-    background:linear-gradient(90deg, #002e71, #0f86d4);
-    box-shadow:0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.menu-button {
-    background-color:#1e90ff;
-    color:white;
-    font-weight:bold;
-    padding:10px 20px;
-    border-radius:8px;
-    transition:all 0.3s ease;
-}
-
-.menu-button:hover {
-    background-color:#004b7c;
-    color:#fff;
-}
-
-.nav-item.dropdown{
-    margin-left:50px;
-}
-
-.nav-item.dropdown:hover .dropdown-menu {
-    display:block;
-    margin-top:0;
-}
-
-.dropdown-item-red:hover {
-    background:red;
-    color:white;
-    margin:2px 2px 2px 2px;
-}
-
-.dropdown-item-blue:hover {
-    background:#1e90ff;
-    color:white;
-    margin:2px 2px 2px 2px;
-}
-
-.navbar-nav .nav-link {
-    color:#e0f0ff;
-    font-weight:600;
-}
-
-.navbar-nav .nav-link:hover {
-    color:#1e90ff;
-    text-decoration:underline;
-}
-
-.navbar {
-    position:sticky;
-    top:0;
-}
-
-.grap-text{
-    max-width:1px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-
-.pressed-list:pressed {
-    color:white;
-}
-
-.pressed-list:hover{
-    color:white;
-}
-
-.modal {
-    position:fixed;
-    top:0px;
-    bottom:80px;
-    left:0;
-    right:0;
-}
-
-.modal-dialog {
-    position:absolute;
-    top:auto;
-    bottom:auto;
-    right:0;
-    width:400px;
-    margin:0;
-    transform:translateX(100%);
-    transition:transform 0.3s ease-in-out;
-    height:100%;
-    background-color:white;
-}
-
-.modal.show .modal-dialog {
-    transform:translateX(0%);
-}
-
-.modal-backdrop.show {
-    background-color:black;
+    background: linear-gradient(90deg, #002e71, #0f86d4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .filtro-seccion {
-    background-color:whitesmoke;
-    padding:1.5rem;
-    margin-bottom:1.5rem;
-    border-radius:5px;
-    box-shadow:0 2px 5px rgba(0, 0, 0, 0.1);
-    position:sticky;
-    top:10vh;
-    height:auto;
-}
-.filtro-seccion h2 {
-    margin-top:0;
-    border-bottom:1px solid #ddd;
-    padding-bottom:0.5rem;
-    font-size:1rem;
-    color:#15151e;
-}
-.filtro-seccion label {
-    font-weight:bold;
-    margin-bottom:0.5rem;
-    display:block;
-}
-.filtro-seccion input,.filtro-seccion select {
-    width:100%;
-    padding:0.8rem;
-    border:1px solid #ccc;
-    border-radius:5px;
-    box-sizing:border-box;
-    font-size:1rem;
-}
-.filtro-seccion button {
-    width:100%;
-    padding:0.8rem;
-    background-color:#15151e;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    font-weight:bold;
-    transition:background-color 0.3s;
-}
-.filtro-seccion button:hover {
-    background-color:#e10600;
+    position: sticky;
+    top: 90px;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
 }
 
-.btnE{
-    background:linear-gradient(90deg, #002e71, #0f86d4);
-    color:white;
+.modal-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    margin: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
 }
 
-.btnE:hover{
-    transform:translateY(5%);
-    transition:transform 0.3s ease-in-out;
+.modal.show .modal-dialog {
+    transform: translateX(0);
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
 }
 
 .insignia-tipo {
@@ -183,37 +48,22 @@ main {
     padding-bottom: 4px;
     transform: rotate(45deg);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: white;
 }
 
-.tipo-f1 {
-    background-color: #e10600; 
-    color:white;
-}
-
-.tipo-toyota {
-    background-color: #eb0a1e; 
-    color:white;
-}
-
-.tipo-NY {
-    background-color: #222222; 
-    color:white;
-}
-
-.tipo-MB {
-    background-color: #aaaaaa ; 
-    color:white;
-}
+.tipo-f1 { background-color: #e10600; }
+.tipo-NY { background-color: #222222; }
+.tipo-MB { background-color: #aaaaaa; }
 
 .card {
     position: relative;
     overflow: hidden;
     border: 2px solid transparent;
-    transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out, transform 0.4s ease-out;
+    transition: all 0.4s ease-out;
 }
 
 .card:hover {
     border-color: #1e90ff;
     box-shadow: 0 0 15px 3px rgba(30, 144, 255, 0.7);
-    transform: translateY(-10px);
+    transform: translateY(-5px);
 }
