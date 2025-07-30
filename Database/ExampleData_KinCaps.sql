@@ -21,5 +21,8 @@ CALL sp_AgregarCliente('Daniela', 'Reyes', 'daniela.r@email.com', '1010101010', 
 
 CALL sp_AgregarEmpleado('Ana','López','ana.lopez@example.com','555-9876','Plaza Mayor 45, Ciudad Principal','password','Diseñadora UX/UI','2024-06-15');
 
+INSERT INTO proveedor (nombre, contacto, telefono)
+VALUES ('Proveedor X', 'Juan Pérez', '123-456-7890');
+
 use db_kincaps;
 select * from cliente;
