@@ -40,7 +40,7 @@
                         <div class="filtro-seccion bg-light p-3 rounded shadow-sm">
                             <h3 class="mb-4">Filtros</h3>
                             <form>
-                               <div class="mb-4">
+                                <div class="mb-4">
                                     <label for="price-limit" class="form-label fw-bold">Límite de Precio</label>
                                     <input type="range" class="form-range" min="0" max="1000" step="10" id="price-limit" oninput="document.getElementById('priceOutput').value = `Q${this.value}.00`">
                                     <output id="priceOutput" class="form-text">Q500.00</output>
@@ -77,24 +77,266 @@
                                     <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
                                     <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra1.png" class="card-img-top" alt="Gorra 1">
                                     <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">Gorra Urbanos</h5>
+                                        <h5 class="card-title">Gorra Urbana</h5>
                                         <p class="card-text text-muted">Gorra New Era Azul de Los Angeles Dodgers, Año 1988.</p>
                                         <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Inicio de la tarjeta -->
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
                                 <div class="card h-100 shadow-sm">
                                     <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
                                     <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra2.png" class="card-img-top" alt="Gorra 2">
                                     <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">Gorra Urbanos</h5>
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de los Yankees de Nueva York, Año 2000.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->        
+                            <!-- Repetir más tarjetas si es necesario -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra3.png" class="card-img-top" alt="Gorra 3">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
                                         <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
                                         <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Repetir más tarjetas si es necesario -->
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra4.png" class="card-img-top" alt="Gorra 4">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra5.png" class="card-img-top" alt="Gorra 5">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra6.png" class="card-img-top" alt="Gorra 6">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra7.webp" class="card-img-top" alt="Gorra 7">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra8.webp" class="card-img-top" alt="Gorra 8">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra9.png" class="card-img-top" alt="Gorra 9">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra10.png" class="card-img-top" alt="Gorra 10">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra11.png" class="card-img-top" alt="Gorra 11">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra12.webp" class="card-img-top" alt="Gorra 12">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra13.webp" class="card-img-top" alt="Gorra 13">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra14.jpg" class="card-img-top" alt="Gorra 15">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra15.webp" class="card-img-top" alt="Gorra 15">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra16.webp" class="card-img-top" alt="Gorra 16">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra17.avif" class="card-img-top" alt="Gorra 17">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra18.jpg" class="card-img-top" alt="Gorra 18">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de Los Angeles Dodgers.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra19.jpg" class="card-img-top" alt="Gorra 19">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Marrón de los San Diego Padres, Año 2020. </p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Inicio de la tarjeta -->
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <span class="insignia-tipo tipo-NY"><img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="New Era" style="width: 35px;"></span>
+                                    <img src="${pageContext.request.contextPath}/img/Gorras/Urbanos/gorra20.webp" class="card-img-top" alt="Gorra 20">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Gorra Urbana</h5>
+                                        <p class="card-text text-muted">Gorra New Era Negra de los New York Mets Año, 1954.</p>
+                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin de la tarjeta -->
+                            <!-- Division -->
+                            <hr>
+                            <h2>Formula 1</h2>
+                            <!-- Inicio de la tarjeta -->
+                            
                         </div>
                     </div>
                 </div>
