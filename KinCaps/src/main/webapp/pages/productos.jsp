@@ -20,19 +20,19 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/pages/mainmenuadmin.jsp" role="button" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/mantenimiento" role="button" aria-expanded="false">
                                 Menú Principal
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/proveedor.jsp">Proveedores</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/clientes.jsp">Clientes</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/empleados.jsp">Empleados</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/carrito.jsp">Carrito</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/factura.jsp">Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/detalleFactura.jsp">Detalle Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/pages/detalleCarrito.jsp">Detalle Carrito</a></li>
-                                <li><hr class="dropdown-divider"</li>
-                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/index.jsp">Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/proveedores/listar">Proveedores</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/empleados/listar">Empleados</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/gorras/listar">Productos</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/carrito/listar">Carrito</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/factura/listar">Factura</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/detalleFactura/listar">Detalle Factura</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/detallecarrito/listar">Detalle Carrito</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -44,7 +44,7 @@
             <div class="container mt-5">
                 <h2 class="text-center mb-4">Gestión de Productos</h2>
                 <div class="d-flex justify-content-end gap-2 mb-3">
-                    <a href="${pageContext.request.contextPath}/ServletCrudGorras?accion=mostrarAgregar" class="btn menu-button">Agregar</a>
+                    <a href="${pageContext.request.contextPath}/mantenimiento/gorras/agregar" class="btn menu-button">Agregar</a>
                     <button class="btn menu-button">Buscar</button>
                 </div>
                 <div class="table-responsive">
@@ -66,7 +66,7 @@
                                 List<Gorras> listaGorra = (List<Gorras>) request.getAttribute("listaGorras");
                                 if (listaGorra != null && !listaGorra.isEmpty()) {
                                     for (Gorras g : listaGorra) {
-                                    
+
                             %>
                             <tr>
                                 <td><%=g.getIdGorra()%></td>
@@ -75,11 +75,11 @@
                                 <td><%=g.getColor()%></td>
                                 <td><%=g.getPrecio()%></td>
                                 <td><%=g.getStock()%></td>
-                                <td><%= (g.getProveedor() != null ? g.getProveedor().getNombre(): "nombre")%></td>                                
+                                <td><%= (g.getProveedor() != null ? g.getProveedor().getNombre() : "nombre")%></td>                                
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/ServletCrudGorras?accion=mostrarEditar&id=<%=g.getIdGorra()%>" 
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/gorras/editar?id=<%=g.getIdGorra()%>" 
                                        class="btn btn-sm btn-edit">Editar</a>
-                                    <a href="${pageContext.request.contextPath}/ServletCrudGorras?accion=eliminar&id=<%=g.getIdGorra()%>" 
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/gorras/eliminar?id=<%=g.getIdGorra()%>" 
                                        class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar este producto?')">Eliminar</a>
                                 </td>                                
                             </tr>
@@ -88,7 +88,7 @@
                             } else {
                             %>
                             <tr>
-                                <td colspan="7" class="text-center">No hay productos que mostrar.</td>
+                                <td colspan="8" class="text-center">No hay productos que mostrar.</td>
                             </tr>
                             <%
                                 }

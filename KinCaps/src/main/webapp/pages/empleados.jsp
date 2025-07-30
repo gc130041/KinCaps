@@ -1,12 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modelo.Empleado"%>
+<%@page import="java.util.List"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Empleados | Administrador</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-        <link rel="icon" href="../img/Logo/logonobg.png" type="image/x-icon"> 
-        <link rel="stylesheet" href="../style/tablas.css">
+        <link rel="icon" href="${pageContext.request.contextPath}/img/Logo/logonobg.png" type="image/x-icon"> 
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/tablas.css">
     </head>
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg bg-header navbar-dark">
@@ -15,22 +18,22 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="menuNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="mainmenuadmin.jsp" role="button" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/pages/mainmenuadmin.jsp" role="button" aria-expanded="false">
                                 Menú Principal
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item dropdown-item-blue" href="proveedor.jsp">Proveedores</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="clientes.jsp">Clientes</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="productos.jsp">Productos</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="carrito.jsp">Carrito</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="factura.jsp">Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="detalleFactura.jsp">Detalle Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="detalleCarrito.jsp">Detalle Carrito</a></li>
-                                <li><hr class="dropdown-divider"</li>
-                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/index.jsp">Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/proveedores/listar">Proveedores</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/clientes/listar">Clientes</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/gorras/listar">Productos</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/carrito/listar">Carrito</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/factura/listar">Factura</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/detalleFactura/listar">Detalle Factura</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/detallecarrito/listar">Detalle Carrito</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -42,41 +45,57 @@
             <div class="container mt-5">
                 <h2 class="text-center mb-4">Gestión de Empleados</h2>
                 <div class="d-flex justify-content-end gap-2 mb-3">
-                    <button class="btn menu-button">Agregar</button>
+                    <a href="${pageContext.request.contextPath}/mantenimiento/empleados/agregar" class="btn menu-button">Agregar</a>
                     <button class="btn menu-button">Buscar</button>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered align-middle text-center">
                         <thead class="table-primary">
                             <tr>
-                                <th>Código Empleado</th>
+                                <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
                                 <th>Dirección</th>
-                                <th>Contraseña</th>
+                                <th>Contraseña (Hash)</th>
                                 <th>Puesto</th>
-                                <th>Fecha de Contratación</th>
+                                <th>Fecha Contratación</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <%
+                                List<Empleado> listaEmpleados = (List<Empleado>) request.getAttribute("listaEmpleados");
+                                if (listaEmpleados != null && !listaEmpleados.isEmpty()) {
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                    for (Empleado e : listaEmpleados) {
+                            %>
                             <tr>
-                                <td>EGOV001</td>
-                                <td>Marcos</td>
-                                <td>Rivera</td>
-                                <td>mr@gmail.com</td>
-                                <td>+502 3478-9087</td>
-                                <td>Zona 3, Mixco Guatemala</td>
-                                <td class="grap-text">1234567890123456789012345678901234567890123456789012345678901234</td>
-                                <td>Gerente</td>
-                                <td>26/07/2025</td>
+                                <td><%= e.getIdEmpleado() %></td>
+                                <td><%= e.getNombre() %></td>
+                                <td><%= e.getApellido() %></td>
+                                <td><%= e.getEmail() %></td>
+                                <td><%= e.getTelefono() %></td>
+                                <td><%= e.getDireccion() %></td>
+                                <td class="hash-cell"><%= e.getContrasenaHash() %></td>
+                                <td><%= e.getPuesto() %></td>
+                                <td><%= (e.getFechaContratacion() != null) ? e.getFechaContratacion().format(formatter) : "N/A" %></td>
                                 <td>
-                                    <button class="btn btn-sm btn-edit">Editar</button>
-                                    <button class="btn btn-sm btn-delete">Eliminar</button>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/empleados/editar?id=<%= e.getIdEmpleado() %>" class="btn btn-sm btn-edit">Editar</a>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/empleados/eliminar?id=<%= e.getIdEmpleado() %>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar este empleado?')">Eliminar</a>
                                 </td>
                             </tr>
+                             <%
+                                    }
+                                } else {
+                            %>
+                            <tr>
+                                <td colspan="10" class="text-center">No hay empleados que mostrar.</td>
+                            </tr>
+                            <%
+                                }
+                            %>
                         </tbody>
                     </table>
                 </div>

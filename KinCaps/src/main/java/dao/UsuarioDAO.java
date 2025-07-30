@@ -14,10 +14,10 @@ public class UsuarioDAO {
         EntityManager em = JPAUtil.getEntityManager();
         try {
             StoredProcedureQuery query = em.createStoredProcedureQuery("sp_Login")
-                .registerStoredProcedureParameter("p_email", String.class, ParameterMode.IN)
-                .registerStoredProcedureParameter("p_contrasena", String.class, ParameterMode.IN)
-                .setParameter("p_email", email)
-                .setParameter("p_contrasena", password);
+                    .registerStoredProcedureParameter("p_email", String.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("p_contrasena", String.class, ParameterMode.IN)
+                    .setParameter("p_email", email)
+                    .setParameter("p_contrasena", password);
 
             query.execute();
 
@@ -35,6 +35,20 @@ public class UsuarioDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Usuario buscarUsuarioPorIdYTipo(int id, String tipo) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            if ("cliente".equalsIgnoreCase(tipo)) {
+                return em.find(Cliente.class, id);
+            } else if ("empleado".equalsIgnoreCase(tipo)) {
+                return em.find(Empleado.class, id);
+            }
             return null;
         } finally {
             em.close();

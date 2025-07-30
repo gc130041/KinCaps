@@ -10,14 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ServletRegistro", value = "/pages/register")
-public class ServletRegistro extends HttpServlet {
+@WebServlet(name = "ServletRegistro", value = "/register")
+public class RegisterServlet extends HttpServlet {
 
     private ClienteDAO clienteDAO;
 
     @Override
     public void init() {
         clienteDAO = new ClienteDAO();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
     }
 
     @Override
@@ -30,10 +35,10 @@ public class ServletRegistro extends HttpServlet {
         String password = request.getParameter("password");
         String confirmarPassword = request.getParameter("confirmarpassword");
 
-        if (isCampoVacio(nombre) || isCampoVacio(apellido) || isCampoVacio(email) || 
-            isCampoVacio(telefono) || isCampoVacio(direccion) || isCampoVacio(password) || 
-            isCampoVacio(confirmarPassword)) {
-            
+        if (isCampoVacio(nombre) || isCampoVacio(apellido) || isCampoVacio(email)
+                || isCampoVacio(telefono) || isCampoVacio(direccion) || isCampoVacio(password)
+                || isCampoVacio(confirmarPassword)) {
+
             request.setAttribute("error", "Todos los campos son obligatorios.");
             repopularFormulario(request, nombre, apellido, email, telefono, direccion);
             request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
