@@ -60,7 +60,7 @@ CREATE TABLE factura (
     idEmpleado INT NOT NULL,
     fechaEmision DATETIME DEFAULT CURRENT_TIMESTAMP,
     total DECIMAL(10, 2) NOT NULL,
-    metodoPago ENUM('Tarjeta de Crédito', 'Tarjeta de Débito', 'Efectivo', 'Transferencia Bancaria') NOT NULL,
+    metodoPago ENUM('TARJETA_DE_CREDITO', 'TARJETA_DE_DEBITO', 'EFECTIVO', 'TRANSFERENCIA_BANCARIA') NOT NULL,
     CONSTRAINT PK_Factura PRIMARY KEY (idFactura),
     CONSTRAINT FK_FacturaCliente FOREIGN KEY (idCliente) REFERENCES cliente(idCliente),
     CONSTRAINT FK_FacturaEmpleados FOREIGN KEY (idEmpleado) REFERENCES empleados(idEmpleado)
