@@ -61,7 +61,7 @@
                         <div class="card option-card h-100 text-center p-4">
                             <h5>Factura</h5>
                             <p class="text-muted">Gestiona y emite facturas.</p>
-                            <a href="${pageContext.request.contextPath}/mantenimiento/factura/" class="btn menu-button mt-2">Gestionar Facturas</a>
+                            <a href="${pageContext.request.contextPath}/mantenimiento/facturas/" class="btn menu-button mt-2">Gestionar Facturas</a>
                         </div>
                     </div>
                     <div class="col-md-4">

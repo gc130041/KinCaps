@@ -26,7 +26,6 @@
                                 Menú Principal
                             </a>
                             <ul class="dropdown-menu">
-<<<<<<< HEAD
                                 <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/proveedor/listar">Proveedores</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/clientes/listar">Clientes</a></li>
                                 <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/empleados/listar">Empleados</a></li>
@@ -36,17 +35,6 @@
                                 <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/detallecarrito/listar">Detalle Carrito</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a></li>
-=======
-                                <li><a class="dropdown-item dropdown-item-blue" href="proveedor.jsp">Proveedores</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="clientes.jsp">Clientes</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="empleados.jsp">Empleados</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="productos.jsp">Productos</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="carrito.jsp">Carrito</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="factura.jsp">Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="detalleCarrito.jsp">Detalle Carrito</a></li>
-                                <li><hr class="dropdown-divider"</li>
-                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/index.jsp">Cerrar Sesión</a></li>
->>>>>>> ft/santiago
                             </ul>
                         </li>
                     </ul>

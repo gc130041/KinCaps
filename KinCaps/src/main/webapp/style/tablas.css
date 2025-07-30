@@ -109,9 +109,3 @@ body {
     text-overflow:ellipsis;
     white-space:nowrap;
 }
-
-.hash-cell {
-    max-width: 150px;
-    word-wrap: break-word;
-    font-size: 0.8em;
-}

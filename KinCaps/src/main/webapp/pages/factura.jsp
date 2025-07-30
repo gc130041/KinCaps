@@ -1,6 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.Factura" %>
-<%@page import="java.util.List" %>
+<%@page import="modelo.Factura"%>
+<%@page import="java.util.List"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,22 +20,22 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="menuNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/mantenimiento" role="button" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/pages/mainmenuadmin.jsp" role="button" aria-expanded="false">
                                 Menú Principal
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item dropdown-item-blue" href="proveedor.jsp">Proveedores</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="clientes.jsp">Clientes</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="empleados.jsp">Empleados</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/gorras/">Productos</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="carrito.jsp">Carrito</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="detalleFactura.jsp">Detalle Factura</a></li>
-                                <li><a class="dropdown-item dropdown-item-blue" href="detalleCarrito.jsp">Detalle Carrito</a></li>
-                                <li><hr class="dropdown-divider"</li>
-                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/index.jsp">Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/proveedores/listar">Proveedores</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/clientes/listar">Clientes</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/empleados/listar">Empleados</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/gorras/listar">Productos</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/carrito/listar">Carrito</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/detallecarrito/listar">Detalle Carrito</a></li>
+                                <li><a class="dropdown-item dropdown-item-blue" href="${pageContext.request.contextPath}/mantenimiento/detallefactura/listar">Detalle Factura</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item dropdown-item-red" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -44,48 +47,48 @@
             <div class="container mt-5">
                 <h2 class="text-center mb-4">Gestión de Factura</h2>
                 <div class="d-flex justify-content-end gap-2 mb-3">
-                    <button href="${pageContext.request.contextPath}/mantenimiento/facturas/agregar"class="btn menu-button">Agregar</button>
+                    <a href="${pageContext.request.contextPath}/mantenimiento/facturas/agregar" class="btn menu-button">Agregar</a>
                     <button class="btn menu-button">Buscar</button>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered align-middle text-center">
                         <thead class="table-primary">
                             <tr>
-                                <th>Código Factura</th>
+                                <th>ID Factura</th>
                                 <th>Cliente</th>
                                 <th>Empleado</th>
-                                <th>Fecha De Emisión</th>
+                                <th>Fecha de Emisión</th>
                                 <th>Total</th>
-                                <th>Forma De Pago</th>
+                                <th>Forma de Pago</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <%
-                                List<Factura> listaFactura = (List<Factura>) request.getAttribute("listaFacturas");
-                                if(listaFactura != null && !listaFactura.isEmpty()){
-                                    for(Factura f : listaFactura){
+                                List<Factura> listaFacturas = (List<Factura>) request.getAttribute("listaFacturas");
+                                if(listaFacturas != null && !listaFacturas.isEmpty()){
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                                    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("es", "GT"));
+                                    for(Factura f : listaFacturas){
                             %>
                             <tr>
-                                <td><%=f.getIdFactura()%></td>
-                                <td><%=f.getCliente()%></td>
-                                <td><%=f.getEmpleado()%></td>
-                                <td><%=f.getFechaEmision()%></td>
-                                <td><%=f.getTotal()%></td>
-                                <th><%=f.getMetodoPago()%></th>
+                                <td><%= f.getIdFactura() %></td>
+                                <td><%= (f.getCliente() != null) ? f.getCliente().getNombre() + " " + f.getCliente().getApellido() : "N/A" %></td>
+                                <td><%= (f.getEmpleado() != null) ? f.getEmpleado().getNombre() + " " + f.getEmpleado().getApellido() : "N/A" %></td>
+                                <td><%= (f.getFechaEmision() != null) ? f.getFechaEmision().format(formatter) : "N/A" %></td>
+                                <td><%= (f.getTotal() != null) ? currencyFormatter.format(f.getTotal()) : "Q. 0.00" %></td>
+                                <td><%= (f.getMetodoPago() != null) ? f.getMetodoPago().name().replace("_", " ") : "N/A" %></td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/mantenimiento/facturas/editar?id=<%=f.getIdFactura()%>" 
-                                       class="btn btn-sm btn-edit">Editar</a>
-                                    <a href="${pageContext.request.contextPath}/mantenimiento/facturas/eliminar?id=<%=f.getIdFactura()%>" 
-                                       class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar esta factura?')">Eliminar</a>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/facturas/editar?id=<%= f.getIdFactura() %>" class="btn btn-sm btn-edit">Editar</a>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/facturas/eliminar?id=<%= f.getIdFactura() %>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar esta factura?')">Eliminar</a>
                                 </td>
                             </tr>
                             <%
-                                }                                    
+                                    }                                    
                                 } else {
                             %>
                             <tr>
-                                <<td colspan="7" class="text-center">No hay facturas que mostrar.</td>
+                                <td colspan="7" class="text-center">No hay facturas que mostrar.</td>
                             </tr>
                             <%
                                 }

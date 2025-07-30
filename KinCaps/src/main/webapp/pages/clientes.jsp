@@ -81,7 +81,7 @@
                                 <td><%= c.getEmail() %></td>
                                 <td><%= c.getTelefono() %></td>
                                 <td><%= c.getDireccion() %></td>
-                                <td class="hash-cell"><%= c.getContrasenaHash() %></td>
+                                <td class="grap-text"><%= c.getContrasenaHash() %></td>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/mantenimiento/clientes/editar?id=<%= c.getIdCliente() %>" class="btn btn-sm btn-edit">Editar</a>
                                     <a href="${pageContext.request.contextPath}/mantenimiento/clientes/eliminar?id=<%= c.getIdCliente() %>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar este cliente?')">Eliminar</a>

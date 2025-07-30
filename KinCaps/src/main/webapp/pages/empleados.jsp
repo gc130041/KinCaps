@@ -78,7 +78,7 @@
                                 <td><%= e.getEmail() %></td>
                                 <td><%= e.getTelefono() %></td>
                                 <td><%= e.getDireccion() %></td>
-                                <td class="hash-cell"><%= e.getContrasenaHash() %></td>
+                                <td class="grap-text"><%= e.getContrasenaHash() %></td>
                                 <td><%= e.getPuesto() %></td>
                                 <td><%= (e.getFechaContratacion() != null) ? e.getFechaContratacion().format(formatter) : "N/A" %></td>
                                 <td>
