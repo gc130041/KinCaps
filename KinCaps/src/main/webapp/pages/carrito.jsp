@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="modelo.Carrito"%>
+<%@page import="modelo.Carrito.Estado"%>
 <%@page import="modelo.Cliente"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -66,15 +67,20 @@
                                 if (listaCarritos != null && !listaCarritos.isEmpty()) {
                                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
                                     for (Carrito c : listaCarritos) {
+                                        String filaClass = (c.getEstado() == Estado.INACTIVO) ? "fila-inactiva" : "";
                             %>
-                            <tr>
+                            <tr class="<%= filaClass %>">
                                 <td><%= c.getIdCarrito() %></td>
                                 <td><%= (c.getCliente() != null ? c.getCliente().getNombre() + " " + c.getCliente().getApellido() : "No asignado") %></td>
                                 <td><%= (c.getFechaCreacion() != null ? c.getFechaCreacion().format(formatter) : "N/A") %></td>
                                 <td><%= c.getEstado() %></td>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/mantenimiento/carrito/editar?id=<%= c.getIdCarrito() %>" class="btn btn-sm btn-edit">Editar</a>
-                                    <a href="${pageContext.request.contextPath}/mantenimiento/carrito/eliminar?id=<%= c.getIdCarrito() %>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar este carrito?')">Eliminar</a>
+                                    <% if (c.getEstado() == Estado.ACTIVO) { %>
+                                        <a href="${pageContext.request.contextPath}/mantenimiento/carrito/desactivar?id=<%= c.getIdCarrito() %>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea desactivar este carrito?')">Desactivar</a>
+                                    <% } else if (c.getEstado() == Estado.INACTIVO) { %>
+                                        <a href="${pageContext.request.contextPath}/mantenimiento/carrito/activar?id=<%= c.getIdCarrito() %>" class="btn btn-sm btn-success" onclick="return confirm('¿Desea activar este carrito?')">Activar</a>
+                                    <% } %>
                                 </td>
                             </tr>
                             <%

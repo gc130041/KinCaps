@@ -3,6 +3,7 @@ package web;
 import dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -190,14 +191,28 @@ public class ClienteCRUDServlet extends HttpServlet {
                     }
                     response.sendRedirect(request.getContextPath() + "/mantenimiento/clientes/listar");
                     break;
-                case "/eliminar":
+                case "/desactivar":
                     id = Integer.parseInt(request.getParameter("id"));
-                    dao.eliminar(id);
+                    cliente = dao.buscarPorId(id);
+                    if (cliente != null) {
+                        cliente.setEstado(Estado.INACTIVO);
+                        dao.actualizar(cliente);
+                    }
+                    response.sendRedirect(request.getContextPath() + "/mantenimiento/clientes/listar");
+                    break;
+                case "/activar":
+                    id = Integer.parseInt(request.getParameter("id"));
+                    cliente = dao.buscarPorId(id);
+                    if (cliente != null) {
+                        cliente.setEstado(Estado.ACTIVO);
+                        dao.actualizar(cliente);
+                    }
                     response.sendRedirect(request.getContextPath() + "/mantenimiento/clientes/listar");
                     break;
                 case "/listar":
                 default:
                     List<Cliente> listaClientes = dao.listarTodos();
+                    listaClientes.sort(Comparator.comparing(Cliente::getEstado));
                     request.setAttribute("listaClientes", listaClientes);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/clientes.jsp");
                     dispatcher.forward(request, response);

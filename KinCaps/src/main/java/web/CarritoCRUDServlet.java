@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Carrito;
 import modelo.Carrito.Estado;
 import modelo.Cliente;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -151,10 +152,10 @@ public class CarritoCRUDServlet extends HttpServlet {
                     } else {
                         int idCliente = Integer.parseInt(request.getParameter("idCliente"));
                         Cliente cliente = new ClienteDAO().buscarPorId(idCliente);
-                        
+
                         carrito = new Carrito(cliente);
                         carrito.setEstado(Estado.valueOf(request.getParameter("estado")));
-                        
+
                         dao.guardar(carrito);
                         response.sendRedirect(request.getContextPath() + "/mantenimiento/carrito/listar");
                     }
@@ -187,14 +188,28 @@ public class CarritoCRUDServlet extends HttpServlet {
                     }
                     response.sendRedirect(request.getContextPath() + "/mantenimiento/carrito/listar");
                     break;
-                case "/eliminar":
+                case "/desactivar":
                     id = Integer.parseInt(request.getParameter("id"));
-                    dao.eliminar(id);
+                    carrito = dao.buscarPorId(id);
+                    if (carrito != null) {
+                        carrito.setEstado(Estado.INACTIVO);
+                        dao.actualizar(carrito);
+                    }
+                    response.sendRedirect(request.getContextPath() + "/mantenimiento/carrito/listar");
+                    break;
+                case "/activar":
+                    id = Integer.parseInt(request.getParameter("id"));
+                    carrito = dao.buscarPorId(id);
+                    if (carrito != null) {
+                        carrito.setEstado(Estado.ACTIVO);
+                        dao.actualizar(carrito);
+                    }
                     response.sendRedirect(request.getContextPath() + "/mantenimiento/carrito/listar");
                     break;
                 case "/listar":
                 default:
                     List<Carrito> listaCarritos = dao.listarTodos();
+                    listaCarritos.sort(Comparator.comparing(Carrito::getEstado));
                     request.setAttribute("listaCarritos", listaCarritos);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/carrito.jsp");
                     dispatcher.forward(request, response);

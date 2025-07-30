@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="modelo.Cliente" %>
+<%@page import="modelo.Cliente.Estado" %>
 <%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
@@ -9,13 +10,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
         <link rel="icon" href="${pageContext.request.contextPath}/img/Logo/logonobg.png" type="image/x-icon"> 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/tablas.css">
-        <style>
-            .hash-cell {
-                max-width: 150px;
-                word-wrap: break-word;
-                font-size: 0.8em;
-            }
-        </style>
     </head>
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg bg-header navbar-dark">
@@ -27,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="menuNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
-                             <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/mantenimiento" role="button" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/mantenimiento" role="button" aria-expanded="false">
                                 Menú Principal
                             </a>
                             <ul class="dropdown-menu">
@@ -70,28 +64,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                           <%
+                            <%
                                 List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("listaClientes");
                                 if (listaClientes != null && !listaClientes.isEmpty()) {
                                     for (Cliente c : listaClientes) {
+                                        String filaClass = (c.getEstado() == Estado.INACTIVO) ? "fila-inactiva" : "";
                             %>
-                            <tr>
-                                <td><%= c.getIdCliente() %></td>
-                                <td><%= c.getNombre() %></td>
-                                <td><%= c.getApellido() %></td>
-                                <td><%= c.getEmail() %></td>
-                                <td><%= c.getTelefono() %></td>
-                                <td><%= c.getDireccion() %></td>
-                                <td><%= c.getEstado() %></td>
-                                <td class="hash-cell"><%= c.getContrasenaHash() %></td>
+                            <tr class="<%= filaClass%>">
+                                <td><%= c.getIdCliente()%></td>
+                                <td><%= c.getNombre()%></td>
+                                <td><%= c.getApellido()%></td>
+                                <td><%= c.getEmail()%></td>
+                                <td><%= c.getTelefono()%></td>
+                                <td><%= c.getDireccion()%></td>
+                                <td><%= c.getEstado()%></td>
+                                <td class="grap-text"><%= c.getContrasenaHash()%></td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/mantenimiento/clientes/editar?id=<%= c.getIdCliente() %>" class="btn btn-sm btn-edit">Editar</a>
-                                    <a href="${pageContext.request.contextPath}/mantenimiento/clientes/eliminar?id=<%= c.getIdCliente() %>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar este cliente?')">Eliminar</a>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/clientes/editar?id=<%= c.getIdCliente()%>" class="btn btn-sm btn-edit">Editar</a>
+                                    <% if (c.getEstado() == Estado.ACTIVO) {%>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/clientes/desactivar?id=<%= c.getIdCliente()%>" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea desactivar este cliente?')">Desactivar</a>
+                                    <% } else {%>
+                                    <a href="${pageContext.request.contextPath}/mantenimiento/clientes/activar?id=<%= c.getIdCliente()%>" class="btn btn-sm btn-success" onclick="return confirm('¿Desea activar este cliente?')">Activar</a>
+                                    <% } %>
                                 </td>
                             </tr>
                             <%
-                                    }
-                                } else {
+                                }
+                            } else {
                             %>
                             <tr>
                                 <td colspan="9" class="text-center">No hay clientes que mostrar.</td>
