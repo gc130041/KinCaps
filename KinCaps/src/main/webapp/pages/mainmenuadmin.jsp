@@ -91,8 +91,8 @@
         <footer class="bg-header text-white text-center py-4 mt-5">
             <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
             <small>
-                <a href="#" class="text-white text-decoration-none me-3">Política de Privacidad</a>
-                <a href="#" class="text-white text-decoration-none">Términos y Condiciones</a>
+                <a href="${pageContext.request.contextPath}/pages/politica.jsp" class="text-white text-decoration-none me-3">Política de Privacidad</a>
+                <a href="${pageContext.request.contextPath}/pages/terminos.jsp" class="text-white text-decoration-none">Términos y Condiciones</a>
             </small>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
