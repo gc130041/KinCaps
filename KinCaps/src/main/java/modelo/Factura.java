@@ -34,7 +34,7 @@ public class Factura {
     @JoinColumn(name = "idEmpleado", nullable = false)
     private Empleado empleado;
 
-    @Column(name = "fechaEmision", nullable = false)
+    @Column(name = "fechaEmision", insertable=false, updatable=false)
     private LocalDateTime fechaEmision;
 
     @Column(name = "total", nullable = false, precision = 10, scale = 2)
