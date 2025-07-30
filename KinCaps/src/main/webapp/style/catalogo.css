@@ -12,6 +12,11 @@ body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+main {
+    margin-left:300px; 
+}
+
 .bg-header {
     background:linear-gradient(90deg, #002e71, #0f86d4);
     box-shadow:0 4px 10px rgba(0, 0, 0, 0.3);
@@ -116,7 +121,10 @@ body {
     padding:1.5rem;
     margin-bottom:1.5rem;
     border-radius:5px;
-    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    box-shadow:0 2px 5px rgba(0, 0, 0, 0.1);
+    position:sticky;
+    top:10vh;
+    height:auto;
 }
 .filtro-seccion h2 {
     margin-top:0;
@@ -161,4 +169,51 @@ body {
 .btnE:hover{
     transform:translateY(5%);
     transition:transform 0.3s ease-in-out;
+}
+
+.insignia-tipo {
+    position: absolute;
+    top: 10px;
+    right: -35px;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;  
+    justify-content: center;
+    padding-bottom: 4px;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tipo-f1 {
+    background-color: #e10600; 
+    color:white;
+}
+
+.tipo-toyota {
+    background-color: #eb0a1e; 
+    color:white;
+}
+
+.tipo-NY {
+    background-color: #222222; 
+    color:white;
+}
+
+.tipo-MB {
+    background-color: #aaaaaa ; 
+    color:white;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.card:hover {
+    border-color: #1e90ff;
+    box-shadow: 0 0 15px 3px rgba(30, 144, 255, 0.7);
+    transform: translateY(-10px);
 }
