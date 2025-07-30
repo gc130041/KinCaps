@@ -1,7 +1,6 @@
 package web;
 
 import dao.CookieAuthDAO;
-import dao.UsuarioDAO;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import javax.servlet.ServletException;
@@ -17,6 +16,7 @@ import modelo.Empleado;
 import modelo.Usuario;
 import util.PasswordHash;
 import util.TokenUtil;
+import dao.UsuarioDAO;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -34,7 +34,6 @@ public class LoginServlet extends HttpServlet {
                 }
             }
         }
-
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
@@ -96,21 +95,25 @@ public class LoginServlet extends HttpServlet {
             return false;
         }
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.buscarUsuarioPorIdYTipo(token.getIdUsuario(), token.getTipoUsuario());
+        Usuario usuario = null;
+        if (token.getCliente() != null) {
+            usuario = token.getCliente();
+        } else if (token.getEmpleado() != null) {
+            usuario = token.getEmpleado();
+        }
 
         if (usuario == null) {
             cookieDAO.eliminarPorSelector(selector);
             borrarCookie(response);
             return false;
         }
-
+        
         cookieDAO.eliminarPorSelector(selector);
         crearCookieRecuerdame(usuario, response);
 
         HttpSession session = request.getSession(true);
         session.setAttribute("usuario", usuario);
-
+        
         if (usuario instanceof Cliente) {
             response.sendRedirect(request.getContextPath() + "/gorras");
         } else if (usuario instanceof Empleado) {
@@ -125,25 +128,21 @@ public class LoginServlet extends HttpServlet {
         String validador = TokenUtil.generarNuevoToken();
         String validadorHash = PasswordHash.contrasenaHash(validador);
 
-        int idUsuario = 0;
-        String tipoUsuario = null;
+        Cliente cliente = null;
+        Empleado empleado = null;
 
         if (usuario instanceof Cliente) {
-            idUsuario = ((Cliente) usuario).getIdCliente();
-            tipoUsuario = "cliente";
+            cliente = (Cliente) usuario;
         } else if (usuario instanceof Empleado) {
-            idUsuario = ((Empleado) usuario).getIdEmpleado();
-            tipoUsuario = "empleado";
-        }
-
-        if (idUsuario == 0) {
+            empleado = (Empleado) usuario;
+        } else {
             return;
         }
 
         CookieAuthDAO cookieDAO = new CookieAuthDAO();
         LocalDateTime expiracion = LocalDateTime.now().plusDays(30);
 
-        CookieAuth token = new CookieAuth(selector, validadorHash, idUsuario, tipoUsuario, expiracion);
+        CookieAuth token = new CookieAuth(selector, validadorHash, cliente, empleado, expiracion);
         cookieDAO.crearToken(token);
 
         Cookie cookieRecuerdame = new Cookie("recuerdame", selector + ":" + validador);

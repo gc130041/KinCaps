@@ -3,9 +3,12 @@ package modelo;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,11 +25,13 @@ public class CookieAuth {
     @Column(name = "token_hash", nullable = false, length = 255)
     private String tokenHash;
 
-    @Column(name = "id_usuario", nullable = false)
-    private int idUsuario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCliente")
+    private Cliente cliente;
 
-    @Column(name = "tipo_usuario", nullable = false, length = 10)
-    private String tipoUsuario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idEmpleado")
+    private Empleado empleado;
 
     @Column(name = "fecha_expiracion", nullable = false)
     private LocalDateTime fechaExpiracion;
@@ -34,14 +39,15 @@ public class CookieAuth {
     public CookieAuth() {
     }
 
-    public CookieAuth(String selector, String tokenHash, int idUsuario, String tipoUsuario, LocalDateTime fechaExpiracion) {
+    public CookieAuth(String selector, String tokenHash, Cliente cliente, Empleado empleado, LocalDateTime fechaExpiracion) {
         this.selector = selector;
         this.tokenHash = tokenHash;
-        this.idUsuario = idUsuario;
-        this.tipoUsuario = tipoUsuario;
+        this.cliente = cliente;
+        this.empleado = empleado;
         this.fechaExpiracion = fechaExpiracion;
     }
 
+    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -66,20 +72,20 @@ public class CookieAuth {
         this.tokenHash = tokenHash;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
     public LocalDateTime getFechaExpiracion() {

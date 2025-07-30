@@ -92,7 +92,13 @@ CREATE TABLE cookieAuth (
     id INT AUTO_INCREMENT PRIMARY KEY,
     selector VARCHAR(255) UNIQUE NOT NULL,
     token_hash VARCHAR(255) NOT NULL,
-    id_usuario INT NOT NULL,
-    tipo_usuario VARCHAR(10) NOT NULL,
-    fecha_expiracion DATETIME NOT NULL
+    idCliente INT,
+    idEmpleado INT,
+    fecha_expiracion DATETIME NOT NULL,
+    CONSTRAINT FK_CookieAuth_Cliente FOREIGN KEY (idCliente) REFERENCES cliente(idCliente) ON DELETE CASCADE,
+    CONSTRAINT FK_CookieAuth_Empleado FOREIGN KEY (idEmpleado) REFERENCES empleados(idEmpleado) ON DELETE CASCADE,
+    CONSTRAINT CHK_Usuario CHECK (
+        (idCliente IS NOT NULL AND idEmpleado IS NULL) OR
+        (idCliente IS NULL AND idEmpleado IS NOT NULL)
+    )
 );
