@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import modelo.Cliente.Estado;
 
 @WebServlet(name = "ServletRegistro", value = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -61,7 +62,7 @@ public class RegisterServlet extends HttpServlet {
             }
 
             String hashPassword = PasswordHash.contrasenaHash(password);
-            Cliente nuevoCliente = new Cliente(nombre, apellido, email, telefono, direccion, hashPassword);
+            Cliente nuevoCliente = new Cliente(nombre, apellido, email, telefono, direccion, hashPassword, Estado.ACTIVO);
             clienteDAO.crearCliente(nuevoCliente);
 
             response.sendRedirect(request.getContextPath() + "/index.jsp?registro=exito");

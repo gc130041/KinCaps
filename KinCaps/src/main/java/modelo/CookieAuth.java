@@ -47,7 +47,6 @@ public class CookieAuth {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    // Getters y Setters
     public int getId() {
         return id;
     }

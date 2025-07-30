@@ -3,6 +3,8 @@ package modelo;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "carrito")
 public class Carrito {
+
+    public enum Estado {
+        ACTIVO, INACTIVO, PAGADO
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,13 +32,19 @@ public class Carrito {
     @Column(name = "fechaCreacion", nullable = false)
     private LocalDateTime fechaCreacion;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", nullable = false)
+    private Estado estado;
+
     public Carrito() {
         this.fechaCreacion = LocalDateTime.now();
+        this.estado = Estado.ACTIVO;
     }
 
     public Carrito(Cliente cliente) {
         this.cliente = cliente;
         this.fechaCreacion = LocalDateTime.now();
+        this.estado = Estado.ACTIVO;
     }
 
     public int getIdCarrito() {
@@ -57,5 +69,13 @@ public class Carrito {
 
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }

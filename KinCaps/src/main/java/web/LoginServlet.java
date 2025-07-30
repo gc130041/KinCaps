@@ -107,13 +107,13 @@ public class LoginServlet extends HttpServlet {
             borrarCookie(response);
             return false;
         }
-        
+
         cookieDAO.eliminarPorSelector(selector);
         crearCookieRecuerdame(usuario, response);
 
         HttpSession session = request.getSession(true);
         session.setAttribute("usuario", usuario);
-        
+
         if (usuario instanceof Cliente) {
             response.sendRedirect(request.getContextPath() + "/gorras");
         } else if (usuario instanceof Empleado) {

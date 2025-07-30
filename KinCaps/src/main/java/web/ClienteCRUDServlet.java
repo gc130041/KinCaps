@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Cliente;
+import modelo.Cliente.Estado;
 
 @WebServlet(name = "ClienteCRUDServlet", urlPatterns = {"/mantenimiento/clientes", "/mantenimiento/clientes/*"})
 public class ClienteCRUDServlet extends HttpServlet {
@@ -91,6 +92,16 @@ public class ClienteCRUDServlet extends HttpServlet {
             out.println("                        <input type='text' class='form-control' name='direccion' required value='" + (esEdicion ? getSafeString(clienteAEditar.getDireccion()) : "") + "'>");
             out.println("                    </div>");
             out.println("                    <div class='mb-3'>");
+            out.println("                        <label class='form-label'>Estado</label>");
+            out.println("                        <select class='form-select' name='estado' required>");
+            out.println("                            <option value=''>Seleccione un estado</option>");
+            for (Cliente.Estado estado : Cliente.Estado.values()) {
+                boolean seleccionado = esEdicion && clienteAEditar.getEstado() == estado;
+                out.println("                        <option value='" + estado.name() + "'" + (seleccionado ? " selected" : "") + ">" + estado.name() + "</option>");
+            }
+            out.println("                        </select>");
+            out.println("                    </div>");
+            out.println("                    <div class='mb-3'>");
             out.println("                        <label class='form-label'>Contraseña (Hash)</label>");
             out.println("                        <input type='text' class='form-control' name='contrasenaHash' required value='" + (esEdicion ? getSafeString(clienteAEditar.getContrasenaHash()) : "") + "'>");
             out.println("                    </div>");
@@ -147,8 +158,9 @@ public class ClienteCRUDServlet extends HttpServlet {
                         String telefono = request.getParameter("telefono");
                         String direccion = request.getParameter("direccion");
                         String contrasenaHash = request.getParameter("contrasenaHash");
+                        Estado estado = Estado.valueOf(request.getParameter("estado"));
 
-                        cliente = new Cliente(nombre, apellido, email, telefono, direccion, contrasenaHash);
+                        cliente = new Cliente(nombre, apellido, email, telefono, direccion, contrasenaHash, estado);
                         dao.crearCliente(cliente);
                         response.sendRedirect(request.getContextPath() + "/mantenimiento/clientes/listar");
                     }
@@ -172,6 +184,7 @@ public class ClienteCRUDServlet extends HttpServlet {
                         cliente.setEmail(request.getParameter("email"));
                         cliente.setTelefono(request.getParameter("telefono"));
                         cliente.setDireccion(request.getParameter("direccion"));
+                        cliente.setEstado(Estado.valueOf(request.getParameter("estado")));
                         cliente.setContrasenaHash(request.getParameter("contrasenaHash"));
                         dao.actualizar(cliente);
                     }

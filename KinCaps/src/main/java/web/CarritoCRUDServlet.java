@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Carrito;
+import modelo.Carrito.Estado;
 import modelo.Cliente;
 import java.util.List;
 import java.util.logging.Level;
@@ -74,14 +75,23 @@ public class CarritoCRUDServlet extends HttpServlet {
             out.println("        <label class='form-label'>Cliente</label>");
             out.println("        <select class='form-select' name='idCliente' required>");
             out.println("            <option value=''>Seleccione un cliente</option>");
-
             for (Cliente cliente : listaClientes) {
                 int id = cliente.getIdCliente();
                 String nombreCompleto = cliente.getNombre() + " " + cliente.getApellido();
                 boolean seleccionado = esEdicion && carritoAEditar.getCliente() != null && carritoAEditar.getCliente().getIdCliente() == id;
                 out.println("            <option value='" + id + "'" + (seleccionado ? " selected" : "") + ">" + nombreCompleto + "</option>");
             }
+            out.println("        </select>");
+            out.println("    </div>");
 
+            out.println("    <div class='mb-3'>");
+            out.println("        <label class='form-label'>Estado</label>");
+            out.println("        <select class='form-select' name='estado' required>");
+            out.println("            <option value=''>Seleccione un estado</option>");
+            for (Estado estado : Estado.values()) {
+                boolean seleccionado = esEdicion && carritoAEditar.getEstado() == estado;
+                out.println("        <option value='" + estado.name() + "'" + (seleccionado ? " selected" : "") + ">" + estado.name() + "</option>");
+            }
             out.println("        </select>");
             out.println("    </div>");
 
@@ -131,8 +141,6 @@ public class CarritoCRUDServlet extends HttpServlet {
 
         CarritoDAO dao = new CarritoDAO();
         Carrito carrito;
-        ClienteDAO clienteDao;
-        Cliente cliente;
         int id;
 
         try {
@@ -142,9 +150,11 @@ public class CarritoCRUDServlet extends HttpServlet {
                         mostrarFormulario(request, response);
                     } else {
                         int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-                        clienteDao = new ClienteDAO();
-                        cliente = clienteDao.buscarPorId(idCliente);
+                        Cliente cliente = new ClienteDAO().buscarPorId(idCliente);
+                        
                         carrito = new Carrito(cliente);
+                        carrito.setEstado(Estado.valueOf(request.getParameter("estado")));
+                        
                         dao.guardar(carrito);
                         response.sendRedirect(request.getContextPath() + "/mantenimiento/carrito/listar");
                     }
@@ -164,9 +174,9 @@ public class CarritoCRUDServlet extends HttpServlet {
                     carrito = dao.buscarPorId(id);
                     if (carrito != null) {
                         int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-                        clienteDao = new ClienteDAO();
-                        cliente = clienteDao.buscarPorId(idCliente);
+                        Cliente cliente = new ClienteDAO().buscarPorId(idCliente);
                         carrito.setCliente(cliente);
+                        carrito.setEstado(Estado.valueOf(request.getParameter("estado")));
 
                         String fechaCreacionStr = request.getParameter("fechaCreacion");
                         if (fechaCreacionStr != null && !fechaCreacionStr.isEmpty()) {

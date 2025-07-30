@@ -1,4 +1,4 @@
--- DROP DATABASE IF EXISTS DB_KinCaps;
+DROP DATABASE IF EXISTS DB_KinCaps;
 CREATE DATABASE IF NOT EXISTS DB_KinCaps;
 USE DB_KinCaps;
 
@@ -17,6 +17,7 @@ CREATE TABLE cliente (
     email VARCHAR(100) UNIQUE,
     telefono VARCHAR(15),
     direccion VARCHAR(255),
+    estado ENUM('ACTIVO','INACTIVO') NOT NULL DEFAULT 'ACTIVO',
     contrasenaHash CHAR(64) NOT NULL,
     CONSTRAINT PK_Cliente PRIMARY KEY (idCliente)
 );
@@ -50,6 +51,7 @@ CREATE TABLE carrito (
     idCarrito INT AUTO_INCREMENT,
     idCliente INT NOT NULL,
     fechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    estado ENUM('ACTIVO','INACTIVO','PAGADO') NOT NULL DEFAULT 'ACTIVO',
     CONSTRAINT PK_Carrito PRIMARY KEY (idCarrito),
     CONSTRAINT FK_CarritoCliente FOREIGN KEY (idCliente) REFERENCES cliente(idCliente)
 );
