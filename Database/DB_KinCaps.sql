@@ -39,6 +39,7 @@ CREATE TABLE gorras (
     idGorra INT AUTO_INCREMENT,
     tipo ENUM('URBANA','DEPORTIVA','FORMULA_1', 'OTRO') NOT NULL,
     marca VARCHAR(50),
+    nombreGorra VARCHAR(80),
     color VARCHAR(30),
     precio DECIMAL(10, 2) NOT NULL,
     stock INT NOT NULL,

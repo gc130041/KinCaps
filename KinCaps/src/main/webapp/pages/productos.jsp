@@ -54,6 +54,7 @@
                                 <th>Código Producto</th>
                                 <th>Tipo</th>
                                 <th>Marca</th>
+                                <th>Nombre</th>
                                 <th>Color</th>
                                 <th>Descripción</th>
                                 <th>Imagen</th>
@@ -74,6 +75,7 @@
                                 <td><%=g.getIdGorra()%></td>
                                 <td><%=g.getTipo()%></td>
                                 <td><%=g.getMarca()%></td>
+                                <td><%=g.getNombreGorra()%></td>
                                 <td><%=g.getColor()%></td>
                                 <td><%=g.getDescripcion()%></td>
                                 <td><%=g.getImagen()%></td>
@@ -92,7 +94,7 @@
                             } else {
                             %>
                             <tr>
-                                <td colspan="10" class="text-center">No hay productos que mostrar.</td>
+                                <td colspan="11" class="text-center">No hay productos que mostrar.</td>
                             </tr>
                             <%
                                 }

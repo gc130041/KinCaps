@@ -68,7 +68,7 @@
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="card h-100 shadow-sm">
                             <span class="insignia-tipo tipo-f1"> 
-                                <img src="${pageContext.request.contextPath}/img/f1_logo_white.png" alt="F1" style="width: 60px;">
+                                <img src="${pageContext.request.contextPath}/img/tipo/f1.png" alt="F1" style="width: 60px;">
                             </span>
                             <img src="${pageContext.request.contextPath}/img/gorra1.png" class="card-img-top" alt="Gorra 1">
                             <div class="card-body text-center">
@@ -94,7 +94,7 @@
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="card h-100 shadow-sm">
                             <span class="insignia-tipo tipo-NY"> 
-                                <img src="${pageContext.request.contextPath}/img/NY_logo_white.png" alt="NY" style="width: 30px;">
+                                <img src="${pageContext.request.contextPath}/img/tipo/urbana.png" alt="NY" style="width: 30px;">
                             </span>
                             <img src="${pageContext.request.contextPath}/img/gorra3.png" class="card-img-top"  style="margin-top: 10vh; padding-left: 2vh; padding-right: 2vh; padding-bottom: 3.7vh;" alt="Gorra 3">
                             <div class="card-body text-center">
@@ -107,7 +107,7 @@
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="card h-100 shadow-sm">
                             <span class="insignia-tipo tipo-f1"> 
-                                <img src="${pageContext.request.contextPath}/img/f1_logo_white.png" alt="MB" style="width: 60px;">
+                                <img src="${pageContext.request.contextPath}/img/tipo/f1.png" alt="MB" style="width: 60px;">
                             </span>
                             <img src="${pageContext.request.contextPath}/img/gorra4.png" class="card-img-top" alt="Gorra 3">
                             <div class="card-body text-center">

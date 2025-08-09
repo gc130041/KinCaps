@@ -27,3 +27,4 @@ VALUES ('Proveedor X', 'Juan Pérez', '123-456-7890');
 use db_kincaps;
 select * from cliente;
 select * from CookieAuth;
+select * from gorras;

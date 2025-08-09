@@ -3,6 +3,8 @@ package modelo;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,8 +15,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "gorras")
 public class Gorras {
-    
-        public enum Tipo {
+
+    public enum Tipo {
         URBANA, DEPORTIVA, FORMULA_1, OTRO
     }
 
@@ -23,15 +25,19 @@ public class Gorras {
     @Column(name = "idGorra")
     private int idGorra;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)
     private Tipo tipo;
 
     @Column(name = "marca", nullable = false, length = 50)
     private String marca;
 
+    @Column(name = "nombreGorra", nullable = false, length = 80)
+    private String nombreGorra;
+
     @Column(name = "color", nullable = false, length = 30)
     private String color;
-    
+
     @Column(name = "descripcion", length = 255)
     private String descripcion;
 
@@ -51,9 +57,10 @@ public class Gorras {
     public Gorras() {
     }
 
-    public Gorras(Tipo tipo, String marca, String color, String descripcion, String imagen, BigDecimal precio, int stock, Proveedor proveedor) {
+    public Gorras(Tipo tipo, String marca, String nombreGorra, String color, String descripcion, String imagen, BigDecimal precio, int stock, Proveedor proveedor) {
         this.tipo = tipo;
         this.marca = marca;
+        this.nombreGorra = nombreGorra;
         this.color = color;
         this.descripcion = descripcion;
         this.imagen = imagen;
@@ -61,7 +68,7 @@ public class Gorras {
         this.stock = stock;
         this.proveedor = proveedor;
     }
-    
+
     public int getIdGorra() {
         return idGorra;
     }
@@ -85,6 +92,14 @@ public class Gorras {
     public void setMarca(String marca) {
         this.marca = marca;
     }
+    
+    public String getNombreGorra() {
+        return nombreGorra;
+    }
+
+    public void setNombreGorra(String nombreGorra) {
+        this.nombreGorra = nombreGorra;
+    }
 
     public String getColor() {
         return color;
@@ -93,7 +108,7 @@ public class Gorras {
     public void setColor(String color) {
         this.color = color;
     }
-    
+
     public String getDescripcion() {
         return descripcion;
     }

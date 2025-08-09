@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const range2Value = document.getElementById('range2-value');
     const sliderTrack = document.querySelector('.slider-track');
     const filterForm = document.getElementById('filter-form');
-    const productItems = document.querySelectorAll('.product-item');
+    const productContainer = document.getElementById('product-container');
 
     function updatePriceSlider() {
         let val1 = parseInt(slider1.value);
@@ -31,19 +31,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const minPrice = parseInt(slider1.value);
         const maxPrice = parseInt(slider2.value);
         
-        const selectedBrands = Array.from(document.querySelectorAll('input[id^="brand"]:checked')).map(cb => cb.value);
         const selectedCategories = Array.from(document.querySelectorAll('input[id^="cat"]:checked')).map(cb => cb.value);
+
+        const productItems = productContainer.querySelectorAll('.product-item');
 
         productItems.forEach(item => {
             const itemPrice = parseInt(item.dataset.price);
-            const itemBrand = item.dataset.brand;
             const itemCategory = item.dataset.category;
 
             const priceMatch = itemPrice >= minPrice && itemPrice <= maxPrice;
-            const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(itemBrand);
             const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(itemCategory);
 
-            if (priceMatch && brandMatch && categoryMatch) {
+            if (priceMatch && categoryMatch) {
                 item.style.display = '';
             } else {
                 item.style.display = 'none';
@@ -61,4 +60,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     updatePriceSlider();
+    filterProducts();
 });

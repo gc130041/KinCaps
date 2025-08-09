@@ -89,6 +89,10 @@ public class GorrasCRUDServlet extends HttpServlet {
             out.println("                        <input type='text' class='form-control' name='marca' required value='" + (esEdicion ? getSafeString(gorraAEditar.getMarca()) : "") + "'>");
             out.println("                    </div>");
             out.println("                    <div class='mb-3'>");
+            out.println("                        <label class='form-label'>Nombre de la Gorra</label>");
+            out.println("                        <input type='text' class='form-control' name='nombreGorra' required value='" + (esEdicion ? getSafeString(gorraAEditar.getNombreGorra()) : "") + "'>");
+            out.println("                    </div>");
+            out.println("                    <div class='mb-3'>");
             out.println("                        <label class='form-label'>Color</label>");
             out.println("                        <input type='text' class='form-control' name='color' required value='" + (esEdicion ? getSafeString(gorraAEditar.getColor()) : "") + "'>");
             out.println("                    </div>");
@@ -172,6 +176,7 @@ public class GorrasCRUDServlet extends HttpServlet {
                     } else { 
                         Gorras.Tipo tipo = Gorras.Tipo.valueOf(request.getParameter("tipo"));
                         String marca = request.getParameter("marca");
+                        String nombreGorra = request.getParameter("nombreGorra");
                         String color = request.getParameter("color");
                         String descripcion = request.getParameter("descripcion");
                         String imagen = request.getParameter("imagen");
@@ -180,7 +185,7 @@ public class GorrasCRUDServlet extends HttpServlet {
                         int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
                         proveedorDao = new ProveedorDAO();
                         proveedor = proveedorDao.buscarPorId(idProveedor);
-                        gorra = new Gorras(tipo, marca, color, descripcion, imagen, precio, stock, proveedor);
+                        gorra = new Gorras(tipo, marca, nombreGorra, color, descripcion, imagen, precio, stock, proveedor);
                         dao.guardar(gorra);
                         response.sendRedirect(request.getContextPath() + "/mantenimiento/gorras/listar");
                     }
@@ -201,6 +206,7 @@ public class GorrasCRUDServlet extends HttpServlet {
                     if (gorra != null) {
                         gorra.setTipo(Gorras.Tipo.valueOf(request.getParameter("tipo")));
                         gorra.setMarca(request.getParameter("marca"));
+                        gorra.setNombreGorra(request.getParameter("nombreGorra"));
                         gorra.setColor(request.getParameter("color"));
                         gorra.setDescripcion(request.getParameter("descripcion"));
                         gorra.setImagen(request.getParameter("imagen"));

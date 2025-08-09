@@ -48,7 +48,6 @@ body {
     padding-bottom: 4px;
     transform: rotate(45deg);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    color: white;
 }
 
 .tipo-f1 { background-color: #e10600; }
