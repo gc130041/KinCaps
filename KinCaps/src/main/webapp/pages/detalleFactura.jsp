@@ -71,7 +71,7 @@
                             <tr>
                                 <td><%= d.getIdDetalleFactura() %></td>
                                 <td><%= (d.getFactura() != null) ? d.getFactura().getIdFactura() : "N/A" %></td>
-                                <td><%= (d.getGorra() != null) ? d.getGorra().getModelo() : "N/A" %></td>
+                                <td><%= (d.getGorra() != null) ? d.getGorra().getTipo(): "N/A" %></td>
                                 <td><%= d.getCantidad() %></td>
                                 <td><%= (d.getPrecioVenta() != null) ? currencyFormatter.format(d.getPrecioVenta()) : "Q. 0.00" %></td>
                                 <td>

@@ -72,7 +72,7 @@
                             <tr>
                                 <td><%= d.getIdDetalleCarrito() %></td>
                                 <td><%= (d.getCarrito() != null) ? d.getCarrito().getIdCarrito() : "N/A" %></td>
-                                <td><%= (d.getGorra() != null) ? d.getGorra().getModelo() : "N/A" %></td>
+                                <td><%= (d.getGorra() != null) ? d.getGorra().getTipo(): "N/A" %></td>
                                 <td><%= d.getCantidad() %></td>
                                 <td><%= (d.getPrecioUnitario() != null) ? currencyFormatter.format(d.getPrecioUnitario()) : "Q. 0.00" %></td>
                                 <td>
