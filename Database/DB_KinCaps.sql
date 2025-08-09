@@ -37,11 +37,13 @@ CREATE TABLE empleados (
 
 CREATE TABLE gorras (
     idGorra INT AUTO_INCREMENT,
-    modelo VARCHAR(100) NOT NULL,
+    tipo ENUM('URBANA','DEPORTIVA','FORMULA_1', 'OTRO') NOT NULL,
     marca VARCHAR(50),
     color VARCHAR(30),
     precio DECIMAL(10, 2) NOT NULL,
     stock INT NOT NULL,
+    descripcion VARCHAR(255),
+    imagen VARCHAR(80),
     idProveedor INT,
     CONSTRAINT PK_Gorras PRIMARY KEY (idGorra),
     CONSTRAINT FK_GorrasProveedor FOREIGN KEY (idProveedor) REFERENCES proveedor(idProveedor)

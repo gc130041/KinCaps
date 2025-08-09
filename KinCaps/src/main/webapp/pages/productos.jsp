@@ -52,9 +52,11 @@
                         <thead class="table-primary">
                             <tr>
                                 <th>Código Producto</th>
-                                <th>Modelo</th>
+                                <th>Tipo</th>
                                 <th>Marca</th>
                                 <th>Color</th>
+                                <th>Descripción</th>
+                                <th>Imagen</th>
                                 <th>Precio</th>
                                 <th>Stock</th>
                                 <th>Proveedor</th>
@@ -70,9 +72,11 @@
                             %>
                             <tr>
                                 <td><%=g.getIdGorra()%></td>
-                                <td><%=g.getModelo()%></td>
+                                <td><%=g.getTipo()%></td>
                                 <td><%=g.getMarca()%></td>
                                 <td><%=g.getColor()%></td>
+                                <td><%=g.getDescripcion()%></td>
+                                <td><%=g.getImagen()%></td>
                                 <td><%=g.getPrecio()%></td>
                                 <td><%=g.getStock()%></td>
                                 <td><%= (g.getProveedor() != null ? g.getProveedor().getNombre() : "nombre")%></td>                                
@@ -88,7 +92,7 @@
                             } else {
                             %>
                             <tr>
-                                <td colspan="8" class="text-center">No hay productos que mostrar.</td>
+                                <td colspan="10" class="text-center">No hay productos que mostrar.</td>
                             </tr>
                             <%
                                 }

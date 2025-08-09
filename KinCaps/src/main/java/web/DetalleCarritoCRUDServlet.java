@@ -92,7 +92,7 @@ public class DetalleCarritoCRUDServlet extends HttpServlet {
             out.println("            <option value=''>Seleccione una gorra</option>");
             for (Gorras gorra : listaGorras) {
                 int id = gorra.getIdGorra();
-                String gorraInfo = gorra.getModelo() + " - " + gorra.getMarca();
+                String gorraInfo = gorra.getTipo() + " - " + gorra.getMarca();
                 boolean seleccionado = esEdicion && detalleAEditar.getGorra() != null && detalleAEditar.getGorra().getIdGorra() == id;
                 out.println("            <option value='" + id + "'" + (seleccionado ? " selected" : "") + ">" + gorraInfo + "</option>");
             }

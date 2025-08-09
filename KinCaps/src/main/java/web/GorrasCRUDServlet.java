@@ -1,4 +1,4 @@
-    package web;
+package web;
 
 import dao.GorrasDAO;
 import dao.ProveedorDAO;
@@ -75,8 +75,14 @@ public class GorrasCRUDServlet extends HttpServlet {
             }
 
             out.println("                    <div class='mb-3'>");
-            out.println("                        <label class='form-label'>Modelo</label>");
-            out.println("                        <input type='text' class='form-control' name='modelo' required value='" + (esEdicion ? getSafeString(gorraAEditar.getModelo()) : "") + "'>");
+            out.println("                        <label class='form-label'>Tipo</label>");
+            out.println("                        <select class='form-select' name='tipo' required>");
+            out.println("                           <option value=''>Seleccione un tipo</option>");
+            for (Gorras.Tipo tipoEnum : Gorras.Tipo.values()) {
+                boolean seleccionado = esEdicion && gorraAEditar.getTipo() != null && gorraAEditar.getTipo() == tipoEnum;
+                out.println("                       <option value='" + tipoEnum.name() + "'" + (seleccionado ? " selected" : "") + ">" + tipoEnum.name().replace("_", " ") + "</option>");
+            }
+            out.println("                        </select>");
             out.println("                    </div>");
             out.println("                    <div class='mb-3'>");
             out.println("                        <label class='form-label'>Marca</label>");
@@ -85,6 +91,14 @@ public class GorrasCRUDServlet extends HttpServlet {
             out.println("                    <div class='mb-3'>");
             out.println("                        <label class='form-label'>Color</label>");
             out.println("                        <input type='text' class='form-control' name='color' required value='" + (esEdicion ? getSafeString(gorraAEditar.getColor()) : "") + "'>");
+            out.println("                    </div>");
+            out.println("                    <div class='mb-3'>");
+            out.println("                        <label class='form-label'>Descripción</label>");
+            out.println("                        <textarea class='form-control' name='descripcion' rows='3'>" + (esEdicion ? getSafeString(gorraAEditar.getDescripcion()) : "") + "</textarea>");
+            out.println("                    </div>");
+            out.println("                    <div class='mb-3'>");
+            out.println("                        <label class='form-label'>Nombre Archivo Imagen</label>");
+            out.println("                        <input type='text' class='form-control' name='imagen' value='" + (esEdicion ? getSafeString(gorraAEditar.getImagen()) : "") + "'>");
             out.println("                    </div>");
             out.println("                    <div class='mb-3'>");
             out.println("                        <label class='form-label'>Precio</label>");
@@ -141,6 +155,7 @@ public class GorrasCRUDServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        request.setCharacterEncoding("UTF-8");
         String accion = getAccion(request);
 
         GorrasDAO dao = new GorrasDAO();
@@ -155,15 +170,17 @@ public class GorrasCRUDServlet extends HttpServlet {
                     if (request.getMethod().equalsIgnoreCase("GET")) {
                         mostrarFormulario(request, response);
                     } else { 
-                        String modelo = request.getParameter("modelo");
+                        Gorras.Tipo tipo = Gorras.Tipo.valueOf(request.getParameter("tipo"));
                         String marca = request.getParameter("marca");
                         String color = request.getParameter("color");
+                        String descripcion = request.getParameter("descripcion");
+                        String imagen = request.getParameter("imagen");
                         BigDecimal precio = new BigDecimal(request.getParameter("precio"));
                         int stock = Integer.parseInt(request.getParameter("stock"));
                         int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
                         proveedorDao = new ProveedorDAO();
                         proveedor = proveedorDao.buscarPorId(idProveedor);
-                        gorra = new Gorras(modelo, marca, color, precio, stock, proveedor);
+                        gorra = new Gorras(tipo, marca, color, descripcion, imagen, precio, stock, proveedor);
                         dao.guardar(gorra);
                         response.sendRedirect(request.getContextPath() + "/mantenimiento/gorras/listar");
                     }
@@ -182,9 +199,11 @@ public class GorrasCRUDServlet extends HttpServlet {
                     id = Integer.parseInt(request.getParameter("id"));
                     gorra = dao.buscarPorId(id);
                     if (gorra != null) {
-                        gorra.setModelo(request.getParameter("modelo"));
+                        gorra.setTipo(Gorras.Tipo.valueOf(request.getParameter("tipo")));
                         gorra.setMarca(request.getParameter("marca"));
                         gorra.setColor(request.getParameter("color"));
+                        gorra.setDescripcion(request.getParameter("descripcion"));
+                        gorra.setImagen(request.getParameter("imagen"));
                         gorra.setPrecio(new BigDecimal(request.getParameter("precio")));
                         gorra.setStock(Integer.parseInt(request.getParameter("stock")));
                         int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
