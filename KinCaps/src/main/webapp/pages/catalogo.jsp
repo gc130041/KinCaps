@@ -6,6 +6,7 @@
         <title>Catálogo | KINCAPS</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="${pageContext.request.contextPath}/scripts/catalogo.js"></script>
         <link rel="icon" href="${pageContext.request.contextPath}/img/Logo/logonobg.png" type="image/x-icon"> 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/catalogo.css"> 
     </head>
@@ -39,12 +40,23 @@
                     <aside class="col-lg-3">
                         <div class="filtro-seccion bg-light p-3 rounded shadow-sm">
                             <h3 class="mb-4">Filtros</h3>
-                            <form>
+                            <form id="filter-form">
+                                <!-- SECCIÓN DEL SLIDER -->
                                 <div class="mb-4">
-                                    <label for="price-limit" class="form-label fw-bold">Límite de Precio</label>
-                                    <input type="range" class="form-range" min="0" max="1000" step="10" id="price-limit" oninput="document.getElementById('priceOutput').value = `Q${this.value}.00`">
-                                    <output id="priceOutput" class="form-text">Q500.00</output>
+                                    <h5 class="fw-bold">Rango de Precio</h5>
+                                    <div class="price-range-slider">
+                                        <div class="price-values mb-3 d-flex justify-content-between">
+                                            <span id="range1-value">Q100</span>
+                                            <span id="range2-value">Q800</span>
+                                        </div>
+                                        <div class="slider-container">
+                                            <div class="slider-track"></div>
+                                            <input type="range" class="form-range" min="0" max="1000" value="100" id="slider-1">
+                                            <input type="range" class="form-range" min="0" max="1000" value="800" id="slider-2">
+                                        </div>
+                                    </div>
                                 </div>
+                                <!-- SECCIÓN DEL SLIDER END -->
                                 <div class="mb-4">
                                     <h5 class="fw-bold">Categorías</h5>
                                     <div class="form-check">
