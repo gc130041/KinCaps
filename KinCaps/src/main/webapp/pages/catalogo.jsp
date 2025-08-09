@@ -336,7 +336,7 @@
                             <hr>
                             <h2>Formula 1</h2>
                             <!-- Inicio de la tarjeta -->
-                            
+
                         </div>
                     </div>
                 </div>
@@ -400,7 +400,15 @@
                 </div>
             </div>
         </div> 
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+    </main>
+</div>
+<footer class="bg-header text-white text-center py-4 mt-auto">
+    <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
+    <small>
+        <a href="${pageContext.request.contextPath}/pages/politica.jsp" class="text-white text-decoration-none me-3">Política de Privacidad</a>
+        <a href="${pageContext.request.contextPath}/pages/terminos.jsp" class="text-white text-decoration-none">Términos y Condiciones</a>
+    </small>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
