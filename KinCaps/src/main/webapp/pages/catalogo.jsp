@@ -46,8 +46,8 @@
                                     <h5 class="fw-bold">Rango de Precio</h5>
                                     <div class="price-range-slider">
                                         <div class="price-values mb-3 d-flex justify-content-between">
-                                            <span id="range1-value">Q100</span>
-                                            <span id="range2-value">Q800</span>
+                                            <span id="range1-value">Min. Q100</span>
+                                            <span id="range2-value">Max. Q800</span>
                                         </div>
                                         <div class="slider-container">
                                             <div class="slider-track"></div>
@@ -354,16 +354,6 @@
                 </div>
             </div>
         </main>
-
-        <footer class="bg-header text-white text-center py-3 mt-auto">
-            <div class="container">
-                <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
-                <div>
-                    <a href="#" class="text-white text-decoration-none me-3">Política de Privacidad</a>
-                    <a href="#" class="text-white text-decoration-none">Términos y Condiciones</a>
-                </div>
-            </div>
-        </footer>
 
         <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
             <div class="modal-dialog">

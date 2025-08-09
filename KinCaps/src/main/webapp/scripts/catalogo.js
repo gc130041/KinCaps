@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
             slider2.value = val2;
         }
 
-        range1Value.textContent = `Q${val1}`;
-        range2Value.textContent = `Q${val2}`;
+        range1Value.textContent = `Min. Q${val1}`;
+        range2Value.textContent = `Max. Q${val2}`;
         
         const sliderMax = slider1.max;
         const percent1 = (val1 / sliderMax) * 100;
