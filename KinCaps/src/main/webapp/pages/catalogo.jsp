@@ -81,7 +81,7 @@
                     </aside>
 
                     <div class="col-lg-9">
-                        <div class="row mt-4" id="product-container">
+                        <div class="row g-4" id="product-container">
                             <%
                                 List<Gorras> listaGorras = (List<Gorras>) request.getAttribute("listaGorras");
                                 if (listaGorras != null && !listaGorras.isEmpty()) {
@@ -89,8 +89,8 @@
                                         String folderPath = "otros";
                                         String tipoEnumName = "OTRO";
                                         String insigniaURL = "";
-                                        String insigniaClass = "tipo-NY"; 
-                                        
+                                        String insigniaClass = "tipo-NY";
+
                                         if (g.getTipo() != null) {
                                             tipoEnumName = g.getTipo().name();
                                             switch (g.getTipo()) {
@@ -121,27 +121,29 @@
                                         String imageURL = request.getContextPath() + "/img/Gorras/" + folderPath + "/" + imagenNombre;
                             %>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-4 product-item" 
-                                 data-price="<%= precioValor %>" 
-                                 data-category="<%= tipoEnumName %>" 
-                                 data-brand="<%= marcaTexto %>">
-                                <div class="card h-100 shadow-sm position-relative">
-                                    <% if (!insigniaURL.isEmpty()) { %>
-                                        <span class="insignia-tipo <%= insigniaClass %>"><img src="<%= insigniaURL %>" alt="<%= tipoEnumName %>" style="width: 60px;"></span>
-                                    <% } %>
-                                    <img src="<%= imageURL %>" class="card-img-top" alt="<%= descripcionTexto %>">
+                                 data-price="<%= precioValor%>" 
+                                 data-category="<%= tipoEnumName%>" 
+                                 data-brand="<%= marcaTexto%>">
+                                <div class="card h-100 shadow-sm">
+                                    <% if (!insigniaURL.isEmpty()) {%>
+                                    <span class="insignia-tipo <%= insigniaClass%>">
+                                        <img src="<%= insigniaURL%>" alt="<%= tipoEnumName%>" style="width: 60px;">
+                                    </span>
+                                    <% }%>
+                                    <img src="<%= imageURL%>" class="card-img-top" alt="<%= descripcionTexto%>">
                                     <div class="card-body d-flex flex-column">
                                         <div class="d-flex justify-content-between align-items-start mb-2">
-                                            <h5 class="card-title mb-0 me-2"><%= nombreGorraTexto %></h5>
-                                            <span class="badge bg-primary text-nowrap fs-6">Q<%= precioValor %></span>
+                                            <h5 class="card-title mb-0 me-2"><%= nombreGorraTexto%></h5>
+                                            <span class="badge bg-primary text-nowrap fs-6">Q<%= precioValor%></span>
                                         </div>
-                                        <p class="card-text text-muted small"><%= descripcionTexto %></p>
+                                        <p class="card-text text-muted small"><%= descripcionTexto%></p>
                                         <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
                                     </div>
                                 </div>
                             </div>
                             <%
-                                    }
-                                } else {
+                                }
+                            } else {
                             %>
                             <div class="col-12">
                                 <p class="text-center">No hay productos para mostrar en este momento.</p>
@@ -154,7 +156,7 @@
                 </div>
             </div>
         </main>
-        
+
         <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content h-100">
@@ -180,7 +182,7 @@
                 </div>
             </div>
         </div> 
-    
+
         <footer class="bg-header text-white text-center py-4 mt-auto">
             <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
             <small>
