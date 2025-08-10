@@ -43,16 +43,22 @@ body {
     width: 120px;
     height: 40px;
     display: flex;
-    align-items: flex-end;  
+    align-items: flex-end;
     justify-content: center;
     padding-bottom: 4px;
     transform: rotate(45deg);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.tipo-f1 { background-color: #e10600; }
-.tipo-NY { background-color: #222222; }
-.tipo-MB { background-color: #aaaaaa; }
+.tipo-f1 {
+    background-color: #e10600;
+}
+.tipo-NY {
+    background-color: #222222;
+}
+.tipo-MB {
+    background-color: #aaaaaa;
+}
 
 .card {
     position: relative;
@@ -65,4 +71,32 @@ body {
     border-color: #1e90ff;
     box-shadow: 0 0 15px 3px rgba(30, 144, 255, 0.7);
     transform: translateY(-5px);
+}
+
+.notificacion {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    padding: 15px 25px;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1060;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.notificacion.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.notificacion-success {
+    background-color: #28a745;
+}
+
+.notificacion-error {
+    background-color: #dc3545;
 }

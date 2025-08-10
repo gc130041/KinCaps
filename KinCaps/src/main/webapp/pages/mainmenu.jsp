@@ -12,7 +12,7 @@
     </head>
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-kincaps px-4">
-            <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="${pageContext.request.contextPath}/pages/mainmenu.jsp">
+            <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="${pageContext.request.contextPath}/gorras">
                 <img src="${pageContext.request.contextPath}/img/Logo/logonobg.png" alt="Logo" style="width:8vh;" class="me-2"> KINCAPS
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
@@ -22,17 +22,17 @@
             <div class="collapse navbar-collapse" id="navbarMain">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="${pageContext.request.contextPath}/pages/mainmenu.jsp">
+                        <a class="nav-link active" href="${pageContext.request.contextPath}/gorras">
                             <i class="bi bi-house-door-fill me-1"></i> Inicio
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/pages/catalogo.jsp">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/gorras/catalogo">
                             <i class="bi bi-bag-fill me-1"></i> Productos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/pages/catalogo.jsp">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/gorras/catalogo">
                             <i class="bi bi-tag-fill me-1"></i> Ofertas
                         </a>
                     </li>

@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import modelo.Carrito;
+import modelo.Cliente;
 import util.JPAUtil;
 
 public class CarritoDAO {
@@ -13,6 +14,10 @@ public class CarritoDAO {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
+            if (carrito.getCliente() != null && !em.contains(carrito.getCliente())) {
+                Cliente managedCliente = em.merge(carrito.getCliente());
+                carrito.setCliente(managedCliente);
+            }
             em.persist(carrito);
             tx.commit();
         } catch (Exception e) {
@@ -75,6 +80,19 @@ public class CarritoDAO {
                 tx.rollback();
             }
             e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Carrito buscarActivoPorCliente(Cliente cliente) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            List<Carrito> carritos = em.createQuery("SELECT c FROM Carrito c WHERE c.cliente.idCliente = :clienteId AND c.estado = :estado", Carrito.class)
+                    .setParameter("clienteId", cliente.getIdCliente())
+                    .setParameter("estado", Carrito.Estado.ACTIVO)
+                    .getResultList();
+            return carritos.isEmpty() ? null : carritos.get(0);
         } finally {
             em.close();
         }

@@ -1,4 +1,4 @@
-package web;
+package web.crud;
 
 import dao.GorrasDAO;
 import dao.ProveedorDAO;

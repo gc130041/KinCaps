@@ -1,4 +1,4 @@
-package web;
+package web.crud;
 
 import dao.ClienteDAO;
 import java.io.IOException;

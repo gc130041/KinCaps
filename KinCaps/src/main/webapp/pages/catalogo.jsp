@@ -1,6 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="modelo.Gorras" %>
 <%@page import="java.util.List" %>
+<%@page import="modelo.DetalleCarrito"%>
+<%@page import="java.math.BigDecimal"%>
+<%@page import="java.math.RoundingMode"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,15 +12,16 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <script src="${pageContext.request.contextPath}/scripts/catalogo.js" defer></script>
+        <script src="${pageContext.request.contextPath}/scripts/carrito.js" defer></script>
         <link rel="icon" href="${pageContext.request.contextPath}/img/Logo/logonobg.png" type="image/x-icon"> 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/catalogo.css"> 
     </head>
 
-    <body class="d-flex flex-column min-vh-100">
+    <body class="d-flex flex-column min-vh-100" data-context-path="${pageContext.request.contextPath}">
         <header>
             <nav class="navbar navbar-expand-lg bg-header navbar-dark fixed-top">
                 <div class="container-fluid">
-                    <a href="${pageContext.request.contextPath}/pages/mainmenu.jsp" class="navbar-brand fw-bold">
+                    <a href="${pageContext.request.contextPath}/gorras" class="navbar-brand fw-bold">
                         <img src="${pageContext.request.contextPath}/img/Logo/logotipo.png" style="width: 5vh;" alt="Logotipo.png"/> Catálogo de Gorras
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
@@ -140,7 +144,7 @@
                                             <span class="badge bg-primary text-nowrap fs-6">Q<%= precioValor%></span>
                                         </div>
                                         <p class="card-text text-muted small"><%= descripcionTexto%></p>
-                                        <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                        <a href="${pageContext.request.contextPath}/gorras/detalle?id=<%= g.getIdGorra()%>" class="btn btn-outline-primary mt-auto">Ver más</a>
                                     </div>
                                 </div>
                             </div>
@@ -168,13 +172,65 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body d-flex flex-column">
-                        <div class="flex-grow-1 overflow-auto">
+                        <div id="carrito-items" class="flex-grow-1 overflow-auto">
+                            <%
+                                List<DetalleCarrito> listaDetalleCarrito = (List<DetalleCarrito>) request.getAttribute("listaDetalleCarrito");
+                                BigDecimal totalCarrito = BigDecimal.ZERO;
+
+                                if (listaDetalleCarrito != null && !listaDetalleCarrito.isEmpty()) {
+                                    for (DetalleCarrito detalle : listaDetalleCarrito) {
+                                        Gorras gorra = detalle.getGorra();
+                                        String folderPath = "otros";
+                                        if (gorra.getTipo() != null) {
+                                            switch (gorra.getTipo()) {
+                                                case URBANA:
+                                                    folderPath = "Urbanos";
+                                                    break;
+                                                case DEPORTIVA:
+                                                    folderPath = "deportivo";
+                                                    break;
+                                                case FORMULA_1:
+                                                    folderPath = "f1";
+                                                    break;
+                                            }
+                                        }
+                                        String imageURL = request.getContextPath() + "/img/Gorras/" + folderPath + "/" + gorra.getImagen();
+                                        BigDecimal subtotal = detalle.getPrecioUnitario().multiply(new BigDecimal(detalle.getCantidad()));
+                                        totalCarrito = totalCarrito.add(subtotal);
+                            %>
+                            <div class="d-flex align-items-center mb-3" data-id-gorra="<%= gorra.getIdGorra()%>">
+                                <img src="<%= imageURL%>" alt="<%= gorra.getNombreGorra()%>" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+                                <div class="ms-3 flex-grow-1">
+                                    <h6 class="mb-0"><%= gorra.getNombreGorra()%></h6>
+                                    <small class="text-muted item-cantidad">Cantidad: <%= detalle.getCantidad()%></small>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <strong class="me-3">Q<%= detalle.getPrecioUnitario().setScale(2, RoundingMode.HALF_UP)%></strong>
+                                    <button class="btn btn-outline-danger btn-sm rounded-circle btn-eliminar-item" 
+                                            data-id-gorra="<%= gorra.getIdGorra()%>"
+                                            data-nombre-gorra="<%= gorra.getNombreGorra()%>"
+                                            data-cantidad-actual="<%= detalle.getCantidad()%>"
+                                            title="Eliminar item">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <%
+                                    }
+                                }
+                            %>
                         </div>
+                        <p id="carrito-vacio" class="text-center text-muted mt-4" style="
+                           <%= (listaDetalleCarrito != null && !listaDetalleCarrito.isEmpty()) ? "display: none;" : ""%>">
+                            Tu carrito está vacío.
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <div class="w-100">
                             <div class="text-end mb-3">
-                                <h5>Total: <strong>Q0.00</strong></h5>
+                                <h5>Total: <strong id="carrito-total">
+                                        Q<%= totalCarrito.setScale(2, RoundingMode.HALF_UP)%>
+                                    </strong></h5>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
@@ -185,6 +241,28 @@
                 </div>
             </div>
         </div> 
+
+        <div class="modal fade" id="eliminarItemModal" tabindex="-1" aria-labelledby="eliminarItemModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eliminarItemModalLabel">Eliminar Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Cuántos items de <strong id="nombre-item-eliminar">Gorra Genérica</strong> deseas eliminar?</p>
+                        <div class="d-flex justify-content-center my-3">
+                            <input type="number" class="form-control" value="1" min="1" id="eliminar-cantidad-input" style="width: 100px; text-align: center;">
+                        </div>
+                        <input type="hidden" id="eliminar-id-gorra-input">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="confirmar-eliminacion-btn">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer class="bg-header text-white text-center py-4 mt-auto">
             <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>

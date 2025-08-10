@@ -1,9 +1,8 @@
-package web;
+package web.crud;
 
-import dao.EmpleadoDAO;
+import dao.ProveedorDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,10 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Empleado;
+import modelo.Proveedor;
 
-@WebServlet(name = "EmpleadoCRUDServlet", urlPatterns = {"/mantenimiento/empleados", "/mantenimiento/empleados/*"})
-public class EmpleadoCRUDServlet extends HttpServlet {
+@WebServlet(name = "ProveedorCRUDServlet", urlPatterns = {"/mantenimiento/proveedores", "/mantenimiento/proveedores/*"})
+public class ProveedorCRUDServlet extends HttpServlet {
 
     private String getSafeString(String value) {
         return value != null ? value : "";
@@ -25,8 +24,8 @@ public class EmpleadoCRUDServlet extends HttpServlet {
     private void mostrarFormulario(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        Empleado empleadoAEditar = (Empleado) request.getAttribute("empleadoEditar");
-        boolean esEdicion = (empleadoAEditar != null);
+        Proveedor proveedorAEditar = (Proveedor) request.getAttribute("proveedorEditar");
+        boolean esEdicion = (proveedorAEditar != null);
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
@@ -34,7 +33,7 @@ public class EmpleadoCRUDServlet extends HttpServlet {
             out.println("<head>");
             out.println("    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
             out.println("    <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-            out.println("    <title>" + (esEdicion ? "Editar" : "Agregar") + " Empleado</title>");
+            out.println("    <title>" + (esEdicion ? "Editar" : "Agregar") + " Proveedor</title>");
             out.println("    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'>");
             out.println("    <link rel='icon' href='" + request.getContextPath() + "/img/Logo/logonobg.png' type='image/x-icon'>");
             out.println("    <link rel='stylesheet' href='" + request.getContextPath() + "/style/tablas.css'>");
@@ -60,53 +59,33 @@ public class EmpleadoCRUDServlet extends HttpServlet {
             out.println("    <main class='flex-grow-1'>");
             out.println("    <div class='container mt-5'>");
             out.println("        <div class='border-5'>");
-            out.println("            <h3 class='text-center mb-4'>Formulario para " + (esEdicion ? "editar un" : "agregar un") + " Empleado</h3>");
+            out.println("            <h3 class='text-center mb-4'>Formulario para " + (esEdicion ? "editar un" : "agregar un") + " Proveedor</h3>");
             out.println("            </div>");
             out.println("            <div class='card-body'>");
 
-            String actionUrl = esEdicion ? request.getContextPath() + "/mantenimiento/empleados/actualizar" : request.getContextPath() + "/mantenimiento/empleados/agregar";
+            String actionUrl = esEdicion ? request.getContextPath() + "/mantenimiento/proveedores/actualizar" : request.getContextPath() + "/mantenimiento/proveedores/agregar";
             out.println("                <form method='post' action='" + actionUrl + "'>");
 
             if (esEdicion) {
-                 out.println("<input type='hidden' name='id' value='" + empleadoAEditar.getIdEmpleado() + "'>");
+                 out.println("<input type='hidden' name='id' value='" + proveedorAEditar.getIdProveedor() + "'>");
             }
 
             out.println("                    <div class='mb-3'>");
             out.println("                        <label class='form-label'>Nombre</label>");
-            out.println("                        <input type='text' class='form-control' name='nombre' required value='" + (esEdicion ? getSafeString(empleadoAEditar.getNombre()) : "") + "'>");
+            out.println("                        <input type='text' class='form-control' name='nombre' required value='" + (esEdicion ? getSafeString(proveedorAEditar.getNombre()) : "") + "'>");
             out.println("                    </div>");
             out.println("                    <div class='mb-3'>");
-            out.println("                        <label class='form-label'>Apellido</label>");
-            out.println("                        <input type='text' class='form-control' name='apellido' required value='" + (esEdicion ? getSafeString(empleadoAEditar.getApellido()) : "") + "'>");
-            out.println("                    </div>");
-            out.println("                    <div class='mb-3'>");
-            out.println("                        <label class='form-label'>Email</label>");
-            out.println("                        <input type='email' class='form-control' name='email' required value='" + (esEdicion ? getSafeString(empleadoAEditar.getEmail()) : "") + "'>");
+            out.println("                        <label class='form-label'>Contacto</label>");
+            out.println("                        <input type='text' class='form-control' name='contacto' required value='" + (esEdicion ? getSafeString(proveedorAEditar.getContacto()) : "") + "'>");
             out.println("                    </div>");
             out.println("                    <div class='mb-3'>");
             out.println("                        <label class='form-label'>Teléfono</label>");
-            out.println("                        <input type='text' class='form-control' name='telefono' required value='" + (esEdicion ? getSafeString(empleadoAEditar.getTelefono()) : "") + "'>");
-            out.println("                    </div>");
-            out.println("                    <div class='mb-3'>");
-            out.println("                        <label class='form-label'>Dirección</label>");
-            out.println("                        <input type='text' class='form-control' name='direccion' required value='" + (esEdicion ? getSafeString(empleadoAEditar.getDireccion()) : "") + "'>");
-            out.println("                    </div>");
-            out.println("                    <div class='mb-3'>");
-            out.println("                        <label class='form-label'>Contraseña (Hash)</label>");
-            out.println("                        <input type='text' class='form-control' name='contrasenaHash' required value='" + (esEdicion ? getSafeString(empleadoAEditar.getContrasenaHash()) : "") + "'>");
-            out.println("                    </div>");
-            out.println("                    <div class='mb-3'>");
-            out.println("                        <label class='form-label'>Puesto</label>");
-            out.println("                        <input type='text' class='form-control' name='puesto' required value='" + (esEdicion ? getSafeString(empleadoAEditar.getPuesto()) : "") + "'>");
-            out.println("                    </div>");
-            out.println("                    <div class='mb-3'>");
-            out.println("                        <label class='form-label'>Fecha de Contratación</label>");
-            out.println("                        <input type='date' class='form-control' name='fechaContratacion' required value='" + (esEdicion && empleadoAEditar.getFechaContratacion() != null ? empleadoAEditar.getFechaContratacion().toString() : "") + "'>");
+            out.println("                        <input type='text' class='form-control' name='telefono' required value='" + (esEdicion ? getSafeString(proveedorAEditar.getTelefono()) : "") + "'>");
             out.println("                    </div>");
 
             out.println("                    <div class='mt-4 mb-5'>");
-            out.println("                        <button type='submit' class='btn " + (esEdicion ? "btn-warning" : "btn btn-save") + " me-2'>" + (esEdicion ? "Actualizar" : "Guardar") + " Empleado</button>");
-            out.println("                        <a href='" + request.getContextPath() + "/mantenimiento/empleados/listar' class='btn btn-secondary'>Cancelar</a>");
+            out.println("                        <button type='submit' class='btn " + (esEdicion ? "btn-warning" : "btn btn-save") + " me-2'>" + (esEdicion ? "Actualizar" : "Guardar") + " Proveedor</button>");
+            out.println("                        <a href='" + request.getContextPath() + "/mantenimiento/proveedores/listar' class='btn btn-secondary'>Cancelar</a>");
             out.println("                    </div>");
             out.println("                </form>");
             out.println("            </div>");
@@ -140,8 +119,8 @@ public class EmpleadoCRUDServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String accion = getAccion(request);
 
-        EmpleadoDAO dao = new EmpleadoDAO();
-        Empleado empleado;
+        ProveedorDAO dao = new ProveedorDAO();
+        Proveedor proveedor;
         int id;
 
         try {
@@ -151,60 +130,49 @@ public class EmpleadoCRUDServlet extends HttpServlet {
                         mostrarFormulario(request, response);
                     } else {
                         String nombre = request.getParameter("nombre");
-                        String apellido = request.getParameter("apellido");
-                        String email = request.getParameter("email");
+                        String contacto = request.getParameter("contacto");
                         String telefono = request.getParameter("telefono");
-                        String direccion = request.getParameter("direccion");
-                        String contrasenaHash = request.getParameter("contrasenaHash");
-                        String puesto = request.getParameter("puesto");
-                        LocalDate fechaContratacion = LocalDate.parse(request.getParameter("fechaContratacion"));
-
-                        empleado = new Empleado(nombre, apellido, email, telefono, direccion, contrasenaHash, puesto, fechaContratacion);
-                        dao.guardar(empleado);
-                        response.sendRedirect(request.getContextPath() + "/mantenimiento/empleados/listar");
+                        proveedor = new Proveedor(nombre, contacto, telefono);
+                        dao.guardar(proveedor);
+                        response.sendRedirect(request.getContextPath() + "/mantenimiento/proveedores/listar");
                     }
                     break;
                 case "/editar":
                     id = Integer.parseInt(request.getParameter("id"));
-                    empleado = dao.buscarPorId(id);
-                    if (empleado != null) {
-                        request.setAttribute("empleadoEditar", empleado);
+                    proveedor = dao.buscarPorId(id);
+                    if (proveedor != null) {
+                        request.setAttribute("proveedorEditar", proveedor);
                         mostrarFormulario(request, response);
                     } else {
-                        response.sendRedirect(request.getContextPath() + "/mantenimiento/empleados/listar");
+                        response.sendRedirect(request.getContextPath() + "/mantenimiento/proveedores/listar");
                     }
                     break;
                 case "/actualizar":
                     id = Integer.parseInt(request.getParameter("id"));
-                    empleado = dao.buscarPorId(id);
-                    if (empleado != null) {
-                        empleado.setNombre(request.getParameter("nombre"));
-                        empleado.setApellido(request.getParameter("apellido"));
-                        empleado.setEmail(request.getParameter("email"));
-                        empleado.setTelefono(request.getParameter("telefono"));
-                        empleado.setDireccion(request.getParameter("direccion"));
-                        empleado.setContrasenaHash(request.getParameter("contrasenaHash"));
-                        empleado.setPuesto(request.getParameter("puesto"));
-                        empleado.setFechaContratacion(LocalDate.parse(request.getParameter("fechaContratacion")));
-                        dao.actualizar(empleado);
+                    proveedor = dao.buscarPorId(id);
+                    if (proveedor != null) {
+                        proveedor.setNombre(request.getParameter("nombre"));
+                        proveedor.setContacto(request.getParameter("contacto"));
+                        proveedor.setTelefono(request.getParameter("telefono"));
+                        dao.actualizar(proveedor);
                     }
-                    response.sendRedirect(request.getContextPath() + "/mantenimiento/empleados/listar");
+                    response.sendRedirect(request.getContextPath() + "/mantenimiento/proveedores/listar");
                     break;
                 case "/eliminar":
                     id = Integer.parseInt(request.getParameter("id"));
                     dao.eliminar(id);
-                    response.sendRedirect(request.getContextPath() + "/mantenimiento/empleados/listar");
+                    response.sendRedirect(request.getContextPath() + "/mantenimiento/proveedores/listar");
                     break;
                 case "/listar":
                 default:
-                    List<Empleado> listaEmpleados = dao.listarTodos();
-                    request.setAttribute("listaEmpleados", listaEmpleados);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/empleados.jsp");
+                    List<Proveedor> listaProveedores = dao.listarTodos();
+                    request.setAttribute("listaProveedores", listaProveedores);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/proveedor.jsp");
                     dispatcher.forward(request, response);
                     break;
             }
         } catch (Exception e) {
-            Logger.getLogger(EmpleadoCRUDServlet.class.getName()).log(Level.SEVERE, "Error en el servlet", e);
+            Logger.getLogger(ProveedorCRUDServlet.class.getName()).log(Level.SEVERE, "Error en el servlet", e);
             throw new ServletException("Ocurrió un error en la aplicación.", e);
         }
     }
@@ -223,6 +191,6 @@ public class EmpleadoCRUDServlet extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Servlet para CRUD de Empleados";
+        return "Servlet para CRUD de Proveedores";
     }
 }

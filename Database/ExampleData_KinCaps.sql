@@ -28,3 +28,5 @@ use db_kincaps;
 select * from cliente;
 select * from CookieAuth;
 select * from gorras;
+select * from carrito;
+select * from detallecarrito;
