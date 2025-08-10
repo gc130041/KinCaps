@@ -120,7 +120,7 @@ public class ProcesarPagoServlet extends HttpServlet {
                 out.println("<p>Tu número de factura es: <strong>#" + factura.getIdFactura() + "</strong></p>");
                 out.println("<div class='mt-4'>");
                 out.println("<a href='" + contextPath + "/gorras' class='btn btn-primary'>Seguir Comprando</a>");
-                out.println("<a href='" + contextPath + "/pages/historialdecompras.jsp' class='btn btn-outline-secondary'>Ver Historial de Compras</a>");
+                out.println("<a href='" + contextPath + "/gorras/historial' class='btn btn-outline-secondary'>Ver Historial de Compras</a>");
                 out.println("</div></div></main>");
                 
                 out.println("<footer class='bg-header text-white text-center py-4 mt-auto'>");
