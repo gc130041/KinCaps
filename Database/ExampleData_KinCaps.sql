@@ -68,7 +68,15 @@ INSERT INTO gorras (tipo, marca, nombreGorra, color, precio, stock, descripcion,
 ('FORMULA_1', 'RB Formula One Team', 'Gorra Yuki Tsunoda 2025', 'Azul y Blanco', 485.00, 25, 'Gorra oficial del piloto Yuki Tsunoda, temporada 2025.', 'tsu.avif', 2),
 ('FORMULA_1', 'Red Bull Racing', 'Gorra Max Verstappen 2025', 'Azul Marino', 580.00, 25, 'Gorra oficial del piloto Max Verstappen, temporada 2025.', 'ver.avif', 2);
 
+INSERT INTO gorras (tipo, marca, nombreGorra, color, descripcion, imagen, precio, stock, idProveedor) VALUES 
+('DEPORTIVA', 'Jointophat', 'Gorra Deportiva Clásica', 'Negro', 'Gorra deportiva transpirable, ideal para actividades al aire libre.', 'gorra1.webp', 175.00, 100, 1),
+('DEPORTIVA', 'Nox', 'Gorra Nox Negro', 'Negro y Blanco', 'Gorra oficial Nox Sport, diseño bicolor con logo frontal.', 'gorra2.webp', 220.00, 75, 1),
+('DEPORTIVA', 'Stamina', 'Gorra Stamina 6 Paneles', 'Azul Marino', 'Gorra deportiva modelo Karin de 6 paneles, color azul marino.', 'gorra3.png', 150.00, 120, 1),
+('DEPORTIVA', 'Adidas', 'Adidas Bball S Cap', 'Azul', 'Gorra de baseball Adidas, estilo unisex para lifestyle.', 'gorra4.png', 250.00, 60, 1),
+('DEPORTIVA', 'Jointophat', 'Gorra Deportiva Premium', 'Blanco', 'Gorra deportiva de alta calidad con cierre ajustable.', 'gorra5.webp', 185.00, 90, 1);
 
+INSERT INTO gorras (tipo, marca, nombreGorra, color, descripcion, imagen, precio, stock, idProveedor) VALUES 
+('OTRO', 'Legion', 'Gorra Legion Anthracite', 'Antracita', 'Gorra de diseño exclusivo Legion, color antracita.', 'gorra1.webp', 275.00, 50, 1);
 
 use db_kincaps;
 select * from cliente;

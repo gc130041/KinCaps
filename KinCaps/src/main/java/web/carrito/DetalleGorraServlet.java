@@ -110,7 +110,7 @@ public class DetalleGorraServlet extends HttpServlet {
                 String folderPath = "otros";
                 if (gorra.getTipo() != null) {
                     switch (gorra.getTipo()) {
-                        case URBANA: folderPath = "Urbanos"; break;
+                        case URBANA: folderPath = "urbano"; break;
                         case DEPORTIVA: folderPath = "deportivo"; break;
                         case FORMULA_1: folderPath = "f1"; break;
                         case OTRO: folderPath = "otros"; break;
@@ -176,7 +176,7 @@ public class DetalleGorraServlet extends HttpServlet {
                     String folderPath = "otros";
                     if (itemGorra.getTipo() != null) {
                         switch (itemGorra.getTipo()) {
-                            case URBANA: folderPath = "Urbanos"; break;
+                            case URBANA: folderPath = "urbano"; break;
                             case DEPORTIVA: folderPath = "deportivo"; break;
                             case FORMULA_1: folderPath = "f1"; break;
                         }

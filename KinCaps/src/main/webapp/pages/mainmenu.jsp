@@ -76,12 +76,15 @@
                         <c:set var="insigniaStyle" value="width: 30px;"/>
 
                         <c:if test="${gorra.tipo eq 'URBANA'}">
-                            <c:set var="folderPath" value="Urbanos"/>
+                            <c:set var="folderPath" value="urbano"/>
                             <c:set var="insigniaURL" value="${pageContext.request.contextPath}/img/tipo/urbana.png"/>
                             <c:set var="insigniaClass" value="tipo-NY"/>
                         </c:if>
                         <c:if test="${gorra.tipo eq 'DEPORTIVA'}">
                             <c:set var="folderPath" value="deportivo"/>
+                            <c:set var="insigniaURL" value="${pageContext.request.contextPath}/img/tipo/deportiva.png"/>
+                            <c:set var="insigniaClass" value="tipo-MB"/>
+                            <c:set var="insigniaStyle" value="width: 30px;"/>
                         </c:if>
                         <c:if test="${gorra.tipo eq 'FORMULA_1'}">
                             <c:set var="folderPath" value="f1"/>

@@ -134,7 +134,7 @@ public class CarritoServlet extends HttpServlet {
         if (g.getTipo() != null) {
             switch (g.getTipo()) {
                 case URBANA:
-                    folderPath = "Urbanos";
+                    folderPath = "urbano";
                     break;
                 case DEPORTIVA:
                     folderPath = "deportivo";

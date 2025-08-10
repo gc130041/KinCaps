@@ -103,14 +103,16 @@
                                             tipoEnumName = g.getTipo().name();
                                             switch (g.getTipo()) {
                                                 case URBANA:
-                                                    folderPath = "Urbanos";
+                                                    folderPath = "urbano";
                                                     insigniaURL = request.getContextPath() + "/img/tipo/urbana.png";
                                                     insigniaClass = "tipo-NY";
                                                     insigniaWidth = "30px";
                                                     break;
                                                 case DEPORTIVA:
                                                     folderPath = "deportivo";
+                                                    insigniaURL = request.getContextPath() + "/img/tipo/deportiva.png";
                                                     insigniaClass = "tipo-MB";
+                                                    insigniaWidth = "30px";
                                                     break;
                                                 case FORMULA_1:
                                                     folderPath = "f1";
@@ -187,7 +189,7 @@
                                         if (gorra.getTipo() != null) {
                                             switch (gorra.getTipo()) {
                                                 case URBANA:
-                                                    folderPath = "Urbanos";
+                                                    folderPath = "urbano";
                                                     break;
                                                 case DEPORTIVA:
                                                     folderPath = "deportivo";
