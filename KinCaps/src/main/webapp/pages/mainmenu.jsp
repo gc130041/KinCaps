@@ -77,7 +77,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title">Gorra Deportiva</h5>
                                 <p class="card-text text-muted">Gorra de Fórmula 1, Piloto Max Verstappen, año 2025, equipo Red Bull Racing.</p>
-                                <a href="${pageContext.request.contextPath}/gorras" class="btn btn-outline-primary">Ver más</a>
+                                <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-primary">Ver más</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title">Gorra Deportiva</h5>
                                 <p class="card-text text-muted">Gorra de Deportiva Toyota, Kiichiro Toyoda , año 2025, equipo Toyota Racing.</p>
-                                <a href="${pageContext.request.contextPath}/gorras" class="btn btn-outline-primary">Ver más</a>
+                                <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-primary">Ver más</a>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title">Gorra Urbana</h5>
                                 <p class="card-text text-muted">Gorra de Urbana NY, New Era New York, año 2025, Estilo Nuevo y Lucido.</p>
-                                <a href="${pageContext.request.contextPath}/gorras" class="btn btn-outline-primary">Ver más</a>
+                                <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-primary">Ver más</a>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title">Gorra Deportiva</h5>
                                 <p class="card-text text-muted">Gorra de Deportiva Mercedez Benz, Carl Benz , año 2025, equipo Mercedez Racing.</p>
-                                <a href="${pageContext.request.contextPath}/gorras" class="btn btn-outline-primary">Ver más</a>
+                                <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-primary">Ver más</a>
                             </div>
                         </div>
                     </div>
