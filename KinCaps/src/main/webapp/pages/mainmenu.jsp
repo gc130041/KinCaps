@@ -7,13 +7,13 @@
         <title>Menu Principal - KINCAPS</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/mainmenu.css" />
         <link rel="icon" href="${pageContext.request.contextPath}/img/Logo/logonobg.png" type="image/x-icon">   
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     </head>
     <body class="d-flex flex-column min-vh-100">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-kincaps px-4" style="background-color: #002f71;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-kincaps px-4">
             <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="${pageContext.request.contextPath}/pages/mainmenu.jsp">
-                <img src="${pageContext.request.contextPath}/img/Logo/logotipo.png" alt="Logo" style="width:8vh;" class="me-2"> KINCAPS
+                <img src="${pageContext.request.contextPath}/img/Logo/logonobg.png" alt="Logo" style="width:8vh;" class="me-2"> KINCAPS
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
                 <span class="navbar-toggler-icon"></span>
@@ -27,22 +27,22 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/gorras">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/pages/catalogo.jsp">
                             <i class="bi bi-bag-fill me-1"></i> Productos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/pages/catalogo.jsp">
                             <i class="bi bi-tag-fill me-1"></i> Ofertas
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/pages/misionvision.jsp">
                             <i class="bi bi-people-fill me-1"></i> Sobre Nosotros
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/pages/contactanos.jsp">
                             <i class="bi bi-envelope-fill me-1"></i> Contacto
                         </a>
                     </li>

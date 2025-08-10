@@ -1,0 +1,10 @@
+body {
+    background-color: #f0f4f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-header {
+    background: linear-gradient(90deg, #002e71, #0f86d4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+

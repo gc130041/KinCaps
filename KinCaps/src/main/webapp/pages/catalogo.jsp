@@ -26,7 +26,10 @@
                     <div class="collapse navbar-collapse" id="menuNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <button type="button" class="btn btn-link text-white" data-bs-toggle="modal" data-bs-target="#miModal">
+                                <a href="${pageContext.request.contextPath}/pages/historialdecompras.jsp" type="button" class="btn btn-link text-white" style="text-decoration: none;">
+                                    <i class="bi bi-clock-history"></i> Historial De Compras
+                                </a>
+                                <button type="button" class="btn btn-link text-white" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#miModal">
                                     <i class="bi bi-cart2"></i> Carrito De Compras
                                 </button>
                             </li>
@@ -36,7 +39,7 @@
             </nav>
         </header>
 
-        <main class="flex-grow-1" style="padding-top: 70px;">
+        <main class="flex-grow-1" style="padding-top: 90px;">
             <div class="container-fluid">
                 <div class="row">
                     <aside class="col-lg-3">
@@ -127,7 +130,7 @@
                                 <div class="card h-100 shadow-sm">
                                     <% if (!insigniaURL.isEmpty()) {%>
                                     <span class="insignia-tipo <%= insigniaClass%>">
-                                        <img src="<%= insigniaURL%>" alt="<%= tipoEnumName%>" style="width: 60px;">
+                                        <img src="<%= insigniaURL%>" alt="<%= tipoEnumName%>" style="width: 30px;">
                                     </span>
                                     <% }%>
                                     <img src="<%= imageURL%>" class="card-img-top" alt="<%= descripcionTexto%>">
