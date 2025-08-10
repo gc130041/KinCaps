@@ -13,12 +13,16 @@ public class DetalleFacturaDAO {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
+            if (detalle.getFactura() != null && !em.contains(detalle.getFactura())) {
+                detalle.setFactura(em.merge(detalle.getFactura()));
+            }
+            if (detalle.getGorra() != null && !em.contains(detalle.getGorra())) {
+                detalle.setGorra(em.merge(detalle.getGorra()));
+            }
             em.persist(detalle);
             tx.commit();
         } catch (Exception e) {
-            if (tx.isActive()) {
-                tx.rollback();
-            }
+            if (tx.isActive()) tx.rollback();
             e.printStackTrace();
         } finally {
             em.close();

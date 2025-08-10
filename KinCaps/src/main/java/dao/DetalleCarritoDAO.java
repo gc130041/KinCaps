@@ -114,4 +114,20 @@ public class DetalleCarritoDAO {
             em.close();
         }
     }
+
+    public List<DetalleCarrito> buscarPorCarritoConGorras(Carrito carrito) {
+        EntityManager em = JPAUtil.getEntityManager();
+        if (carrito == null) {
+            return java.util.Collections.emptyList();
+        }
+        try {
+            return em.createQuery(
+                    "SELECT d FROM DetalleCarrito d JOIN FETCH d.gorra WHERE d.carrito = :carrito",
+                    DetalleCarrito.class)
+                    .setParameter("carrito", carrito)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

@@ -84,7 +84,7 @@ public class CarritoDAO {
             em.close();
         }
     }
-    
+
     public Carrito buscarActivoPorCliente(Cliente cliente) {
         EntityManager em = JPAUtil.getEntityManager();
         try {

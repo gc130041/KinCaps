@@ -234,7 +234,7 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
-                                <button type="button" class="btn btn-primary">Ir a Pagar</button>
+                                <a href="${pageContext.request.contextPath}/gorras/checkout" class="btn btn-primary">Ir a Pagar</a>
                             </div>
                         </div>
                     </div>
