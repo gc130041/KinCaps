@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
             }
 
             if (usuario instanceof Cliente) {
+                session.setAttribute("clienteLogueado", (Cliente) usuario);
                 response.sendRedirect(request.getContextPath() + "/gorras");
             } else if (usuario instanceof Empleado) {
                 response.sendRedirect(request.getContextPath() + "/mantenimiento");
@@ -115,6 +116,7 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("usuario", usuario);
 
         if (usuario instanceof Cliente) {
+            session.setAttribute("clienteLogueado", (Cliente) usuario);
             response.sendRedirect(request.getContextPath() + "/gorras");
         } else if (usuario instanceof Empleado) {
             response.sendRedirect(request.getContextPath() + "/mantenimiento");

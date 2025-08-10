@@ -43,6 +43,19 @@ public class CarritoDAO {
         }
     }
 
+    public List<Carrito> buscarPedidosPorCliente(int idCliente) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.createQuery(
+                    "SELECT c FROM Carrito c WHERE c.cliente.idCliente = :idCliente AND c.estado = 'PAGADO' ORDER BY c.fechaCreacion DESC",
+                    Carrito.class)
+                    .setParameter("idCliente", idCliente)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
     public void actualizar(Carrito carrito) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
