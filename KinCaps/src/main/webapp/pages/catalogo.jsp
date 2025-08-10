@@ -97,6 +97,7 @@
                                         String tipoEnumName = "OTRO";
                                         String insigniaURL = "";
                                         String insigniaClass = "tipo-NY";
+                                        String insigniaWidth = "40px";
 
                                         if (g.getTipo() != null) {
                                             tipoEnumName = g.getTipo().name();
@@ -105,6 +106,7 @@
                                                     folderPath = "Urbanos";
                                                     insigniaURL = request.getContextPath() + "/img/tipo/urbana.png";
                                                     insigniaClass = "tipo-NY";
+                                                    insigniaWidth = "30px";
                                                     break;
                                                 case DEPORTIVA:
                                                     folderPath = "deportivo";
@@ -114,6 +116,7 @@
                                                     folderPath = "f1";
                                                     insigniaURL = request.getContextPath() + "/img/tipo/f1.png";
                                                     insigniaClass = "tipo-f1";
+                                                    insigniaWidth = "60px";
                                                     break;
                                                 case OTRO:
                                                     folderPath = "otros";
@@ -133,8 +136,8 @@
                                  data-brand="<%= marcaTexto%>">
                                 <div class="card h-100 shadow-sm">
                                     <% if (!insigniaURL.isEmpty()) {%>
-                                    <span class="insignia-tipo <%= insigniaClass%>">
-                                        <img src="<%= insigniaURL%>" alt="<%= tipoEnumName%>" style="width: auto;">
+                                    <span class="insignia-tipo <%= insigniaClass%>">    
+                                        <img src="<%= insigniaURL%>" alt="<%= tipoEnumName%>" style="width: <%= insigniaWidth%>;">
                                     </span>
                                     <% }%>
                                     <img src="<%= imageURL%>" class="card-img-top" alt="<%= descripcionTexto%>">
