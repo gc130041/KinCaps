@@ -134,7 +134,7 @@
                                 <div class="card h-100 shadow-sm">
                                     <% if (!insigniaURL.isEmpty()) {%>
                                     <span class="insignia-tipo <%= insigniaClass%>">
-                                        <img src="<%= insigniaURL%>" alt="<%= tipoEnumName%>" style="width: 30px;">
+                                        <img src="<%= insigniaURL%>" alt="<%= tipoEnumName%>" style="width: auto;">
                                     </span>
                                     <% }%>
                                     <img src="<%= imageURL%>" class="card-img-top" alt="<%= descripcionTexto%>">
