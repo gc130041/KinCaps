@@ -1,6 +1,8 @@
 package web;
 
+import dao.GorrasDAO;
 import java.io.IOException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.Cliente;
-import modelo.Usuario;
+import modelo.Gorras;
 import util.JPAUtil;
 
 @WebServlet(name = "PagesServlet", urlPatterns = {"/gorras", "/gorras/*"})
@@ -21,10 +23,8 @@ public class PagesServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("usuario") instanceof Cliente) {
-            
             Cliente clienteEnSesion = (Cliente) session.getAttribute("usuario");
             EntityManager em = JPAUtil.getEntityManager();
-            
             try {
                 Cliente usuarioCompleto = em.find(Cliente.class, clienteEnSesion.getIdCliente());
                 request.setAttribute("usuarioCompleto", usuarioCompleto);
@@ -39,6 +39,12 @@ public class PagesServlet extends HttpServlet {
         String pageToForward;
 
         if (pathInfo == null || pathInfo.equals("/")) {
+            GorrasDAO gorrasDAO = new GorrasDAO();
+            List<Gorras> gorrasDestacadas = gorrasDAO.buscarMasVendidas(4);
+            if (gorrasDestacadas.size() < 4) {
+                gorrasDestacadas = gorrasDAO.buscarAleatorias(4);
+            }
+            request.setAttribute("gorrasDestacadas", gorrasDestacadas);
             pageToForward = "/pages/mainmenu.jsp";
         } else {
             switch (pathInfo) {
@@ -49,11 +55,10 @@ public class PagesServlet extends HttpServlet {
                     pageToForward = "/pages/contactanos.jsp";
                     break;
                 default:
-                    pageToForward = "/pages/mainmenu.jsp"; 
+                    pageToForward = "/pages/mainmenu.jsp";
                     break;
             }
         }
-
         RequestDispatcher dispatcher = request.getRequestDispatcher(pageToForward);
         dispatcher.forward(request, response);
     }

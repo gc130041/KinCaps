@@ -79,4 +79,33 @@ public class GorrasDAO {
             em.close();
         }
     }
+
+    public List<Gorras> buscarMasVendidas(int limite) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            String sql = "SELECT g.* FROM gorras g "
+                    + "JOIN detalleFactura df ON g.idGorra = df.idGorra "
+                    + "GROUP BY g.idGorra "
+                    + "ORDER BY SUM(df.cantidad) DESC "
+                    + "LIMIT :limite";
+            return em.createNativeQuery(sql, Gorras.class)
+                    .setParameter("limite", limite)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Gorras> buscarAleatorias(int limite) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            String sql = "SELECT * FROM gorras ORDER BY RAND() LIMIT :limite";
+            return em.createNativeQuery(sql, Gorras.class)
+                    .setParameter("limite", limite)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
 }

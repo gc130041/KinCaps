@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="es">
     <head>
@@ -55,86 +56,68 @@
                 </div>
             </div>
         </nav>
-    <marquee>
-        <h1 style="color: red; font-weight: bold; font-size: 2rem; margin: 0;">
-            🎉 ¡50% de descuento en todas las gorras! 🎉
-        </h1>
-    </marquee>
 
-    <main class="flex-grow-1">
-        <header class="hero-section d-flex align-items-center justify-content-center text-center text-white">
-            <div>
-                <h1 class="display-4 fw-bold">Bienvenido a KINCAPS</h1>
-                <p class="lead">Tu tienda virtual favorita de gorras urbanas y deportivas</p>
-                <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-light btn-lg text-kincaps fw-bold mt-3">Explorar Catálogo</a>
-            </div>
-        </header>
+        <main class="flex-grow-1">
+            <header class="hero-section d-flex align-items-center justify-content-center text-center text-white">
+                <div>
+                    <h1 class="display-4 fw-bold">Bienvenido a KINCAPS</h1>
+                    <p class="lead">Tu tienda virtual favorita de gorras urbanas y deportivas</p>
+                    <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-light btn-lg text-kincaps fw-bold mt-3">Explorar Catálogo</a>
+                </div>
+            </header>
 
-        <section class="container py-5">
-            <h2 class="text-center mb-4 text-kincaps fw-bold">Gorras Destacadas</h2>
-            <div class="row g-4">
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-f1"> 
-                            <img src="${pageContext.request.contextPath}/img/tipo/f1.png" alt="F1" style="width: 60px;">
-                        </span>
-                        <img src="${pageContext.request.contextPath}/img/gorra1.png" class="card-img-top" alt="Gorra 1">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Deportiva</h5>
-                            <p class="card-text text-muted">Gorra de Fórmula 1, Piloto Max Verstappen, año 2025, equipo Red Bull Racing.</p>
-                            <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-primary">Ver más</a>
+            <section class="container py-5">
+                <h2 class="text-center mb-4 text-kincaps fw-bold">Gorras Destacadas</h2>
+                <div class="row g-4">
+                    <c:forEach var="gorra" items="${gorrasDestacadas}">
+                        <c:set var="folderPath" value="otros"/>
+                        <c:set var="insigniaURL" value=""/>
+                        <c:set var="insigniaClass" value=""/>
+                        <c:set var="insigniaStyle" value="width: 30px;"/>
+
+                        <c:if test="${gorra.tipo eq 'URBANA'}">
+                            <c:set var="folderPath" value="Urbanos"/>
+                            <c:set var="insigniaURL" value="${pageContext.request.contextPath}/img/tipo/urbana.png"/>
+                            <c:set var="insigniaClass" value="tipo-NY"/>
+                        </c:if>
+                        <c:if test="${gorra.tipo eq 'DEPORTIVA'}">
+                            <c:set var="folderPath" value="deportivo"/>
+                        </c:if>
+                        <c:if test="${gorra.tipo eq 'FORMULA_1'}">
+                            <c:set var="folderPath" value="f1"/>
+                            <c:set var="insigniaURL" value="${pageContext.request.contextPath}/img/tipo/f1.png"/>
+                            <c:set var="insigniaClass" value="tipo-f1"/>
+                            <c:set var="insigniaStyle" value="width: 60px;"/>
+                        </c:if>
+
+                        <c:set var="imageURL" value="${pageContext.request.contextPath}/img/Gorras/${folderPath}/${not empty gorra.imagen ? gorra.imagen : 'default.png'}" />
+
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="card h-100 shadow-sm">
+                                <c:if test="${not empty insigniaURL}">
+                                    <span class="insignia-tipo ${insigniaClass}">
+                                        <img src="${insigniaURL}" alt="${gorra.tipo}" style="${insigniaStyle}">
+                                    </span>
+                                </c:if>
+                                <img src="${imageURL}" class="card-img-top" alt="${gorra.nombreGorra}">
+                                <div class="card-body text-center d-flex flex-column">
+                                    <h5 class="card-title">${gorra.nombreGorra}</h5>
+                                    <p class="card-text text-muted">${gorra.descripcion}</p>
+                                    <a href="${pageContext.request.contextPath}/gorras/detalle?id=${gorra.idGorra}" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div>
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-toyota"> 
-                            <img src="${pageContext.request.contextPath}/img/toyota_logo_white.png" alt="TOYOTA" style="width: 60px;">
-                        </span>
-                        <img src="${pageContext.request.contextPath}/img/gorra2.png" class="card-img-top" alt="Gorra 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Deportiva</h5>
-                            <p class="card-text text-muted">Gorra de Deportiva Toyota, Kiichiro Toyoda , año 2025, equipo Toyota Racing.</p>
-                            <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-NY"> 
-                            <img src="${pageContext.request.contextPath}/img/tipo/urbana.png" alt="NY" style="width: 30px;">
-                        </span>
-                        <img src="${pageContext.request.contextPath}/img/gorra3.png" class="card-img-top"  style="margin-top: 10vh; padding-left: 2vh; padding-right: 2vh; padding-bottom: 3.7vh;" alt="Gorra 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Urbana</h5>
-                            <p class="card-text text-muted">Gorra de Urbana NY, New Era New York, año 2025, Estilo Nuevo y Lucido.</p>
-                            <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm">
-                        <span class="insignia-tipo tipo-f1"> 
-                            <img src="${pageContext.request.contextPath}/img/tipo/f1.png" alt="MB" style="width: 60px;">
-                        </span>
-                        <img src="${pageContext.request.contextPath}/img/gorra4.png" class="card-img-top" alt="Gorra 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gorra Deportiva</h5>
-                            <p class="card-text text-muted">Gorra de Deportiva Mercedez Benz, Carl Benz , año 2025, equipo Mercedez Racing.</p>
-                            <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="bg-kincaps text-white text-center py-4 mt-5">
-        <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
-        <small>
-            <a href="${pageContext.request.contextPath}/politica" class="text-white text-decoration-none me-3">Política de Privacidad</a>
-            <a href="${pageContext.request.contextPath}/terminos" class="text-white text-decoration-none">Términos y Condiciones</a>
-        </small>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+            </section>
+        </main>
+        <footer class="bg-kincaps text-white text-center py-4 mt-5">
+            <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
+            <small>
+                <a href="${pageContext.request.contextPath}/politica" class="text-white text-decoration-none me-3">Política de Privacidad</a>
+                <a href="${pageContext.request.contextPath}/terminos" class="text-white text-decoration-none">Términos y Condiciones</a>
+            </small>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
