@@ -19,7 +19,7 @@ CALL sp_AgregarCliente('Fernanda', 'Gutierrez', 'fernanda.g@email.com', '8899001
 CALL sp_AgregarCliente('Sebastian', 'Cruz', 'sebastian.c@email.com', '9900112233', 'Avenida Patriotismo 88', 'sebas_cruz');
 CALL sp_AgregarCliente('Daniela', 'Reyes', 'daniela.r@email.com', '1010101010', 'Plaza de la Constitucion 2', 'dani_reyes_2024');
 
-CALL sp_AgregarEmpleado('Ana','López','ana.lopez@example.com','555-9876','Plaza Mayor 45, Ciudad Principal','password','Diseñadora UX/UI','2024-06-15');
+CALL sp_AgregarEmpleado('Admin','KinCaps','admin@kincaps.com','1234-5678','KinCaps Incorporation','admin123','Administrador General','2024-06-15');
 
 INSERT INTO proveedor (nombre, contacto, telefono)
 VALUES ('Proveedor X', 'Juan Pérez', '123-456-7890'),
