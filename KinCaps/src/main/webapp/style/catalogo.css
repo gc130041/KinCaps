@@ -20,7 +20,7 @@ body {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 400px;
+    width: 470px;
     margin: 0;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;

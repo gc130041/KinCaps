@@ -205,7 +205,7 @@
                                     <small class="text-muted item-cantidad">Cantidad: <%= detalle.getCantidad()%></small>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    <strong class="me-3">Q<%= detalle.getPrecioUnitario().setScale(2, RoundingMode.HALF_UP)%></strong>
+                                    <strong class="me-3">Q<%= detalle.getPrecioUnitario().setScale(2, RoundingMode.HALF_UP) + " ℆"%></strong>
                                     <button class="btn btn-outline-danger btn-sm rounded-circle btn-eliminar-item" 
                                             data-id-gorra="<%= gorra.getIdGorra()%>"
                                             data-nombre-gorra="<%= gorra.getNombreGorra()%>"
