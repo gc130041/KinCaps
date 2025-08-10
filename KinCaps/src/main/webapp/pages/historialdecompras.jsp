@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +14,7 @@
     </head>
 
     <body class="d-flex flex-column min-vh-100">
+        <%-- El header se mantiene igual --%>
         <header>
             <nav class="navbar navbar-expand-lg bg-header navbar-dark fixed-top">
                 <div class="container-fluid">
@@ -42,94 +46,73 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">KIN-2025-001</th>
-                            <td>01 de Agosto, 2025</td>
-                            <td>Q75.00</td>
-                            <td><span class="badge bg-success">Entregado</span></td>
-                            <td class="text-center">
-                                <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#detalle-001" role="button" aria-expanded="false" aria-controls="detalle-001">
-                                    Ver Detalles
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="collapse" id="detalle-001">
-                            <td colspan="5" class="p-0">
-                                <div class="p-3" style="background-color: #f8f9fa;">
-                                    <h6 class="mb-3 fw-bold">Productos del Pedido KIN-2025-001</h6>
-                                    <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
-                                        <span>Gorra Urbana Negra</span>
-                                        <span>Cantidad: 1</span>
-                                        <span class="fw-semibold">Q50.00</span>
+                        <c:if test="${empty listaPedidos}">
+                            <tr>
+                                <td colspan="5" class="text-center p-4">
+                                    Aún no has realizado ninguna compra. ¡Explora nuestro <a href="${pageContext.request.contextPath}/pages/catalogo.jsp">catálogo</a>!
+                                </td>
+                            </tr>
+                        </c:if>
+
+                        <c:forEach var="pedido" items="${listaPedidos}">
+                            
+                            <c:set var="totalPedido" value="${0}" />
+                            <c:forEach var="detalle" items="${pedido.detalles}">
+                                <c:set var="totalPedido" value="${totalPedido + (detalle.cantidad * detalle.precioUnitario)}" />
+                            </c:forEach>
+
+                            <tr>
+                                <th scope="row">KIN-2025-${pedido.idCarrito}</th>
+                                <td>
+                                    <fmt:formatDate value="${pedido.fechaCreacion}" pattern="dd 'de' MMMM, yyyy" />
+                                </td>
+                                <td>
+                                    <fmt:setLocale value="es-GT" />
+                                    <fmt:formatNumber value="${totalPedido}" type="currency" currencySymbol="Q"/>
+                                </td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${pedido.estado == 'ACTIVO'}">
+                                            <span class="badge bg-success">Procesando</span>
+                                        </c:when>
+                                        <c:when test="${pedido.estado == 'INACTIVO'}">
+                                            <span class="badge bg-warning text-dark">Enviado</span>
+                                        </c:when>
+                                        <c:when test="${pedido.estado == 'PAGADO'}">
+                                            <span class="badge bg-danger">Pagado</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="badge bg-secondary">${pedido.estado}</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#detalle-${pedido.idCarrito}" role="button" aria-expanded="false" aria-controls="detalle-${pedido.idCarrito}">
+                                        Ver Detalles
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="collapse" id="detalle-${pedido.idCarrito}">
+                                <td colspan="5" class="p-0">
+                                    <div class="p-3" style="background-color: #f8f9fa;">
+                                        <h6 class="mb-3 fw-bold">Productos del Pedido KIN-2025-${pedido.idCarrito}</h6>
+                                        <c:forEach var="detalle" items="${pedido.detalles}">
+                                            <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                                <span>${detalle.gorra.nombreGorra}</span>
+                                                <span>Cantidad: ${detalle.cantidad}</span>
+                                                <span class="fw-semibold">
+                                                    <fmt:formatNumber value="${detalle.precioUnitario}" type="currency" currencySymbol="Q"/>
+                                                </span>
+                                            </div>
+                                        </c:forEach>
                                     </div>
-                                    <div class="d-flex justify-content-between">
-                                        <span>Gorra Deportiva Negra</span>
-                                        <span>Cantidad: 1</span>
-                                        <span class="fw-semibold">Q25.00</span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">KIN-2025-002</th>
-                            <td>15 de Julio, 2025</td>
-                            <td>Q110.00</td>
-                            <td><span class="badge bg-warning text-dark">Enviado</span></td>
-                            <td class="text-center">
-                                <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#detalle-002" role="button" aria-expanded="false" aria-controls="detalle-002">
-                                    Ver Detalles
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="collapse" id="detalle-002">
-                            <td colspan="5" class="p-0">
-                                <div class="p-3" style="background-color: #f8f9fa;">
-                                    <h6 class="mb-3 fw-bold">Productos del Pedido KIN-2025-002</h6>
-                                    <div class="d-flex justify-content-between">
-                                        <span>Gorra Formula 1</span>
-                                        <span>Cantidad: 1</span>
-                                        <span class="fw-semibold">Q110.00</span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">KIN-2025-003</th>
-                            <td>20 de Junio, 2025</td>
-                            <td>Q40.50</td>
-                            <td><span class="badge bg-info">Procesando</span></td>
-                            <td class="text-center">
-                                <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#detalle-003" role="button" aria-expanded="false" aria-controls="detalle-003">
-                                    Ver Detalles
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="collapse" id="detalle-003">
-                            <td colspan="5" class="p-0">
-                                <div class="p-3" style="background-color: #f8f9fa;">
-                                    <h6 class="mb-3 fw-bold">Productos del Pedido KIN-2025-003</h6>
-                                    <div class="d-flex justify-content-between">
-                                        <span>Gorra Formula 1</span>
-                                        <span>Cantidad: 1</span>
-                                        <span class="fw-semibold">Q40.50</span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">KIN-2025-004</th>
-                            <td>05 de Mayo, 2025</td>
-                            <td>Q85.00</td>
-                            <td><span class="badge bg-danger">Cancelado</span></td>
-                            <td class="text-center">
-                                <a href="#" class="btn btn-secondary btn-sm disabled">Ver Detalles</a>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
         </main>
-
         <footer class="bg-header text-white text-center py-4 mt-auto">
             <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
             <small>
