@@ -133,6 +133,10 @@
 
         <footer class="bg-header text-white text-center py-4 mt-auto">
             <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
+            <small>
+                <a href="${pageContext.request.contextPath}/politica" class="text-white text-decoration-none me-3">Política de Privacidad</a>
+                <a href="${pageContext.request.contextPath}/terminos" class="text-white text-decoration-none">Términos y Condiciones</a>
+            </small>
         </footer>
 
         <script src="${pageContext.request.contextPath}/scripts/checkout.js" defer></script>

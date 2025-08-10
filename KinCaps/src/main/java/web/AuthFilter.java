@@ -18,19 +18,21 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         String requestURI = httpRequest.getRequestURI();
         String contextPath = httpRequest.getContextPath();
-        
-        if (requestURI.equals(contextPath + "/login.jsp") || 
-            requestURI.equals(contextPath + "/login") ||
-            requestURI.startsWith(contextPath + "/img/") ||
-            requestURI.startsWith(contextPath + "/style/") ||
-            requestURI.startsWith(contextPath + "/scripts/")) {
-            
+
+        if (requestURI.equals(contextPath + "/login.jsp")
+                || requestURI.equals(contextPath + "/login")
+                || requestURI.equals(contextPath + "/terminos")
+                || requestURI.equals(contextPath + "/politica")
+                || requestURI.startsWith(contextPath + "/img/")
+                || requestURI.startsWith(contextPath + "/style/")
+                || requestURI.startsWith(contextPath + "/scripts/")) {
+
             chain.doFilter(request, response);
             return;
         }
@@ -46,8 +48,10 @@ public class AuthFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {}
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

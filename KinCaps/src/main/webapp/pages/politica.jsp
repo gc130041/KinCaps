@@ -12,7 +12,7 @@
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg bg-header navbar-dark">
             <div class="container-fluid">
-                <a href="${pageContext.request.contextPath}/pages/mainmenu.jsp" class="navbar-brand fw-bold">Politica de Privacidad</a>
+                <a href="${pageContext.request.contextPath}/login" class="navbar-brand fw-bold">Politica de Privacidad</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -201,7 +201,7 @@
                                     <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
                                     <small>
                                         <a class="text-white text-decoration-none me-3">Política de Privacidad</a>
-                                        <a href="${pageContext.request.contextPath}/pages/terminos.jsp" class="text-white text-decoration-none">Términos y Condiciones</a>
+                                        <a href="${pageContext.request.contextPath}/terminos" class="text-white text-decoration-none">Términos y Condiciones</a>
                                     </small>
                                 </footer>
                                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

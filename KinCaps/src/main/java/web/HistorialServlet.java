@@ -13,27 +13,27 @@ import javax.servlet.http.HttpSession;
 import modelo.Carrito;
 import modelo.Cliente;
 
-@WebServlet(name = "HistorialServlet", urlPatterns = {"/historial"})
+@WebServlet(name = "HistorialServlet", urlPatterns = {"/gorras/historial"})
 public class HistorialServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        Cliente clienteLogueado = (Cliente) session.getAttribute("clienteLogueado");
-
-        if (clienteLogueado == null) {
+        HttpSession session = request.getSession(false);
+        if (session == null || !(session.getAttribute("usuario") instanceof Cliente)) {
             response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
             return;
         }
+        
+        Cliente clienteLogueado = (Cliente) session.getAttribute("usuario");
 
         CarritoDAO carritoDAO = new CarritoDAO();
-        List<Carrito> listaPedidos = carritoDAO.buscarPedidosPorCliente(clienteLogueado.getIdCliente());
+        List<Carrito> listaPedidos = carritoDAO.buscarPedidosPorClienteConDetalles(clienteLogueado.getIdCliente());
 
         request.setAttribute("listaPedidos", listaPedidos);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/historial.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/historialdecompras.jsp");
         dispatcher.forward(request, response);
     }
 

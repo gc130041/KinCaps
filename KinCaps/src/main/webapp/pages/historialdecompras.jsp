@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@page import="java.util.Date"%>
+<%@page import="java.time.ZoneId"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,16 +16,22 @@
     </head>
 
     <body class="d-flex flex-column min-vh-100">
-        <%-- El header se mantiene igual --%>
         <header>
             <nav class="navbar navbar-expand-lg bg-header navbar-dark fixed-top">
                 <div class="container-fluid">
-                    <a href="${pageContext.request.contextPath}/pages/catalogo.jsp" class="navbar-brand fw-bold">
+                    <a href="${pageContext.request.contextPath}/gorras" class="navbar-brand fw-bold">
                         <img src="${pageContext.request.contextPath}/img/Logo/logotipo.png" style="width: 5vh;" alt="Logotipo.png"/> Historial de Compras
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div class="collapse navbar-collapse" id="menuNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a href="${pageContext.request.contextPath}/gorras/catalogo" class="btn btn-outline-light">Volver al Catálogo</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -49,13 +57,14 @@
                         <c:if test="${empty listaPedidos}">
                             <tr>
                                 <td colspan="5" class="text-center p-4">
-                                    Aún no has realizado ninguna compra. ¡Explora nuestro <a href="${pageContext.request.contextPath}/pages/catalogo.jsp">catálogo</a>!
+                                    Aún no has realizado ninguna compra. ¡Explora nuestro <a href="${pageContext.request.contextPath}/gorras/catalogo">catálogo</a>!
                                 </td>
                             </tr>
                         </c:if>
 
                         <c:forEach var="pedido" items="${listaPedidos}">
-                            
+                            <c:set var="fechaComoDate" value="<%= Date.from(((modelo.Carrito) pageContext.findAttribute("pedido")).getFechaCreacion().atZone(ZoneId.systemDefault()).toInstant())%>" />
+
                             <c:set var="totalPedido" value="${0}" />
                             <c:forEach var="detalle" items="${pedido.detalles}">
                                 <c:set var="totalPedido" value="${totalPedido + (detalle.cantidad * detalle.precioUnitario)}" />
@@ -64,7 +73,7 @@
                             <tr>
                                 <th scope="row">KIN-2025-${pedido.idCarrito}</th>
                                 <td>
-                                    <fmt:formatDate value="${pedido.fechaCreacion}" pattern="dd 'de' MMMM, yyyy" />
+                                    <fmt:formatDate value="${fechaComoDate}" pattern="dd 'de' MMMM, yyyy" />
                                 </td>
                                 <td>
                                     <fmt:setLocale value="es-GT" />
@@ -72,14 +81,11 @@
                                 </td>
                                 <td>
                                     <c:choose>
-                                        <c:when test="${pedido.estado == 'ACTIVO'}">
-                                            <span class="badge bg-success">Procesando</span>
+                                        <c:when test="${pedido.estado == 'PAGADO'}">
+                                            <span class="badge bg-success">Pagado</span>
                                         </c:when>
                                         <c:when test="${pedido.estado == 'INACTIVO'}">
-                                            <span class="badge bg-warning text-dark">Enviado</span>
-                                        </c:when>
-                                        <c:when test="${pedido.estado == 'PAGADO'}">
-                                            <span class="badge bg-danger">Pagado</span>
+                                            <span class="badge bg-warning text-dark">Cancelado</span>
                                         </c:when>
                                         <c:otherwise>
                                             <span class="badge bg-secondary">${pedido.estado}</span>
@@ -116,8 +122,8 @@
         <footer class="bg-header text-white text-center py-4 mt-auto">
             <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
             <small>
-                <a href="${pageContext.request.contextPath}/pages/politica.jsp" class="text-white text-decoration-none me-3">Política de Privacidad</a>
-                <a href="${pageContext.request.contextPath}/pages/terminos.jsp" class="text-white text-decoration-none">Términos y Condiciones</a>
+                <a href="${pageContext.request.contextPath}/politica" class="text-white text-decoration-none me-3">Política de Privacidad</a>
+                <a href="${pageContext.request.contextPath}/terminos" class="text-white text-decoration-none">Términos y Condiciones</a>
             </small>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

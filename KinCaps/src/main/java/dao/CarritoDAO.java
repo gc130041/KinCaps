@@ -47,15 +47,14 @@ public class CarritoDAO {
             em.close();
         }
     }
-
-    public List<Carrito> buscarPedidosPorCliente(int idCliente) {
+    
+    public List<Carrito> buscarPedidosPorClienteConDetalles(int clienteId) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
-            return em.createQuery(
-                    "SELECT c FROM Carrito c WHERE c.cliente.idCliente = :idCliente AND c.estado = 'PAGADO' ORDER BY c.fechaCreacion DESC",
-                    Carrito.class)
-                    .setParameter("idCliente", idCliente)
-                    .getResultList();
+            String jpql = "SELECT DISTINCT c FROM Carrito c LEFT JOIN FETCH c.detalles d LEFT JOIN FETCH d.gorra g WHERE c.cliente.idCliente = :clienteId ORDER BY c.fechaCreacion DESC";
+            return em.createQuery(jpql, Carrito.class)
+                     .setParameter("clienteId", clienteId)
+                     .getResultList();
         } finally {
             em.close();
         }
