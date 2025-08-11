@@ -146,7 +146,7 @@ public class DetalleGorraServlet extends HttpServlet {
                     out.println("</div>");
                     out.println("<button type='button' class='btn btn-agregar-carrito w-100 mt-2' data-id='" + gorra.getIdGorra() + "'> <i class='bi bi-cart-plus'></i> Agregar al Carrito</button>");
                 } else {
-                    out.println("<div class='alert alert-warning text-center mt-4'>Ya tienes todo el stock disponible en tu carrito.</div>");
+                    out.println("<div class='alert alert-warning text-center mt-4'>Ya no existe stock disponible.</div>");
                 }
                 out.println("</div>");
                 out.println("</div>");
