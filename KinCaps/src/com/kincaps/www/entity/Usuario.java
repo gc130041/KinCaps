@@ -1,10 +1,17 @@
-package modelo;
+package com.kincaps.www.entity;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Table(name = "usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipoUsuario", discriminatorType = DiscriminatorType.STRING)
 public abstract class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUsuario")
+    private int idUsuario;
 
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
@@ -12,16 +19,16 @@ public abstract class Usuario {
     @Column(name = "apellido", nullable = false, length = 50)
     private String apellido;
 
-    @Column(name = "email", nullable = false, unique = true, length = 100)
+    @Column(name = "email", unique = true, length = 100)
     private String email;
 
-    @Column(name = "telefono", nullable = false, length = 15)
+    @Column(name = "telefono", length = 15)
     private String telefono;
 
-    @Column(name = "direccion", nullable = false, length = 255)
+    @Column(name = "direccion", length = 255)
     private String direccion;
 
-    @Column(name = "contrasenaHash", nullable = false, length = 64)
+    @Column(name = "contrasenaHash", nullable = false, length = 255)
     private String contrasenaHash;
 
     public Usuario() {
@@ -34,6 +41,14 @@ public abstract class Usuario {
         this.telefono = telefono;
         this.direccion = direccion;
         this.contrasenaHash = contrasenaHash;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -78,6 +93,19 @@ public abstract class Usuario {
 
     public String getContrasenaHash() {
         return contrasenaHash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return idUsuario != 0 && idUsuario == usuario.idUsuario;
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 
     public void setContrasenaHash(String contrasenaHash) {

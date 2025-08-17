@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/DB_KinCaps.sql" value="dec44283-4258-486e-8019-ad8e44eab46c" />
     <file url="file://$PROJECT_DIR$/ExampleData_KinCaps.sql" value="dec44283-4258-486e-8019-ad8e44eab46c" />
     <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/dec44283-4258-486e-8019-ad8e44eab46c/console.sql" value="dec44283-4258-486e-8019-ad8e44eab46c" />
   </component>

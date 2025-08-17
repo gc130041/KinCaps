@@ -1,17 +1,17 @@
 package com.kincaps.www.service;
 
 import com.kincaps.www.repository.CookieAuthRepository;
+import com.kincaps.www.security.TokenUtil;
+import com.kincaps.www.entity.Cliente;
+import com.kincaps.www.entity.CookieAuth;
+import com.kincaps.www.entity.Empleado;
+import com.kincaps.www.entity.Usuario;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Cliente;
-import modelo.CookieAuth;
-import modelo.Empleado;
-import modelo.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import util.PasswordHash;
-import util.TokenUtil;
 
 import java.time.LocalDateTime;
 
@@ -19,15 +19,10 @@ import java.time.LocalDateTime;
 public class AuthService {
 
     @Autowired
-    private UsuarioService usuarioService;
-
-    @Autowired
     private CookieAuthRepository cookieAuthRepository;
 
-    @Transactional(readOnly = true)
-    public Usuario verificarCredenciales(String email, String password) {
-        return usuarioService.verificarCredenciales(email, password);
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
     public Usuario validarCookieRecuerdame(String cookieValue, HttpServletResponse response) {
@@ -43,17 +38,12 @@ public class AuthService {
         CookieAuth token = cookieAuthRepository.findBySelector(selector).orElse(null);
 
         if (token == null || token.getFechaExpiracion().isBefore(LocalDateTime.now())) {
-            if (token != null) {
-                cookieAuthRepository.delete(token);
-            }
+            if (token != null) cookieAuthRepository.delete(token);
             borrarCookie(response);
             return null;
         }
 
-        String validadorHashDB = token.getTokenHash();
-        String validadorHashRecibido = PasswordHash.contrasenaHash(validador);
-
-        if (!validadorHashDB.equals(validadorHashRecibido)) {
+        if (!passwordEncoder.matches(validador, token.getTokenHash())) {
             cookieAuthRepository.delete(token);
             borrarCookie(response);
             return null;
@@ -75,7 +65,7 @@ public class AuthService {
     public void crearCookieRecuerdame(Usuario usuario, HttpServletResponse response) {
         String selector = TokenUtil.generarNuevoToken();
         String validador = TokenUtil.generarNuevoToken();
-        String validadorHash = PasswordHash.contrasenaHash(validador);
+        String validadorHash = passwordEncoder.encode(validador);
 
         Cliente cliente = (usuario instanceof Cliente) ? (Cliente) usuario : null;
         Empleado empleado = (usuario instanceof Empleado) ? (Empleado) usuario : null;
@@ -94,7 +84,7 @@ public class AuthService {
     }
 
     @Transactional
-    public void borrarCookieRecuerdame(String cookieValue, HttpServletResponse response){
+    public void borrarCookieRecuerdame(String cookieValue, HttpServletResponse response) {
         String selector = cookieValue.split(":")[0];
         cookieAuthRepository.deleteBySelector(selector);
         borrarCookie(response);

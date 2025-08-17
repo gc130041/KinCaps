@@ -1,8 +1,8 @@
 package com.kincaps.www.repository;
 
-import modelo.Carrito;
-import modelo.DetalleCarrito;
-import modelo.Gorras;
+import com.kincaps.www.entity.Carrito;
+import com.kincaps.www.entity.DetalleCarrito;
+import com.kincaps.www.entity.Gorras;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

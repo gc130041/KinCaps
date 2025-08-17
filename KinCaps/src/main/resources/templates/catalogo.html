@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Catálogo</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="container-fluid" style="padding-top: 30px;">
+        <div class="row">
+            <aside class="col-lg-3">
+                <div class="filtro-seccion bg-light p-3 rounded shadow-sm">
+                    <h3 class="mb-4">Filtros</h3>
+                    <form id="filter-form">
+                        <div class="mb-4">
+                            <h5 class="fw-bold">Rango de Precio</h5>
+                            <div class="price-range-slider">
+                                <div class="price-values mb-3 d-flex justify-content-between">
+                                    <span id="range1-value">Min. Q0</span>
+                                    <span id="range2-value">Max. Q1000</span>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-track"></div>
+                                    <input type="range" class="form-range" min="0" max="1000" value="0" id="slider-1">
+                                    <input type="range" class="form-range" min="0" max="1000" value="1000" id="slider-2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="fw-bold">Categorías</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="URBANA" id="catUrbana">
+                                <label class="form-check-label" for="catUrbana">Urbana</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="DEPORTIVA" id="catDeportiva">
+                                <label class="form-check-label" for="catDeportiva">Deportiva</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="FORMULA_1" id="catF1">
+                                <label class="form-check-label" for="catF1">Formula 1</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="OTRO" id="catOtras">
+                                <label class="form-check-label" for="catOtras">Otras</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </aside>
+
+            <div class="col-lg-9">
+                <div class="row g-4" id="product-container">
+                    <div th:if="${#lists.isEmpty(listaGorras)}" class="col-12">
+                        <p class="text-center">No hay productos para mostrar en este momento.</p>
+                    </div>
+                    <div th:each="gorra : ${listaGorras}" class="col-sm-6 col-md-4 col-lg-3 mb-4 product-item"
+                         th:data-price="${gorra.precio}"
+                         th:data-category="${gorra.tipo.name()}"
+                         th:data-brand="${gorra.marca}">
+                        <div class="card h-100 shadow-sm">
+                            <img th:src="@{'/img/Gorras/' + ${gorra.tipo.name() == 'URBANA' ? 'urbano' : (gorra.tipo.name() == 'FORMULA_1' ? 'f1' : 'deportivo')} + '/' + ${gorra.imagen != null ? gorra.imagen : 'default.png'}}" class="card-img-top" th:alt="${gorra.descripcion}">
+                            <div class="card-body d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="card-title mb-0 me-2" th:text="${gorra.nombreGorra}"></h5>
+                                    <span class="badge bg-primary text-nowrap fs-6" th:text="${'Q' + #numbers.formatDecimal(gorra.precio, 1, 2)}"></span>
+                                </div>
+                                <p class="card-text text-muted small" th:text="${gorra.descripcion}"></p>
+                                <a th:href="@{/gorras/detalle(id=${gorra.idGorra})}" class="btn btn-outline-primary mt-auto">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal del Carrito -->
+    <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content h-100">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="miModalLabel"><strong>Carrito de Compras</strong></h5>
+                    <button type="button" class="btn-close" data-bs-toggle="collapse" data-bs-target="#miModal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body d-flex flex-column">
+                    <div id="carrito-items" class="flex-grow-1 overflow-auto">
+                    </div>
+                    <p id="carrito-vacio" class="text-center text-muted mt-4">Tu carrito está vacío.</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100">
+                        <div class="text-end mb-3">
+                            <h5>Total: <strong id="carrito-total">Q0.00</strong></h5>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#miModal">Seguir Comprando</button>
+                            <a th:href="@{/checkout}" class="btn btn-primary">Ir a Pagar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,6 +1,6 @@
 package com.kincaps.www.repository;
 
-import modelo.Factura;
+import com.kincaps.www.entity.Factura;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,21 +1,23 @@
 package com.kincaps.www.controller;
 
 import com.kincaps.www.repository.ClienteRepository;
-import modelo.Cliente;
+import com.kincaps.www.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import util.PasswordHash;
 
 @Controller
 public class RegisterController {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/register")
     public String showRegisterPage() {
@@ -45,7 +47,7 @@ public class RegisterController {
             return handleRegistrationError("El correo electrónico ya está registrado.", name, lastname, "", telefono, ubicacion, redirectAttributes);
         }
 
-        String hashPassword = PasswordHash.contrasenaHash(password);
+        String hashPassword = passwordEncoder.encode(password);
         Cliente nuevoCliente = new Cliente(name, lastname, email, telefono, ubicacion, hashPassword, Cliente.Estado.ACTIVO);
         clienteRepository.save(nuevoCliente);
 

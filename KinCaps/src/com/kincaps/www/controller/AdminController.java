@@ -1,8 +1,8 @@
 package com.kincaps.www.controller;
 
 import jakarta.servlet.http.HttpSession;
-import modelo.Empleado;
-import modelo.Usuario;
+import com.kincaps.www.entity.Empleado;
+import com.kincaps.www.entity.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

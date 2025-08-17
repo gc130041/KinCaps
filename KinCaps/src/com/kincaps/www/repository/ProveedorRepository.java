@@ -1,6 +1,6 @@
 package com.kincaps.www.repository;
 
-import modelo.Proveedor;
+import com.kincaps.www.entity.Proveedor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

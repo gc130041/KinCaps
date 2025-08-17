@@ -37,7 +37,7 @@
                     <label class="form-label">Método de Pago</label>
                     <select class="form-select" th:field="*{metodoPago}" required>
                         <option value="">Seleccione un método</option>
-                        <option th:each="metodo : ${T(modelo.Factura.MetodoPago).values()}"
+                        <option th:each="metodo : ${T(com.kincaps.www.entity.Factura.MetodoPago).values()}"
                                 th:value="${metodo}"
                                 th:text="${#strings.replace(metodo.name(), '_', ' ')}"></option>
                     </select>

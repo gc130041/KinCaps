@@ -1,6 +1,6 @@
 package com.kincaps.www.repository;
 
-import modelo.CookieAuth;
+import com.kincaps.www.entity.CookieAuth;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

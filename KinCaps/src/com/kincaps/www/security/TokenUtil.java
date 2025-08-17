@@ -1,4 +1,4 @@
-package util;
+package com.kincaps.www.security;
 
 import java.security.SecureRandom;
 import java.util.Base64;

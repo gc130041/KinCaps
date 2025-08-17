@@ -2,8 +2,8 @@ package com.kincaps.www.controller.admin;
 
 import com.kincaps.www.repository.CarritoRepository;
 import com.kincaps.www.repository.ClienteRepository;
-import modelo.Carrito;
-import modelo.Cliente;
+import com.kincaps.www.entity.Carrito;
+import com.kincaps.www.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -22,7 +22,7 @@
                 <div class="mb-3">
                     <label class="form-label">Estado</label>
                     <select class="form-select" th:field="*{estado}" required>
-                        <option th:each="est : ${T(modelo.Carrito.Estado).values()}"
+                        <option th:each="est : ${T(com.kincaps.www.entity.Carrito.Estado).values()}"
                                 th:value="${est}"
                                 th:text="${est.name()}"></option>
                     </select>

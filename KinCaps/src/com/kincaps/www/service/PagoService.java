@@ -2,7 +2,7 @@ package com.kincaps.www.service;
 
 import com.kincaps.www.repository.*;
 import jakarta.servlet.http.HttpSession;
-import modelo.*;
+import com.kincaps.www.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -10,29 +10,31 @@ CREATE TABLE proveedor (
     CONSTRAINT PK_Proveedor PRIMARY KEY (idProveedor)
 );
 
-CREATE TABLE cliente (
-    idCliente INT AUTO_INCREMENT,
+CREATE TABLE usuario (
+    idUsuario INT AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE,
     telefono VARCHAR(15),
     direccion VARCHAR(255),
+    contrasenaHash VARCHAR(255) NOT NULL,
+    tipoUsuario VARCHAR(31) NOT NULL,
+    CONSTRAINT PK_Usuario PRIMARY KEY (idUsuario)
+);
+
+CREATE TABLE cliente (
+    idCliente INT,
     estado ENUM('ACTIVO','INACTIVO') NOT NULL DEFAULT 'ACTIVO',
-    contrasenaHash CHAR(64) NOT NULL,
-    CONSTRAINT PK_Cliente PRIMARY KEY (idCliente)
+    CONSTRAINT PK_Cliente PRIMARY KEY (idCliente),
+    CONSTRAINT FK_ClienteUsuario FOREIGN KEY (idCliente) REFERENCES usuario(idUsuario)
 );
 
 CREATE TABLE empleados (
-    idEmpleado INT AUTO_INCREMENT,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    email VARCHAR(100) UNIQUE,
-    telefono VARCHAR(15),
-    direccion VARCHAR(255),
-    contrasenaHash CHAR(64) NOT NULL,
+    idEmpleado INT,
     puesto VARCHAR(50),
     fechaContratacion DATE,
-    CONSTRAINT PK_Empleados PRIMARY KEY (idEmpleado)
+    CONSTRAINT PK_Empleados PRIMARY KEY (idEmpleado),
+    CONSTRAINT FK_EmpleadoUsuario FOREIGN KEY (idEmpleado) REFERENCES usuario(idUsuario)
 );
 
 CREATE TABLE gorras (

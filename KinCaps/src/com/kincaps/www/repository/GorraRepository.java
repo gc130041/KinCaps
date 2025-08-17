@@ -1,6 +1,6 @@
 package com.kincaps.www.repository;
 
-import modelo.Gorras;
+import com.kincaps.www.entity.Gorras;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -3,8 +3,8 @@ package com.kincaps.www.service;
 import com.kincaps.www.repository.CarritoRepository;
 import com.kincaps.www.repository.ClienteRepository;
 import jakarta.servlet.http.HttpSession;
-import modelo.Carrito;
-import modelo.Cliente;
+import com.kincaps.www.entity.Carrito;
+import com.kincaps.www.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ public class CheckoutService {
         Cliente clienteEnSesion = (Cliente) session.getAttribute("usuario");
         if (clienteEnSesion == null) throw new IllegalStateException("Cliente no autenticado.");
 
-        Cliente clienteCompleto = clienteRepository.findById(clienteEnSesion.getIdCliente())
+        Cliente clienteCompleto = clienteRepository.findById(clienteEnSesion.getIdUsuario())
                 .orElseThrow(() -> new IllegalStateException("Cliente no encontrado en la base de datos."));
 
         Carrito carritoActivo = carritoRepository.findByClienteAndEstado(clienteCompleto, Carrito.Estado.ACTIVO).orElse(null);

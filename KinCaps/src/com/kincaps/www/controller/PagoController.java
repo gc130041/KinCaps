@@ -2,7 +2,7 @@ package com.kincaps.www.controller;
 
 import com.kincaps.www.service.PagoService;
 import jakarta.servlet.http.HttpSession;
-import modelo.Factura;
+import com.kincaps.www.entity.Factura;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -3,8 +3,8 @@ package com.kincaps.www.controller;
 import com.kincaps.www.repository.ClienteRepository;
 import com.kincaps.www.repository.GorraRepository;
 import jakarta.servlet.http.HttpSession;
-import modelo.Cliente;
-import modelo.Gorras;
+import com.kincaps.www.entity.Cliente;
+import com.kincaps.www.entity.Gorras;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ public class PageController {
     public void addCommonAttributes(Model model, HttpSession session) {
         Cliente clienteEnSesion = (Cliente) session.getAttribute("usuario");
         if (clienteEnSesion != null) {
-            clienteRepository.findById(clienteEnSesion.getIdCliente())
+            clienteRepository.findById(clienteEnSesion.getIdUsuario())
                     .ifPresent(clienteCompleto -> model.addAttribute("usuarioCompleto", clienteCompleto));
         }
     }

@@ -1,7 +1,7 @@
 package com.kincaps.www.controller.admin;
 
 import com.kincaps.www.repository.ProveedorRepository;
-import modelo.Proveedor;
+import com.kincaps.www.entity.Proveedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
