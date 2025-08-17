@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin-layout}">
+<body>
+<main layout:fragment="content">
+    <div class="container mt-5">
+        <h3 class="text-center mb-4" th:text="${cliente.idCliente == 0} ? 'Agregar Nuevo Cliente' : 'Editar Cliente'">Formulario</h3>
+        <div class="card-body">
+            <form th:action="${cliente.idCliente == 0} ? @{/mantenimiento/clientes/guardar} : @{/mantenimiento/clientes/actualizar}" th:object="${cliente}" method="post">
+                <input type="hidden" th:field="*{idCliente}" />
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Apellido</label>
+                    <input type="text" class="form-control" th:field="*{apellido}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" th:field="*{telefono}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Dirección</label>
+                    <input type="text" class="form-control" th:field="*{direccion}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Estado</label>
+                    <select class="form-select" th:field="*{estado}" required>
+                        <option value="">Seleccione un estado</option>
+                        <option th:each="est : ${T(modelo.Cliente.Estado).values()}"
+                                th:value="${est}"
+                                th:text="${est.name()}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Contraseña (Hash)</label>
+                    <input type="text" class="form-control" th:field="*{contrasenaHash}" required>
+                </div>
+                <div class="mt-4 mb-5">
+                    <button type="submit" class="btn btn-save me-2" th:text="${cliente.idCliente == 0} ? 'Guardar Cliente' : 'Actualizar Cliente'">Guardar</button>
+                    <a th:href="@{/mantenimiento/clientes}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

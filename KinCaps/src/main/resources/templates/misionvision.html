@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Sobre Nosotros</title>
+    <link rel="stylesheet" th:href="@{/style/misionvision.css}" />
+</head>
+<body>
+<main layout:fragment="content" class="container py-4 d-flex align-items-center">
+    <div class="row g-4">
+        <div class="col-12 col-md-6">
+            <div class="bg-white rounded-3 p-4 shadow-sm h-100">
+                <h3 class="mb-3">MISIÓN</h3>
+                <p class="mb-0">
+                    Nuestra misión es ofrecer productos y servicios de alta calidad que satisfagan las necesidades de nuestros clientes, promoviendo innovación, ética y compromiso con la comunidad.
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="bg-white rounded-3 p-4 shadow-sm h-100">
+                <h3 class="mb-3">VISIÓN</h3>
+                <p class="mb-0">
+                    Ser reconocidos como líderes en nuestro sector, inspirando confianza y generando un impacto positivo en la sociedad mediante prácticas sostenibles y excelencia operativa.
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

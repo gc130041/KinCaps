@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin-layout}">
+<head>
+    <title>Gestión de Detalles de Factura</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Gestión de Detalle Factura</h2>
+        <div class="d-flex justify-content-end gap-2 mb-3">
+            <a th:href="@{/mantenimiento/detallefactura/nuevo}" class="btn menu-button">Agregar</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle text-center">
+                <thead class="table-primary">
+                <tr>
+                    <th>ID Detalle</th>
+                    <th>ID Factura</th>
+                    <th>Producto (Gorra)</th>
+                    <th>Cantidad</th>
+                    <th>Precio de Venta</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="detalle : ${listaDetalleFactura}">
+                    <td th:text="${detalle.idDetalleFactura}"></td>
+                    <td th:text="${detalle.factura?.idFactura}"></td>
+                    <td th:text="${detalle.gorra?.nombreGorra}"></td>
+                    <td th:text="${detalle.cantidad}"></td>
+                    <td th:text="${'Q' + #numbers.formatDecimal(detalle.precioVenta, 1, 'COMMA', 2, 'POINT')}"></td>
+                    <td>
+                        <a th:href="@{/mantenimiento/detallefactura/editar/{id}(id=${detalle.idDetalleFactura})}" class="btn btn-sm btn-edit">Editar</a>
+                        <a th:href="@{/mantenimiento/detallefactura/eliminar/{id}(id=${detalle.idDetalleFactura})}" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea eliminar este detalle de factura?')">Eliminar</a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(listaDetalleFactura)}">
+                    <td colspan="6" class="text-center">No hay detalles de factura que mostrar.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

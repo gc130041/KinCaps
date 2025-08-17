@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin-layout}">
+<head>
+    <title>Gestión de Carritos</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Gestión de Carritos</h2>
+            <a th:href="@{/mantenimiento/carrito/nuevo}" class="btn menu-button">Agregar Nuevo</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle text-center">
+                <thead class="table-primary">
+                <tr>
+                    <th>ID Carrito</th>
+                    <th>Cliente</th>
+                    <th>Fecha de Creación</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="carrito : ${listaCarritos}" th:classappend="${carrito.estado.name() == 'INACTIVO'} ? 'fila-inactiva' : ''">
+                    <td th:text="${carrito.idCarrito}"></td>
+                    <td th:text="${carrito.cliente != null ? carrito.cliente.nombre + ' ' + carrito.cliente.apellido : 'No asignado'}"></td>
+                    <td th:text="${carrito.fechaCreacion != null ? #temporals.format(carrito.fechaCreacion, 'HH:mm:ss dd/MM/yyyy') : 'N/A'}"></td>
+                    <td th:text="${carrito.estado.name()}"></td>
+                    <td>
+                        <a th:href="@{/mantenimiento/carrito/editar/{id}(id=${carrito.idCarrito})}" class="btn btn-sm btn-edit">Editar</a>
+                        <a th:if="${carrito.estado.name() == 'ACTIVO'}" th:href="@{/mantenimiento/carrito/{id}/desactivar(id=${carrito.idCarrito})}" class="btn btn-sm btn-delete" onclick="return confirm('¿Desea desactivar este carrito?')">Desactivar</a>
+                        <a th:if="${carrito.estado.name() == 'INACTIVO'}" th:href="@{/mantenimiento/carrito/{id}/activar(id=${carrito.idCarrito})}" class="btn btn-sm btn-success" onclick="return confirm('¿Desea activar este carrito?')">Activar</a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(listaCarritos)}">
+                    <td colspan="5" class="text-center">No hay carritos que mostrar.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

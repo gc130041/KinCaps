@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Menu Principal</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <header class="hero-section d-flex align-items-center justify-content-center text-center text-white">
+        <div>
+            <h1 class="display-4 fw-bold">Bienvenido a KINCAPS</h1>
+            <p class="lead">Tu tienda virtual favorita de gorras urbanas y deportivas</p>
+            <a th:href="@{/gorras/catalogo}" class="btn btn-light btn-lg text-kincaps fw-bold mt-3">Explorar Catálogo</a>
+        </div>
+    </header>
+
+    <section class="container py-5">
+        <h2 class="text-center mb-4 text-kincaps fw-bold">Gorras Destacadas</h2>
+        <div class="row g-4">
+            <div th:each="gorra : ${gorrasDestacadas}" class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card h-100 shadow-sm">
+                    <img th:src="@{'/img/Gorras/' + ${gorra.tipo.name() == 'URBANA' ? 'urbano' : (gorra.tipo.name() == 'FORMULA_1' ? 'f1' : 'deportivo')} + '/' + ${gorra.imagen != null ? gorra.imagen : 'default.png'}}" class="card-img-top" th:alt="${gorra.nombreGorra}">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title" th:text="${gorra.nombreGorra}"></h5>
+                        <p class="card-text text-muted" th:text="${gorra.descripcion}"></p>
+                        <a th:href="@{/gorras/detalle(id=${gorra.idGorra})}" class="btn btn-outline-primary mt-auto">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

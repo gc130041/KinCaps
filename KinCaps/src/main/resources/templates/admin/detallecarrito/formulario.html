@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin-layout}">
+<body>
+<main layout:fragment="content">
+    <div class="container mt-5">
+        <h3 class="text-center mb-4" th:text="${detalle.idDetalleCarrito == 0} ? 'Agregar Detalle de Carrito' : 'Editar Detalle de Carrito'">Formulario</h3>
+        <div class="card-body">
+            <form th:action="${detalle.idDetalleCarrito == 0} ? @{/mantenimiento/detallecarrito/guardar} : @{/mantenimiento/detallecarrito/actualizar}" th:object="${detalle}" method="post">
+                <input type="hidden" th:field="*{idDetalleCarrito}" />
+                <div class="mb-3">
+                    <label class="form-label">Carrito</label>
+                    <select class="form-select" name="idCarrito" required>
+                        <option value="">Seleccione un carrito</option>
+                        <option th:each="carrito : ${listaCarritos}"
+                                th:value="${carrito.idCarrito}"
+                                th:text="${'ID: ' + carrito.idCarrito + ' (Cliente: ' + carrito.cliente?.nombre + ')'}"
+                                th:selected="${detalle.carrito != null and detalle.carrito.idCarrito == carrito.idCarrito}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Gorra (Producto)</label>
+                    <select class="form-select" name="idGorra" required>
+                        <option value="">Seleccione una gorra</option>
+                        <option th:each="gorra : ${listaGorras}"
+                                th:value="${gorra.idGorra}"
+                                th:text="${gorra.tipo + ' - ' + gorra.nombreGorra}"
+                                th:selected="${detalle.gorra != null and detalle.gorra.idGorra == gorra.idGorra}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" th:field="*{cantidad}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Precio Unitario</label>
+                    <input type="number" step="0.01" class="form-control" th:field="*{precioUnitario}" required>
+                </div>
+                <div class="mt-4 mb-5">
+                    <button type="submit" class="btn btn-save me-2" th:text="${detalle.idDetalleCarrito == 0} ? 'Guardar Detalle' : 'Actualizar Detalle'">Guardar</button>
+                    <a th:href="@{/mantenimiento/detallecarrito}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

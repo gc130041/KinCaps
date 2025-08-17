@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin-layout}">
+<body>
+<main layout:fragment="content">
+    <div class="container mt-5">
+        <h3 class="text-center mb-4" th:text="${proveedor.idProveedor == 0} ? 'Agregar Nuevo Proveedor' : 'Editar Proveedor'">Formulario</h3>
+        <div class="card-body">
+            <form th:action="${proveedor.idProveedor == 0} ? @{/mantenimiento/proveedores/guardar} : @{/mantenimiento/proveedores/actualizar}" th:object="${proveedor}" method="post">
+                <input type="hidden" th:field="*{idProveedor}" />
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Contacto</label>
+                    <input type="text" class="form-control" th:field="*{contacto}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" th:field="*{telefono}" required>
+                </div>
+                <div class="mt-4 mb-5">
+                    <button type="submit" class="btn btn-save me-2" th:text="${proveedor.idProveedor == 0} ? 'Guardar Proveedor' : 'Actualizar Proveedor'">Guardar</button>
+                    <a th:href="@{/mantenimiento/proveedores}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

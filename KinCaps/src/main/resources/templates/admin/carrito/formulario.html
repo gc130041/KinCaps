@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin-layout}">
+<body>
+<main layout:fragment="content">
+    <div class="container mt-5">
+        <h3 class="text-center mb-4" th:text="${carrito.idCarrito == 0} ? 'Agregar Nuevo Carrito' : 'Editar Carrito'">Formulario</h3>
+        <div class="card-body">
+            <form th:action="${carrito.idCarrito == 0} ? @{/mantenimiento/carrito/guardar} : @{/mantenimiento/carrito/actualizar}" th:object="${carrito}" method="post">
+                <input type="hidden" th:field="*{idCarrito}" />
+                <div class="mb-3">
+                    <label class="form-label">Cliente</label>
+                    <select class="form-select" name="idCliente" required>
+                        <option value="">Seleccione un cliente</option>
+                        <option th:each="cliente : ${listaClientes}"
+                                th:value="${cliente.idCliente}"
+                                th:text="${cliente.nombre + ' ' + cliente.apellido}"
+                                th:selected="${carrito.cliente != null and carrito.cliente.idCliente == cliente.idCliente}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Estado</label>
+                    <select class="form-select" th:field="*{estado}" required>
+                        <option th:each="est : ${T(modelo.Carrito.Estado).values()}"
+                                th:value="${est}"
+                                th:text="${est.name()}"></option>
+                    </select>
+                </div>
+                <div class="mb-3" th:if="${carrito.idCarrito != 0}">
+                    <label class="form-label">Fecha de Creación</label>
+                    <input type="datetime-local" class="form-control" name="fechaCreacion" th:value="${carrito.fechaCreacion != null} ? ${#temporals.format(carrito.fechaCreacion, 'yyyy-MM-dd''T''HH:mm')} : ''" required>
+                </div>
+                <div class="mt-4 mb-5">
+                    <button type="submit" class="btn btn-save me-2" th:text="${carrito.idCarrito == 0} ? 'Guardar Carrito' : 'Actualizar Carrito'">Guardar</button>
+                    <a th:href="@{/mantenimiento/carrito}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Contacto</title>
+</head>
+<body>
+<main layout:fragment="content" class="container py-5 d-flex align-items-center justify-content-center">
+    <div class="col-12 col-md-6">
+        <div class="bg-white rounded-3 p-4 shadow-sm">
+            <h3 class="mb-3 text-center"><i class="bi bi-person-fill"></i> Contacto</h3>
+            <hr class="mb-4">
+            <p class="text-center mb-4">
+                Si tienes preguntas, comentarios o deseas más información sobre nuestros productos,
+                no dudes en comunicarte con nosotros. Estamos aquí para ayudarte.
+            </p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex align-items-center">
+                    <i class="bi bi-telephone-fill text-primary me-3 fs-5"></i>
+                    <span class="fw-semibold">Teléfono:</span> +502 1234-5678
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                    <i class="bi bi-envelope-fill text-primary me-3 fs-5"></i>
+                    <span class="fw-semibold">Correo:</span> KINCAPS@kinal.edu.gt
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                    <i class="bi bi-geo-alt-fill text-primary me-3 fs-5"></i>
+                    <span class="fw-semibold">Dirección:</span> 6A Avenida 13-54, Ciudad de Guatemala 01007, Guatemala
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Historial de Compras</title>
+</head>
+<body>
+<main layout:fragment="content" class="container" style="padding-top: 20px; padding-bottom: 40px;">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4 border-bottom pb-2">Mis Pedidos</h1>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+            <tr>
+                <th style="background: linear-gradient(90deg,#002e71,#06458a); border-color: transparent; color:white;">Pedido #</th>
+                <th style="background: linear-gradient(90deg,#06458a,#0b5da3); border-color: transparent; color:white;">Fecha</th>
+                <th style="background: linear-gradient(90deg,#0b5da3,#0f75bd); border-color: transparent; color:white;">Total</th>
+                <th style="background: linear-gradient(90deg,#0f75bd,#0f86d4); border-color: transparent; color:white;">Estado</th>
+                <th style="background-color: #0f86d4; border-color: transparent; color:white;" class="text-center">Detalles</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(listaPedidos)}">
+                <td colspan="5" class="text-center p-4">
+                    Aún no has realizado ninguna compra. ¡Explora nuestro <a th:href="@{/gorras/catalogo}">catálogo</a>!
+                </td>
+            </tr>
+            <th:block th:each="pedido : ${listaPedidos}">
+                <tr>
+                    <th scope="row" th:text="${'KIN-2025-' + pedido.idCarrito}"></th>
+                    <td th:text="${#temporals.format(pedido.fechaCreacion, 'dd ''de'' MMMM, yyyy')}"></td>
+                    <td>
+                            <span th:with="totalPedido=${pedido.detalles.![cantidad * precioUnitario.doubleValue()].![#aggregates.sum(#this)]}"
+                                  th:text="${'Q' + #numbers.formatDecimal(totalPedido, 1, 'COMMA', 2, 'POINT')}"></span>
+                    </td>
+                    <td>
+                            <span th:switch="${pedido.estado.name()}" class="badge"
+                                  th:classappend="${pedido.estado.name() == 'PAGADO'} ? 'bg-success' : 'bg-warning text-dark'">
+                                <span th:case="'PAGADO'">Pagado</span>
+                                <span th:case="'INACTIVO'">Cancelado</span>
+                            </span>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" th:href="${'#detalle-' + pedido.idCarrito}" role="button">
+                            Ver Detalles
+                        </a>
+                    </td>
+                </tr>
+                <tr class="collapse" th:id="${'detalle-' + pedido.idCarrito}">
+                    <td colspan="5" class="p-0">
+                        <div class="p-3" style="background-color: #f8f9fa;">
+                            <h6 class="mb-3 fw-bold" th:text="${'Productos del Pedido KIN-2025-' + pedido.idCarrito}"></h6>
+                            <div th:each="detalle : ${pedido.detalles}" class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                <span th:text="${detalle.gorra.nombreGorra}"></span>
+                                <span th:text="'Cantidad: ' + ${detalle.cantidad}"></span>
+                                <span class="fw-semibold" th:text="${'Q' + #numbers.formatDecimal(detalle.precioUnitario, 1, 'COMMA', 2, 'POINT')}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>
