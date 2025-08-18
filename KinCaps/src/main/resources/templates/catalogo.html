@@ -1,13 +1,43 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layout}">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Catálogo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Catálogo | KINCAPS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" th:href="@{/img/Logo/logonobg.png}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/style/catalogo.css}">
 </head>
-<body>
-<main layout:fragment="content">
-    <div class="container-fluid" style="padding-top: 30px;">
+<body class="d-flex flex-column min-vh-100" th:data-context-path="@{/}">
+<header>
+    <nav class="navbar navbar-expand-lg bg-header navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a th:href="@{/gorras}" class="navbar-brand fw-bold">
+                <img th:src="@{/img/Logo/logotipo.png}" style="width: 5vh;" alt="Logotipo.png"/> Catálogo de Gorras
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a th:href="@{/gorras/historial}" type="button" class="btn btn-link text-white"
+                           style="text-decoration: none;">
+                            <i class="bi bi-clock-history"></i> Historial De Compras
+                        </a>
+                        <button type="button" class="btn btn-link text-white" style="text-decoration: none;"
+                                data-bs-toggle="modal" data-bs-target="#miModal">
+                            <i class="bi bi-cart2"></i> Carrito De Compras
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="flex-grow-1" style="padding-top: 90px;">
+    <div class="container-fluid">
         <div class="row">
             <aside class="col-lg-3">
                 <div class="filtro-seccion bg-light p-3 rounded shadow-sm">
@@ -23,7 +53,8 @@
                                 <div class="slider-container">
                                     <div class="slider-track"></div>
                                     <input type="range" class="form-range" min="0" max="1000" value="0" id="slider-1">
-                                    <input type="range" class="form-range" min="0" max="1000" value="1000" id="slider-2">
+                                    <input type="range" class="form-range" min="0" max="1000" value="1000"
+                                           id="slider-2">
                                 </div>
                             </div>
                         </div>
@@ -55,19 +86,35 @@
                     <div th:if="${#lists.isEmpty(listaGorras)}" class="col-12">
                         <p class="text-center">No hay productos para mostrar en este momento.</p>
                     </div>
-                    <div th:each="gorra : ${listaGorras}" class="col-sm-6 col-md-4 col-lg-3 mb-4 product-item"
-                         th:data-price="${gorra.precio}"
-                         th:data-category="${gorra.tipo.name()}"
-                         th:data-brand="${gorra.marca}">
+                    <div th:each="g : ${listaGorras}" class="col-sm-6 col-md-4 col-lg-3 mb-4 product-item"
+                         th:data-price="${g.precio}"
+                         th:data-category="${g.tipo.name()}"
+                         th:data-brand="${g.marca}">
                         <div class="card h-100 shadow-sm">
-                            <img th:src="@{'/img/Gorras/' + ${gorra.tipo.name() == 'URBANA' ? 'urbano' : (gorra.tipo.name() == 'FORMULA_1' ? 'f1' : 'deportivo')} + '/' + ${gorra.imagen != null ? gorra.imagen : 'default.png'}}" class="card-img-top" th:alt="${gorra.descripcion}">
+                            <th:block th:with="
+            folderPath=${g.tipo.name() == 'URBANA' ? 'urbano' : (g.tipo.name() == 'DEPORTIVA' ? 'deportivo' : (g.tipo.name() == 'FORMULA_1' ? 'f1' : 'otros'))},
+            insigniaURL=${g.tipo.name() == 'URBANA' ? '/img/tipo/urbana.png' : (g.tipo.name() == 'DEPORTIVA' ? '/img/tipo/deportiva.png' : (g.tipo.name() == 'FORMULA_1' ? '/img/tipo/f1.png' : ''))},
+            insigniaClass=${g.tipo.name() == 'URBANA' ? 'tipo-NY' : (g.tipo.name() == 'DEPORTIVA' ? 'tipo-MB' : (g.tipo.name() == 'FORMULA_1' ? 'tipo-f1' : ''))},
+            insigniaWidth=${g.tipo.name() == 'FORMULA_1' ? '60px' : '30px'},
+            imageName=(${not #strings.isEmpty(g.imagen)} ? ${g.imagen} : 'default.png')">
+
+            <span th:if="${!#strings.isEmpty(insigniaURL)}" class="insignia-tipo" th:classappend="${insigniaClass}">
+                <img th:src="@{${insigniaURL}}" th:alt="${g.tipo.name()}" th:style="'width:' + ${insigniaWidth}">
+            </span>
+
+                                <img th:src="@{'/img/Gorras/' + ${folderPath} + '/' + ${imageName}}"
+                                     class="card-img-top" th:alt="${g.descripcion}">
+                            </th:block>
+
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title mb-0 me-2" th:text="${gorra.nombreGorra}"></h5>
-                                    <span class="badge bg-primary text-nowrap fs-6" th:text="${'Q' + #numbers.formatDecimal(gorra.precio, 1, 2)}"></span>
+                                    <h5 class="card-title mb-0 me-2" th:text="${g.nombreGorra}"></h5>
+                                    <span class="badge bg-primary text-nowrap fs-6"
+                                          th:text="'Q' + ${#numbers.formatDecimal(g.precio, 1, 2)}"></span>
                                 </div>
-                                <p class="card-text text-muted small" th:text="${gorra.descripcion}"></p>
-                                <a th:href="@{/gorras/detalle(id=${gorra.idGorra})}" class="btn btn-outline-primary mt-auto">Ver más</a>
+                                <p class="card-text text-muted small" th:text="${g.descripcion}"></p>
+                                <a th:href="@{/gorras/detalle(id=${g.idGorra})}"
+                                   class="btn btn-outline-primary mt-auto">Ver más</a>
                             </div>
                         </div>
                     </div>
@@ -75,34 +122,103 @@
             </div>
         </div>
     </div>
+</main>
 
-    <!-- Modal del Carrito -->
-    <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content h-100">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="miModalLabel"><strong>Carrito de Compras</strong></h5>
-                    <button type="button" class="btn-close" data-bs-toggle="collapse" data-bs-target="#miModal" aria-label="Cerrar"></button>
+<div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content h-100">
+            <div class="modal-header">
+                <h5 class="modal-title" id="miModalLabel"><strong>Carrito de Compras</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+                <div id="carrito-items" class="flex-grow-1 overflow-auto">
+                    <th:block th:if="${not #lists.isEmpty(listaDetalleCarrito)}" th:with="totalCarrito=0">
+                        <div th:each="detalle : ${listaDetalleCarrito}" class="d-flex align-items-center mb-3"
+                             th:data-id-gorra="${detalle.gorra.idGorra}">
+                            <th:block th:with="
+                                    folderPath=${detalle.gorra.tipo.name() == 'URBANA' ? 'urbano' : (detalle.gorra.tipo.name() == 'DEPORTIVA' ? 'deportivo' : (detalle.gorra.tipo.name() == 'FORMULA_1' ? 'f1' : 'otros'))},
+                                    imageURL=@{'/img/Gorras/' + ${folderPath} + '/' + ${detalle.gorra.imagen}}">
+                                <img th:src="${imageURL}" th:alt="${detalle.gorra.nombreGorra}"
+                                     style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+                            </th:block>
+                            <div class="ms-3 flex-grow-1">
+                                <h6 class="mb-0" th:text="${detalle.gorra.nombreGorra}"></h6>
+                                <small class="text-muted item-cantidad"
+                                       th:text="'Cantidad: ' + ${detalle.cantidad}"></small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <strong class="me-3"
+                                        th:text="'Q' + ${#numbers.formatDecimal(detalle.precioUnitario, 1, 2)} + ' c/u'"></strong>
+                                <button class="btn btn-outline-danger btn-sm rounded-circle btn-eliminar-item"
+                                        th:data-id-gorra="${detalle.gorra.idGorra}"
+                                        th:data-nombre-gorra="${detalle.gorra.nombreGorra}"
+                                        th:data-cantidad-actual="${detalle.cantidad}"
+                                        title="Eliminar item">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>
+                            <th:block
+                                    th:with="totalCarrito=${totalCarrito + (detalle.precioUnitario.doubleValue() * detalle.cantidad)}"></th:block>
+                        </div>
+                    </th:block>
                 </div>
-                <div class="modal-body d-flex flex-column">
-                    <div id="carrito-items" class="flex-grow-1 overflow-auto">
+                <p id="carrito-vacio" class="text-center text-muted mt-4"
+                   th:style="${not #lists.isEmpty(listaDetalleCarrito)} ? 'display: none;' : ''">
+                    Tu carrito está vacío.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-end mb-3">
+                        <h5 th:with="total=${listaDetalleCarrito.![precioUnitario.doubleValue() * cantidad].![#aggregates.sum(#this)]}">
+                            Total: <strong id="carrito-total" th:text="'Q' + ${#numbers.formatDecimal(total, 1, 2)}">Q0.00</strong>
+                        </h5>
                     </div>
-                    <p id="carrito-vacio" class="text-center text-muted mt-4">Tu carrito está vacío.</p>
-                </div>
-                <div class="modal-footer">
-                    <div class="w-100">
-                        <div class="text-end mb-3">
-                            <h5>Total: <strong id="carrito-total">Q0.00</strong></h5>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#miModal">Seguir Comprando</button>
-                            <a th:href="@{/checkout}" class="btn btn-primary">Ir a Pagar</a>
-                        </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando
+                        </button>
+                        <a th:href="@{/checkout}" class="btn btn-primary">Ir a Pagar</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
+
+<div class="modal fade" id="eliminarItemModal" tabindex="-1" aria-labelledby="eliminarItemModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eliminarItemModalLabel">Eliminar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Cuántos items de <strong id="nombre-item-eliminar">Gorra Genérica</strong> deseas eliminar?</p>
+                <div class="d-flex justify-content-center my-3">
+                    <input type="number" class="form-control" value="1" min="1" id="eliminar-cantidad-input"
+                           style="width: 100px; text-align: center;">
+                </div>
+                <input type="hidden" id="eliminar-id-gorra-input">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmar-eliminacion-btn">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-header text-white text-center py-4 mt-auto">
+    <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
+    <small>
+        <a th:href="@{/politica}" class="text-white text-decoration-none me-3">Política de Privacidad</a>
+        <a th:href="@{/terminos}" class="text-white text-decoration-none">Términos y Condiciones</a>
+    </small>
+</footer>
+<script th:src="@{/scripts/catalogo.js}" defer></script>
+<script th:src="@{/scripts/carrito.js}" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

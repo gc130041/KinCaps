@@ -19,18 +19,6 @@ public class PageController {
     @Autowired
     private GorraRepository gorraRepository;
 
-    @Autowired
-    private ClienteRepository clienteRepository;
-
-    @ModelAttribute
-    public void addCommonAttributes(Model model, HttpSession session) {
-        Cliente clienteEnSesion = (Cliente) session.getAttribute("usuario");
-        if (clienteEnSesion != null) {
-            clienteRepository.findById(clienteEnSesion.getIdUsuario())
-                    .ifPresent(clienteCompleto -> model.addAttribute("usuarioCompleto", clienteCompleto));
-        }
-    }
-
     @GetMapping(value = {"/gorras", "/"})
     public String showMainMenu(Model model) {
         List<Gorras> gorrasDestacadas = gorraRepository.findMasVendidas(4);

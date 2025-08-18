@@ -4,6 +4,9 @@
       layout:decorate="~{fragments/layout}">
 <head>
     <title>Contacto</title>
+    <th:block layout:fragment="extra-css">
+        <link rel="stylesheet" th:href="@{/style/contactanos.css}" />
+    </th:block>
 </head>
 <body>
 <main layout:fragment="content" class="container py-5 d-flex align-items-center justify-content-center">

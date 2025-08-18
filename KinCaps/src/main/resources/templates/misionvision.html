@@ -4,7 +4,9 @@
       layout:decorate="~{fragments/layout}">
 <head>
     <title>Sobre Nosotros</title>
-    <link rel="stylesheet" th:href="@{/style/misionvision.css}" />
+    <th:block layout:fragment="extra-css">
+        <link rel="stylesheet" th:href="@{/style/misionvision.css}" />
+    </th:block>
 </head>
 <body>
 <main layout:fragment="content" class="container py-4 d-flex align-items-center">
