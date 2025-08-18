@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layout}">
-<head>
-    <title>Sobre Nosotros</title>
-    <th:block layout:fragment="extra-css">
-        <link rel="stylesheet" th:href="@{/style/misionvision.css}" />
-    </th:block>
-</head>
-<body>
-<main layout:fragment="content" class="container py-4 d-flex align-items-center">
+<div th:replace="~{fragments/header :: head(pageTitle='Nosotros')}"></div>
+
+<main class="flex-grow-1 container py-4 d-flex align-items-center">
     <div class="row g-4">
+
         <div class="col-12 col-md-6">
             <div class="bg-white rounded-3 p-4 shadow-sm h-100">
                 <h3 class="mb-3">MISIÓN</h3>
@@ -19,6 +11,7 @@
                 </p>
             </div>
         </div>
+
         <div class="col-12 col-md-6">
             <div class="bg-white rounded-3 p-4 shadow-sm h-100">
                 <h3 class="mb-3">VISIÓN</h3>
@@ -29,5 +22,5 @@
         </div>
     </div>
 </main>
-</body>
-</html>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

@@ -5,9 +5,12 @@
     <title>Catálogo | KINCAPS</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script th:src="@{/scripts/catalogo.js}" defer></script>
+    <script th:src="@{/scripts/carrito.js}" defer></script>
     <link rel="icon" th:href="@{/img/Logo/logonobg.png}" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/style/catalogo.css}">
 </head>
+
 <body class="d-flex flex-column min-vh-100" th:data-context-path="@{/}">
 <header>
     <nav class="navbar navbar-expand-lg bg-header navbar-dark fixed-top">
@@ -83,40 +86,39 @@
 
             <div class="col-lg-9">
                 <div class="row g-4" id="product-container">
-                    <div th:if="${#lists.isEmpty(listaGorras)}" class="col-12">
-                        <p class="text-center">No hay productos para mostrar en este momento.</p>
-                    </div>
-                    <div th:each="g : ${listaGorras}" class="col-sm-6 col-md-4 col-lg-3 mb-4 product-item"
-                         th:data-price="${g.precio}"
-                         th:data-category="${g.tipo.name()}"
-                         th:data-brand="${g.marca}">
-                        <div class="card h-100 shadow-sm">
-                            <th:block th:with="
-            folderPath=${g.tipo.name() == 'URBANA' ? 'urbano' : (g.tipo.name() == 'DEPORTIVA' ? 'deportivo' : (g.tipo.name() == 'FORMULA_1' ? 'f1' : 'otros'))},
-            insigniaURL=${g.tipo.name() == 'URBANA' ? '/img/tipo/urbana.png' : (g.tipo.name() == 'DEPORTIVA' ? '/img/tipo/deportiva.png' : (g.tipo.name() == 'FORMULA_1' ? '/img/tipo/f1.png' : ''))},
-            insigniaClass=${g.tipo.name() == 'URBANA' ? 'tipo-NY' : (g.tipo.name() == 'DEPORTIVA' ? 'tipo-MB' : (g.tipo.name() == 'FORMULA_1' ? 'tipo-f1' : ''))},
-            insigniaWidth=${g.tipo.name() == 'FORMULA_1' ? '60px' : '30px'},
-            imageName=(${not #strings.isEmpty(g.imagen)} ? ${g.imagen} : 'default.png')">
+                    <th:block th:if="${listaGorras != null and not #lists.isEmpty(listaGorras)}">
+                        <div th:each="g : ${listaGorras}" class="col-sm-6 col-md-4 col-lg-3 mb-4 product-item"
+                             th:data-price="${g.precio}"
+                             th:data-category="${g.tipo != null ? g.tipo.name() : 'OTRO'}"
+                             th:data-brand="${g.marca}">
+                            <div class="card h-100 shadow-sm">
+                                <div th:with="
+                                folderPath=${g.tipo.name() == 'URBANA' ? 'urbano' : (g.tipo.name() == 'DEPORTIVA' ? 'deportivo' : (g.tipo.name() == 'FORMULA_1' ? 'f1' : 'otros'))},
+                                insigniaURL=${g.tipo.name() == 'URBANA' ? '/img/tipo/urbana.png' : (g.tipo.name() == 'DEPORTIVA' ? '/img/tipo/deportiva.png' : (g.tipo.name() == 'FORMULA_1' ? '/img/tipo/f1.png' : ''))},
+                                insigniaClass=${g.tipo.name() == 'URBANA' ? 'tipo-NY' : (g.tipo.name() == 'DEPORTIVA' ? 'tipo-MB' : (g.tipo.name() == 'FORMULA_1' ? 'tipo-f1' : ''))},
+                                insigniaStyle=${g.tipo.name() == 'FORMULA_1' ? 'width: 60px;' : 'width: 30px;'}">
 
-            <span th:if="${!#strings.isEmpty(insigniaURL)}" class="insignia-tipo" th:classappend="${insigniaClass}">
-                <img th:src="@{${insigniaURL}}" th:alt="${g.tipo.name()}" th:style="'width:' + ${insigniaWidth}">
-            </span>
-
-                                <img th:src="@{'/img/Gorras/' + ${folderPath} + '/' + ${imageName}}"
-                                     class="card-img-top" th:alt="${g.descripcion}">
-                            </th:block>
-
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title mb-0 me-2" th:text="${g.nombreGorra}"></h5>
-                                    <span class="badge bg-primary text-nowrap fs-6"
-                                          th:text="'Q' + ${#numbers.formatDecimal(g.precio, 1, 2)}"></span>
+                                    <span th:if="${!#strings.isEmpty(insigniaURL)}" th:class="'insignia-tipo ' + ${insigniaClass}">
+                                        <img th:src="@{${insigniaURL}}" th:alt="${g.tipo}" th:style="${insigniaStyle}">
+                                    </span>
+                                    <img th:src="@{/img/Gorras/{folder}/{image}(folder=${folderPath}, image=${g.imagen != null ? g.imagen : 'default.png'})}"
+                                         class="card-img-top" th:alt="${g.nombreGorra}">
                                 </div>
-                                <p class="card-text text-muted small" th:text="${g.descripcion}"></p>
-                                <a th:href="@{/gorras/detalle(id=${g.idGorra})}"
-                                   class="btn btn-outline-primary mt-auto">Ver más</a>
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title mb-0 me-2" th:text="${g.nombreGorra}"></h5>
+                                        <span class="badge bg-primary text-nowrap fs-6"
+                                              th:text="'Q' + ${g.precio}"></span>
+                                    </div>
+                                    <p class="card-text text-muted small" th:text="${g.descripcion}"></p>
+                                    <a th:href="@{/gorras/detalle(id=${g.idGorra})}"
+                                       class="btn btn-outline-primary mt-auto">Ver más</a>
+                                </div>
                             </div>
                         </div>
+                    </th:block>
+                    <div th:if="${listaGorras == null or #lists.isEmpty(listaGorras)}" class="col-12">
+                        <p class="text-center">No hay productos para mostrar en este momento.</p>
                     </div>
                 </div>
             </div>
@@ -133,15 +135,14 @@
             </div>
             <div class="modal-body d-flex flex-column">
                 <div id="carrito-items" class="flex-grow-1 overflow-auto">
-                    <th:block th:if="${not #lists.isEmpty(listaDetalleCarrito)}" th:with="totalCarrito=0">
+                    <th:block th:if="${listaDetalleCarrito != null and not #lists.isEmpty(listaDetalleCarrito)}">
                         <div th:each="detalle : ${listaDetalleCarrito}" class="d-flex align-items-center mb-3"
                              th:data-id-gorra="${detalle.gorra.idGorra}">
-                            <th:block th:with="
-                                    folderPath=${detalle.gorra.tipo.name() == 'URBANA' ? 'urbano' : (detalle.gorra.tipo.name() == 'DEPORTIVA' ? 'deportivo' : (detalle.gorra.tipo.name() == 'FORMULA_1' ? 'f1' : 'otros'))},
-                                    imageURL=@{'/img/Gorras/' + ${folderPath} + '/' + ${detalle.gorra.imagen}}">
-                                <img th:src="${imageURL}" th:alt="${detalle.gorra.nombreGorra}"
+                            <div th:with="folderPath=${detalle.gorra.tipo.name() == 'URBANA' ? 'urbano' : (detalle.gorra.tipo.name() == 'DEPORTIVA' ? 'deportivo' : (detalle.gorra.tipo.name() == 'FORMULA_1' ? 'f1' : 'otros'))}">
+                                <img th:src="@{/img/Gorras/{folder}/{image}(folder=${folderPath}, image=${detalle.gorra.imagen})}"
+                                     th:alt="${detalle.gorra.nombreGorra}"
                                      style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
-                            </th:block>
+                            </div>
                             <div class="ms-3 flex-grow-1">
                                 <h6 class="mb-0" th:text="${detalle.gorra.nombreGorra}"></h6>
                                 <small class="text-muted item-cantidad"
@@ -149,7 +150,7 @@
                             </div>
                             <div class="d-flex align-items-center">
                                 <strong class="me-3"
-                                        th:text="'Q' + ${#numbers.formatDecimal(detalle.precioUnitario, 1, 2)} + ' c/u'"></strong>
+                                        th:text="'Q' + ${#numbers.formatDecimal(detalle.precioUnitario, 1, 2, 'POINT')} + ' c/u'"></strong>
                                 <button class="btn btn-outline-danger btn-sm rounded-circle btn-eliminar-item"
                                         th:data-id-gorra="${detalle.gorra.idGorra}"
                                         th:data-nombre-gorra="${detalle.gorra.nombreGorra}"
@@ -158,27 +159,25 @@
                                     <i class="bi bi-trash3"></i>
                                 </button>
                             </div>
-                            <th:block
-                                    th:with="totalCarrito=${totalCarrito + (detalle.precioUnitario.doubleValue() * detalle.cantidad)}"></th:block>
                         </div>
                     </th:block>
                 </div>
                 <p id="carrito-vacio" class="text-center text-muted mt-4"
-                   th:style="${not #lists.isEmpty(listaDetalleCarrito)} ? 'display: none;' : ''">
+                   th:style="${(listaDetalleCarrito != null and not #lists.isEmpty(listaDetalleCarrito)) ? 'display: none;' : ''}">
                     Tu carrito está vacío.
                 </p>
             </div>
             <div class="modal-footer">
                 <div class="w-100">
                     <div class="text-end mb-3">
-                        <h5 th:with="total=${listaDetalleCarrito.![precioUnitario.doubleValue() * cantidad].![#aggregates.sum(#this)]}">
-                            Total: <strong id="carrito-total" th:text="'Q' + ${#numbers.formatDecimal(total, 1, 2)}">Q0.00</strong>
+                        <h5>Total: <strong id="carrito-total"
+                                           th:text="'Q' + ${#numbers.formatDecimal(totalCarrito, 1, 2, 'POINT')}"></strong>
                         </h5>
                     </div>
                     <div class="d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando
                         </button>
-                        <a th:href="@{/checkout}" class="btn btn-primary">Ir a Pagar</a>
+                        <a th:href="@{/gorras/checkout}" class="btn btn-primary">Ir a Pagar</a>
                     </div>
                 </div>
             </div>
@@ -210,15 +209,6 @@
     </div>
 </div>
 
-<footer class="bg-header text-white text-center py-4 mt-auto">
-    <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
-    <small>
-        <a th:href="@{/politica}" class="text-white text-decoration-none me-3">Política de Privacidad</a>
-        <a th:href="@{/terminos}" class="text-white text-decoration-none">Términos y Condiciones</a>
-    </small>
-</footer>
-<script th:src="@{/scripts/catalogo.js}" defer></script>
-<script th:src="@{/scripts/carrito.js}" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

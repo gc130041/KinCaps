@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layout}">
-<head>
-    <title>Contacto</title>
-    <th:block layout:fragment="extra-css">
-        <link rel="stylesheet" th:href="@{/style/contactanos.css}" />
-    </th:block>
-</head>
-<body>
-<main layout:fragment="content" class="container py-5 d-flex align-items-center justify-content-center">
+<div th:replace="~{fragments/header :: head(pageTitle='Contactanos')}"></div>
+
+<main class="flex-grow-1 container py-5 d-flex align-items-center justify-content-center">
     <div class="col-12 col-md-6">
         <div class="bg-white rounded-3 p-4 shadow-sm">
             <h3 class="mb-3 text-center"><i class="bi bi-person-fill"></i> Contacto</h3>
@@ -35,5 +26,5 @@
         </div>
     </div>
 </main>
-</body>
-</html>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

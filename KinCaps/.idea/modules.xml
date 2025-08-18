@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/KinCaps.iml" filepath="$PROJECT_DIR$/.idea/KinCaps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KinCaps.iml" filepath="$PROJECT_DIR$/KinCaps.iml" />
     </modules>
   </component>
 </project>

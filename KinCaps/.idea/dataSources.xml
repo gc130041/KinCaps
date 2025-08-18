@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="DB_KinCaps@localhost" uuid="c0bbf376-230a-4c34-8ced-870695809b2f">
+    <data-source source="LOCAL" name="DB_KinCaps@localhost" uuid="ba62730b-a8f8-4a22-9aa6-7a6244f5a91b">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>$PROJECT_DIR$/KinCaps/src/main/resources/application.properties</remarks>
+      <remarks>$PROJECT_DIR$/src/main/resources/application.properties</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/DB_KinCaps</jdbc-url>
       <jdbc-additional-properties>

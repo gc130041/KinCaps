@@ -8,9 +8,20 @@
     <link rel="icon" th:href="@{/img/Logo/logonobg.png}" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/style/catalogo.css}">
     <style>
-        .checkout-container { background-color: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .resumen-pedido { background-color: #f8f9fa; padding: 1.5rem; border-radius: 10px; }
-        .input-group-text img { height: 24px; }
+        .checkout-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .resumen-pedido {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        .input-group-text img {
+            height: 24px;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100" th:data-context-path="@{/}">
@@ -26,7 +37,7 @@
 
 <main class="flex-grow-1 py-5">
     <div class="container">
-        <form th:action="@{/procesar-pago}" method="POST" id="checkout-form">
+        <form th:action="@{/gorras/procesar-pago}" method="POST" id="checkout-form">
             <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="checkout-container">
@@ -53,6 +64,7 @@
                             <input class="form-check-input" type="radio" name="metodoPago" id="pagoContraEntrega" value="EFECTIVO">
                             <label class="form-check-label" for="pagoContraEntrega">Pago Contra Entrega</label>
                         </div>
+
                         <div id="tarjeta-info">
                             <div class="mb-3">
                                 <label for="numeroTarjeta" class="form-label">Número de Tarjeta</label>
@@ -79,6 +91,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-5">
                     <div class="resumen-pedido">
                         <h4 class="d-flex justify-content-between align-items-center mb-4">
@@ -91,11 +104,11 @@
                                     <h6 class="my-0" th:text="${item.gorra.nombreGorra}"></h6>
                                     <small class="text-muted" th:text="'Cantidad: ' + ${item.cantidad}"></small>
                                 </div>
-                                <span class="text-muted" th:text="${'Q' + #numbers.formatDecimal(item.precioUnitario.multiply(new java.math.BigDecimal(item.cantidad)), 1, 'COMMA', 2, 'POINT')}"></span>
+                                <span class="text-muted" th:text="${#numbers.formatCurrency(item.precioUnitario.multiply(item.cantidad))}"></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <strong>Total (Q)</strong>
-                                <strong th:text="${'Q' + #numbers.formatDecimal(totalCarrito, 1, 'COMMA', 2, 'POINT')}"></strong>
+                                <strong th:text="${#numbers.formatCurrency(totalCarrito)}"></strong>
                             </li>
                         </ul>
                         <button type="submit" class="w-100 btn btn-primary btn-lg">Realizar Pago</button>
@@ -105,13 +118,8 @@
         </form>
     </div>
 </main>
-<footer class="bg-header text-white text-center py-4 mt-auto">
-    <p class="mb-1">2025 KINCAPS. Todos los derechos reservados.</p>
-    <small>
-        <a th:href="@{/politica}" class="text-white text-decoration-none me-3">Política de Privacidad</a>
-        <a th:href="@{/terminos}" class="text-white text-decoration-none">Términos y Condiciones</a>
-    </small>
-</footer>
+
 <script th:src="@{/scripts/checkout.js}" defer></script>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

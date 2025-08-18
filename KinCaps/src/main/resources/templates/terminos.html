@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/legal-layout}">
-<head>
+<div th:replace="~{fragments/header-simple :: head(pageTitle='Términos y Condiciones')}"></div>
 
-</head>
-<body>
-<main layout:fragment="content">
+<main>
     <div class="container my-5">
         <h1 class="mb-4 text-primary">Términos y Condiciones de KINCAPS</h1>
         <p>Por favor, lee atentamente los siguientes Términos y Condiciones antes de utilizar los servicios de KINCAPS. Al acceder y utilizar nuestros servicios, aceptas cumplir con estos términos.</p>
@@ -75,8 +69,67 @@
                     </div>
                 </div>
             </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSoftware">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSoftware" aria-expanded="false" aria-controls="collapseSoftware">
+                        5. Software en los Servicios de KINCAPS
+                    </button>
+                </h2>
+                <div id="collapseSoftware" class="accordion-collapse collapse" aria-labelledby="headingSoftware" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        Los servicios de KINCAPS pueden incluir software o aplicaciones proporcionadas para facilitar el acceso y uso de nuestras plataformas. Al utilizar estos servicios, se te concede una licencia limitada, no exclusiva, no transferible y revocable para usar el software conforme a los fines previstos.
+                        <br><br>
+                        No tienes derecho a copiar, modificar, distribuir, descompilar ni realizar ingeniería inversa sobre el software proporcionado. Todos los derechos sobre el software, incluidas las actualizaciones, parches y mejoras, permanecen con KINCAPS o sus licenciantes.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingProblemas">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProblemas" aria-expanded="false" aria-controls="collapseProblemas">
+                        6. En caso de problemas o discrepancias
+                    </button>
+                </h2>
+                <div id="collapseProblemas" class="accordion-collapse collapse" aria-labelledby="headingProblemas" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        Si tienes alguna discrepancia o problema relacionado con el uso de los servicios de KINCAPS, te recomendamos que primero te pongas en contacto con nuestro soporte al cliente para tratar de resolverlo de manera amigable y directa.
+                        <br><br>
+                        En caso de que no se pueda resolver la discrepancia, las partes pueden recurrir a los mecanismos de resolución de conflictos que se detallan en los Términos de Uso, que incluyen, si es necesario, la mediación o arbitraje, según corresponda. Al usar nuestros servicios, aceptas que cualquier disputa será resuelta conforme a las leyes de Guatemala.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSobre">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSobre" aria-expanded="false" aria-controls="collapseSobre">
+                        7. Sobre estos Términos
+                    </button>
+                </h2>
+                <div id="collapseSobre" class="accordion-collapse collapse" aria-labelledby="headingSobre" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        Estos Términos constituyen el acuerdo completo entre tú y KINCAPS en relación con el uso de los servicios de KINCAPS. Si alguna disposición de estos Términos se considera inválida o inaplicable, dicha disposición será modificada para reflejar la intención de las partes, sin afectar la validez de las disposiciones restantes.
+                        <br><br>
+                        Te recomendamos que revises regularmente estos Términos para estar al tanto de cualquier cambio o actualización. El uso continuo de los servicios de KINCAPS después de cualquier modificación será considerado como aceptación de los nuevos Términos.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingContacto">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContacto" aria-expanded="false" aria-controls="collapseContacto">
+                        8. Contacto
+                    </button>
+                </h2>
+                <div id="collapseContacto" class="accordion-collapse collapse" aria-labelledby="headingContacto" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        Si tienes preguntas sobre estos Términos y Condiciones, o necesitas asistencia con alguna parte de los servicios de KINCAPS, puedes ponerte en contacto con nosotros a través del siguiente correo electrónico: <a href="mailto:KinCaps@kinal.edu.gt">KinCaps@kinal.edu.gt</a>.
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </main>
-</body>
-</html>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

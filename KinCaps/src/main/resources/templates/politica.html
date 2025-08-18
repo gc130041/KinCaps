@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/legal-layout}">
-<head>
+<div th:replace="~{fragments/header-simple :: head(pageTitle='Política de Privacidad')}"></div>
 
-</head>
-<body>
-<main layout:fragment="content">
+<main>
     <div class="container my-5">
         <h1 class="mb-4 text-primary">Política de Privacidad de KINCAPS</h1>
         <p><strong>Fecha de vigencia:</strong> 30 de julio de 2025<br />
@@ -47,6 +41,7 @@
                             <li>Dirección de facturación</li>
                             <li>Contraseña y credenciales para acceso seguro</li>
                         </ul>
+
                         <h5>2.2 Información técnica y de uso</h5>
                         <p>Recopilamos automáticamente ciertos datos técnicos y de uso a través de tecnologías como cookies y web beacons para optimizar la funcionalidad de nuestro sitio y analizar su rendimiento. Esta información incluye:</p>
                         <ul>
@@ -103,8 +98,90 @@
                 </div>
             </div>
 
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingGitHub">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGitHub" aria-expanded="false" aria-controls="collapseGitHub">
+                        5. Inicio de sesión mediante GitHub
+                    </button>
+                </h2>
+                <div id="collapseGitHub" class="accordion-collapse collapse" aria-labelledby="headingGitHub" data-bs-parent="#privacyAccordion">
+                    <div class="accordion-body">
+                        <p>Para mejorar la experiencia de usuario, ofrecemos la opción de iniciar sesión utilizando tu cuenta de GitHub. Este proceso permite una autenticación segura sin necesidad de crear una cuenta nueva. Solo compartimos con GitHub la información necesaria para autenticar tu acceso y no almacenamos información adicional sin tu consentimiento.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingMenores">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMenores" aria-expanded="false" aria-controls="collapseMenores">
+                        6. Usuarios menores de 13 años
+                    </button>
+                </h2>
+                <div id="collapseMenores" class="accordion-collapse collapse" aria-labelledby="headingMenores" data-bs-parent="#privacyAccordion">
+                    <div class="accordion-body">
+                        <p>KinCaps reconoce la importancia de proteger la privacidad de los menores de 13 años y cumple con la Ley de Protección de la Privacidad Infantil en Línea (COPPA). Nuestro sitio está dirigido también a usuarios menores de 13 años, pero no recopilamos intencionadamente más información personal que la estrictamente necesaria. Padres o tutores pueden solicitar el acceso, corrección o eliminación de la información personal de menores poniéndose en contacto con nosotros directamente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeguridad">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeguridad" aria-expanded="false" aria-controls="collapseSeguridad">
+                        7. Seguridad de tu información
+                    </button>
+                </h2>
+                <div id="collapseSeguridad" class="accordion-collapse collapse" aria-labelledby="headingSeguridad" data-bs-parent="#privacyAccordion">
+                    <div class="accordion-body">
+                        <p>Implementamos medidas técnicas, administrativas y físicas razonables para proteger tu información personal contra accesos no autorizados, alteraciones, divulgación o destrucción. Esto incluye:</p>
+                        <ul>
+                            <li>Encriptación de datos sensibles durante la transmisión y almacenamiento</li>
+                            <li>Control de acceso restringido al personal autorizado</li>
+                            <li>Monitoreo constante de nuestros sistemas de seguridad</li>
+                            <li>Procedimientos para detectar y responder ante incidentes de seguridad</li>
+                        </ul>
+                        <p>Sin embargo, ninguna transmisión por internet o método de almacenamiento electrónico es 100% seguro. Aunque hacemos esfuerzos razonables, no podemos garantizar una seguridad absoluta.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingRetencion">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRetencion" aria-expanded="false" aria-controls="collapseRetencion">
+                        8. Retención de datos
+                    </button>
+                </h2>
+                <div id="collapseRetencion" class="accordion-collapse collapse" aria-labelledby="headingRetencion" data-bs-parent="#privacyAccordion">
+                    <div class="accordion-body">
+                        <p>Retendremos tu información personal solo mientras sea necesario para los fines descritos en esta política o para cumplir con obligaciones legales, fiscales o contractuales. Una vez que la información ya no sea necesaria, será eliminada o anonimizada de forma segura para proteger tu privacidad.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingDerechos">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDerechos" aria-expanded="false" aria-controls="collapseDerechos">
+                        9. Tus derechos de privacidad
+                    </button>
+                </h2>
+                <div id="collapseDerechos" class="accordion-collapse collapse" aria-labelledby="headingDerechos" data-bs-parent="#privacyAccordion">
+                    <div class="accordion-body">
+                        <p>De acuerdo con las leyes CalOPPA, GDPR y CCPA, tienes varios derechos respecto a tu información personal:</p>
+                        <ul>
+                            <li><strong>Acceso:</strong> Solicitar una copia de los datos que almacenamos sobre ti.</li>
+                            <li><strong>Rectificación:</strong> Corregir datos inexactos o incompletos.</li>
+                            <li><strong>Eliminación:</strong> Solicitar la eliminación de tus datos, sujeto a excepciones legales.</li>
+                            <li><strong>Oposición:</strong> Oponerte al tratamiento de tus datos para fines específicos, como marketing directo.</li>
+                            <li><strong>Limitación:</strong> Restringir ciertos tratamientos de tus datos en determinadas circunstancias.</li>
+                            <li><strong>Portabilidad:</strong> Obtener tus datos en formato electrónico estructurado para uso personal o transferencia.</li>
+                            <li><strong>No discriminación:</strong> En caso de ejercer derechos bajo CCPA, no serás objeto de discriminación por ello.</li>
+                        </ul>
+                        <p>Para ejercer estos derechos, contáctanos a través de nuestro correo electrónico.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </main>
-</body>
-</html>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
