@@ -32,6 +32,11 @@ public class Cliente extends Usuario {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+    
+    // Getter específico para compatibilidad con templates
+    public int getIdCliente() {
+        return getIdUsuario();
+    }
 
     @Override
     public String toString() {
