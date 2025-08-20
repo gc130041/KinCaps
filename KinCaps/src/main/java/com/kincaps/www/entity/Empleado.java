@@ -40,4 +40,9 @@ public class Empleado extends Usuario {
     public void setFechaContratacion(LocalDate fechaContratacion) {
         this.fechaContratacion = fechaContratacion;
     }
+    
+    // Getter específico para compatibilidad con templates
+    public int getIdEmpleado() {
+        return getIdUsuario();
+    }
 }
